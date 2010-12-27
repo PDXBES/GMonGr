@@ -1,0 +1,32 @@
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.frmMain.resources
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.Properties.Resources.resources
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.csproj.GenerateResource.Cache
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.exe.licenses
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\bin\Debug\GWMonitoring.mdb
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\bin\Debug\GMonGr.exe.config
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\bin\Debug\GMonGr.exe
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\bin\Debug\GMonGr.pdb
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.exe
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.pdb
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.frmSplashScreen.resources
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\bin\Debug\GMonGr.exe.manifest
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\bin\Debug\GMonGr.application
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.exe.manifest
+C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMonGr\GMonGr\obj\Debug\GMonGr.application
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.exe.config
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.pdb
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GWMonitoring.mdb
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.exe.manifest
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.application
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.exe
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.pdb
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.frmMain.resources
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.frmSplashScreen.resources
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.Properties.Resources.resources
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.csproj.GenerateResource.Cache
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe.licenses
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe.manifest
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.application
