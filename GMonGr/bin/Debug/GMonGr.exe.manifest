@@ -223,14 +223,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="892416">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="889856">
       <assemblyIdentity name="GMonGr" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>IM5n1y+gUTuydXmykvqvzWXH+PM=</dsig:DigestValue>
+        <dsig:DigestValue>PmeN/d3T++amhbThO66Y4MVkc7Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
