@@ -39,9 +39,11 @@
       Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
       Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
       Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab3 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+      Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup1 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem1 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
       Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
@@ -58,24 +60,24 @@
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("loadUpdate");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("deleteMe");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("graphData");
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-      this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-      this.ultraPanel2 = new Infragistics.Win.Misc.UltraPanel();
+      this.tabPlotData = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+      this.pnlLoadClearChart = new Infragistics.Win.Misc.UltraPanel();
+      this.btnLoadGraph = new Infragistics.Win.Misc.UltraButton();
+      this.btnClearChart = new Infragistics.Win.Misc.UltraButton();
+      this.pnlChooseMonitor = new Infragistics.Win.Misc.UltraPanel();
       this.cbxMonitorList = new Infragistics.Win.UltraWinGrid.UltraCombo();
       this.mONITORLOCATIONSBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.groundwaterMonitorDataSet = new GMonGr.GroundwaterMonitorDataSet();
       this.txtGwMonDateRange = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
       this.lblAvailRange = new Infragistics.Win.Misc.UltraLabel();
       this.lblChooseGwMon = new Infragistics.Win.Misc.UltraLabel();
-      this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
+      this.pnlCalendars = new Infragistics.Win.Misc.UltraPanel();
       this.clndrGwMonEnd = new System.Windows.Forms.DateTimePicker();
       this.clndrGwMonStart = new System.Windows.Forms.DateTimePicker();
       this.lblGwMonEndDate = new Infragistics.Win.Misc.UltraLabel();
-      this.btnClearChart = new Infragistics.Win.Misc.UltraButton();
       this.lblGwMonStartDate = new Infragistics.Win.Misc.UltraLabel();
-      this.btnLoadGraph = new Infragistics.Win.Misc.UltraButton();
       this.chartGwData = new Infragistics.Win.UltraWinChart.UltraChart();
-      this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+      this.tabLoadUpdates = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
       this.dgvDataUpdate = new System.Windows.Forms.DataGridView();
       this.update_record_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.reading_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,7 +88,9 @@
       this.btnSubmitUpdates = new Infragistics.Win.Misc.UltraButton();
       this.btnLoadUpdateFile = new Infragistics.Win.Misc.UltraButton();
       this.txtUploadFilePath = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
-      this.ultraTabPageControl3 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+      this.tabUpdateErros = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+      this.tabMonitorMap = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+      this.axMonitorMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
       this.tabControlMain = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
       this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
       this.expBarMain = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
@@ -98,19 +102,23 @@
       this._frmMain_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this._frmMain_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this.mONITOR_LOCATIONSTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter();
-      this.ultraTabPageControl1.SuspendLayout();
-      this.ultraPanel2.ClientArea.SuspendLayout();
-      this.ultraPanel2.SuspendLayout();
+      this.tabPlotData.SuspendLayout();
+      this.pnlLoadClearChart.ClientArea.SuspendLayout();
+      this.pnlLoadClearChart.SuspendLayout();
+      this.pnlChooseMonitor.ClientArea.SuspendLayout();
+      this.pnlChooseMonitor.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.cbxMonitorList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.mONITORLOCATIONSBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSet)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.txtGwMonDateRange)).BeginInit();
-      this.ultraPanel1.ClientArea.SuspendLayout();
-      this.ultraPanel1.SuspendLayout();
+      this.pnlCalendars.ClientArea.SuspendLayout();
+      this.pnlCalendars.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartGwData)).BeginInit();
-      this.ultraTabPageControl2.SuspendLayout();
+      this.tabLoadUpdates.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dgvDataUpdate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.txtUploadFilePath)).BeginInit();
+      this.tabMonitorMap.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.axMonitorMapControl)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).BeginInit();
       this.tabControlMain.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).BeginInit();
@@ -118,28 +126,61 @@
       ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).BeginInit();
       this.SuspendLayout();
       // 
-      // ultraTabPageControl1
+      // tabPlotData
       // 
-      this.ultraTabPageControl1.Controls.Add(this.ultraPanel2);
-      this.ultraTabPageControl1.Controls.Add(this.ultraPanel1);
-      this.ultraTabPageControl1.Controls.Add(this.chartGwData);
-      this.ultraTabPageControl1.Location = new System.Drawing.Point(1, 20);
-      this.ultraTabPageControl1.Name = "ultraTabPageControl1";
-      this.ultraTabPageControl1.Size = new System.Drawing.Size(784, 470);
+      this.tabPlotData.Controls.Add(this.pnlLoadClearChart);
+      this.tabPlotData.Controls.Add(this.pnlChooseMonitor);
+      this.tabPlotData.Controls.Add(this.pnlCalendars);
+      this.tabPlotData.Controls.Add(this.chartGwData);
+      this.tabPlotData.Location = new System.Drawing.Point(1, 20);
+      this.tabPlotData.Name = "tabPlotData";
+      this.tabPlotData.Size = new System.Drawing.Size(784, 470);
       // 
-      // ultraPanel2
+      // pnlLoadClearChart
       // 
       // 
-      // ultraPanel2.ClientArea
+      // pnlLoadClearChart.ClientArea
       // 
-      this.ultraPanel2.ClientArea.Controls.Add(this.cbxMonitorList);
-      this.ultraPanel2.ClientArea.Controls.Add(this.txtGwMonDateRange);
-      this.ultraPanel2.ClientArea.Controls.Add(this.lblAvailRange);
-      this.ultraPanel2.ClientArea.Controls.Add(this.lblChooseGwMon);
-      this.ultraPanel2.Location = new System.Drawing.Point(3, 3);
-      this.ultraPanel2.Name = "ultraPanel2";
-      this.ultraPanel2.Size = new System.Drawing.Size(192, 124);
-      this.ultraPanel2.TabIndex = 4;
+      this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnLoadGraph);
+      this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnClearChart);
+      this.pnlLoadClearChart.Location = new System.Drawing.Point(3, 332);
+      this.pnlLoadClearChart.Name = "pnlLoadClearChart";
+      this.pnlLoadClearChart.Size = new System.Drawing.Size(192, 135);
+      this.pnlLoadClearChart.TabIndex = 5;
+      // 
+      // btnLoadGraph
+      // 
+      this.btnLoadGraph.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
+      this.btnLoadGraph.Location = new System.Drawing.Point(0, 3);
+      this.btnLoadGraph.Name = "btnLoadGraph";
+      this.btnLoadGraph.Size = new System.Drawing.Size(192, 62);
+      this.btnLoadGraph.TabIndex = 3;
+      this.btnLoadGraph.Text = "Load Graph";
+      this.btnLoadGraph.Click += new System.EventHandler(this.btnLoadGraph_Click);
+      // 
+      // btnClearChart
+      // 
+      this.btnClearChart.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
+      this.btnClearChart.Location = new System.Drawing.Point(0, 70);
+      this.btnClearChart.Name = "btnClearChart";
+      this.btnClearChart.Size = new System.Drawing.Size(192, 62);
+      this.btnClearChart.TabIndex = 4;
+      this.btnClearChart.Text = "Clear Chart";
+      this.btnClearChart.Click += new System.EventHandler(this.btnClearChart_Click);
+      // 
+      // pnlChooseMonitor
+      // 
+      // 
+      // pnlChooseMonitor.ClientArea
+      // 
+      this.pnlChooseMonitor.ClientArea.Controls.Add(this.cbxMonitorList);
+      this.pnlChooseMonitor.ClientArea.Controls.Add(this.txtGwMonDateRange);
+      this.pnlChooseMonitor.ClientArea.Controls.Add(this.lblAvailRange);
+      this.pnlChooseMonitor.ClientArea.Controls.Add(this.lblChooseGwMon);
+      this.pnlChooseMonitor.Location = new System.Drawing.Point(3, 3);
+      this.pnlChooseMonitor.Name = "pnlChooseMonitor";
+      this.pnlChooseMonitor.Size = new System.Drawing.Size(192, 124);
+      this.pnlChooseMonitor.TabIndex = 4;
       // 
       // cbxMonitorList
       // 
@@ -225,21 +266,19 @@
       this.lblChooseGwMon.TabIndex = 0;
       this.lblChooseGwMon.Text = "Choose Monitor";
       // 
-      // ultraPanel1
+      // pnlCalendars
       // 
       // 
-      // ultraPanel1.ClientArea
+      // pnlCalendars.ClientArea
       // 
-      this.ultraPanel1.ClientArea.Controls.Add(this.clndrGwMonEnd);
-      this.ultraPanel1.ClientArea.Controls.Add(this.clndrGwMonStart);
-      this.ultraPanel1.ClientArea.Controls.Add(this.lblGwMonEndDate);
-      this.ultraPanel1.ClientArea.Controls.Add(this.btnClearChart);
-      this.ultraPanel1.ClientArea.Controls.Add(this.lblGwMonStartDate);
-      this.ultraPanel1.ClientArea.Controls.Add(this.btnLoadGraph);
-      this.ultraPanel1.Location = new System.Drawing.Point(3, 133);
-      this.ultraPanel1.Name = "ultraPanel1";
-      this.ultraPanel1.Size = new System.Drawing.Size(192, 334);
-      this.ultraPanel1.TabIndex = 3;
+      this.pnlCalendars.ClientArea.Controls.Add(this.clndrGwMonEnd);
+      this.pnlCalendars.ClientArea.Controls.Add(this.clndrGwMonStart);
+      this.pnlCalendars.ClientArea.Controls.Add(this.lblGwMonEndDate);
+      this.pnlCalendars.ClientArea.Controls.Add(this.lblGwMonStartDate);
+      this.pnlCalendars.Location = new System.Drawing.Point(3, 133);
+      this.pnlCalendars.Name = "pnlCalendars";
+      this.pnlCalendars.Size = new System.Drawing.Size(192, 193);
+      this.pnlCalendars.TabIndex = 3;
       // 
       // clndrGwMonEnd
       // 
@@ -263,16 +302,6 @@
       this.lblGwMonEndDate.TabIndex = 6;
       this.lblGwMonEndDate.Text = "Choose End Date:";
       // 
-      // btnClearChart
-      // 
-      this.btnClearChart.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnClearChart.Location = new System.Drawing.Point(3, 287);
-      this.btnClearChart.Name = "btnClearChart";
-      this.btnClearChart.Size = new System.Drawing.Size(184, 40);
-      this.btnClearChart.TabIndex = 4;
-      this.btnClearChart.Text = "Clear Chart";
-      this.btnClearChart.Click += new System.EventHandler(this.btnClearChart_Click);
-      // 
       // lblGwMonStartDate
       // 
       this.lblGwMonStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -281,16 +310,6 @@
       this.lblGwMonStartDate.Size = new System.Drawing.Size(100, 23);
       this.lblGwMonStartDate.TabIndex = 5;
       this.lblGwMonStartDate.Text = "Choose Start Date:";
-      // 
-      // btnLoadGraph
-      // 
-      this.btnLoadGraph.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnLoadGraph.Location = new System.Drawing.Point(3, 239);
-      this.btnLoadGraph.Name = "btnLoadGraph";
-      this.btnLoadGraph.Size = new System.Drawing.Size(185, 42);
-      this.btnLoadGraph.TabIndex = 3;
-      this.btnLoadGraph.Text = "Load Graph";
-      this.btnLoadGraph.Click += new System.EventHandler(this.btnLoadGraph_Click);
       // 
       //			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
       //			'ChartType' must be persisted ahead of any Axes change made in design time.
@@ -379,7 +398,7 @@
       this.chartGwData.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y.TickmarkInterval = 50;
+      this.chartGwData.Axis.Y.TickmarkInterval = 40;
       this.chartGwData.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y.Visible = true;
       this.chartGwData.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -406,7 +425,7 @@
       this.chartGwData.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y2.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y2.TickmarkInterval = 50;
+      this.chartGwData.Axis.Y2.TickmarkInterval = 40;
       this.chartGwData.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y2.Visible = false;
       this.chartGwData.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -469,21 +488,21 @@
       this.chartGwData.Legend.Visible = true;
       this.chartGwData.Location = new System.Drawing.Point(201, 3);
       this.chartGwData.Name = "chartGwData";
-      this.chartGwData.Size = new System.Drawing.Size(703, 464);
+      this.chartGwData.Size = new System.Drawing.Size(580, 464);
       this.chartGwData.TabIndex = 0;
       this.chartGwData.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
       this.chartGwData.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
       // 
-      // ultraTabPageControl2
+      // tabLoadUpdates
       // 
-      this.ultraTabPageControl2.Controls.Add(this.dgvDataUpdate);
-      this.ultraTabPageControl2.Controls.Add(this.btnCancelUpdates);
-      this.ultraTabPageControl2.Controls.Add(this.btnSubmitUpdates);
-      this.ultraTabPageControl2.Controls.Add(this.btnLoadUpdateFile);
-      this.ultraTabPageControl2.Controls.Add(this.txtUploadFilePath);
-      this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
-      this.ultraTabPageControl2.Name = "ultraTabPageControl2";
-      this.ultraTabPageControl2.Size = new System.Drawing.Size(784, 470);
+      this.tabLoadUpdates.Controls.Add(this.dgvDataUpdate);
+      this.tabLoadUpdates.Controls.Add(this.btnCancelUpdates);
+      this.tabLoadUpdates.Controls.Add(this.btnSubmitUpdates);
+      this.tabLoadUpdates.Controls.Add(this.btnLoadUpdateFile);
+      this.tabLoadUpdates.Controls.Add(this.txtUploadFilePath);
+      this.tabLoadUpdates.Location = new System.Drawing.Point(-10000, -10000);
+      this.tabLoadUpdates.Name = "tabLoadUpdates";
+      this.tabLoadUpdates.Size = new System.Drawing.Size(784, 470);
       // 
       // dgvDataUpdate
       // 
@@ -569,18 +588,34 @@
       this.txtUploadFilePath.Size = new System.Drawing.Size(636, 21);
       this.txtUploadFilePath.TabIndex = 0;
       // 
-      // ultraTabPageControl3
+      // tabUpdateErros
       // 
-      this.ultraTabPageControl3.Location = new System.Drawing.Point(-10000, -10000);
-      this.ultraTabPageControl3.Name = "ultraTabPageControl3";
-      this.ultraTabPageControl3.Size = new System.Drawing.Size(784, 470);
+      this.tabUpdateErros.Location = new System.Drawing.Point(-10000, -10000);
+      this.tabUpdateErros.Name = "tabUpdateErros";
+      this.tabUpdateErros.Size = new System.Drawing.Size(784, 470);
+      // 
+      // tabMonitorMap
+      // 
+      this.tabMonitorMap.Controls.Add(this.axMonitorMapControl);
+      this.tabMonitorMap.Location = new System.Drawing.Point(-10000, -10000);
+      this.tabMonitorMap.Name = "tabMonitorMap";
+      this.tabMonitorMap.Size = new System.Drawing.Size(784, 470);
+      // 
+      // axMonitorMapControl
+      // 
+      this.axMonitorMapControl.Location = new System.Drawing.Point(3, 3);
+      this.axMonitorMapControl.Name = "axMonitorMapControl";
+      this.axMonitorMapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMonitorMapControl.OcxState")));
+      this.axMonitorMapControl.Size = new System.Drawing.Size(778, 464);
+      this.axMonitorMapControl.TabIndex = 0;
       // 
       // tabControlMain
       // 
       this.tabControlMain.Controls.Add(this.ultraTabSharedControlsPage1);
-      this.tabControlMain.Controls.Add(this.ultraTabPageControl1);
-      this.tabControlMain.Controls.Add(this.ultraTabPageControl2);
-      this.tabControlMain.Controls.Add(this.ultraTabPageControl3);
+      this.tabControlMain.Controls.Add(this.tabPlotData);
+      this.tabControlMain.Controls.Add(this.tabLoadUpdates);
+      this.tabControlMain.Controls.Add(this.tabUpdateErros);
+      this.tabControlMain.Controls.Add(this.tabMonitorMap);
       this.tabControlMain.Location = new System.Drawing.Point(160, 6);
       this.tabControlMain.Name = "tabControlMain";
       this.tabControlMain.SharedControlsPage = this.ultraTabSharedControlsPage1;
@@ -588,19 +623,23 @@
       this.tabControlMain.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel;
       this.tabControlMain.TabIndex = 0;
       ultraTab1.Key = "graphData";
-      ultraTab1.TabPage = this.ultraTabPageControl1;
+      ultraTab1.TabPage = this.tabPlotData;
       ultraTab1.Text = "Data Plotting";
       ultraTab2.Key = "loadUpdates";
-      ultraTab2.TabPage = this.ultraTabPageControl2;
+      ultraTab2.TabPage = this.tabLoadUpdates;
       ultraTab2.Text = "Data Updates";
       ultraTab3.Key = "updateFileErrors";
-      ultraTab3.TabPage = this.ultraTabPageControl3;
+      ultraTab3.TabPage = this.tabUpdateErros;
       ultraTab3.Text = "Update File Errors";
       ultraTab3.Visible = false;
+      ultraTab4.Key = "monitorMap";
+      ultraTab4.TabPage = this.tabMonitorMap;
+      ultraTab4.Text = "Monitor Map";
       this.tabControlMain.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
             ultraTab1,
             ultraTab2,
-            ultraTab3});
+            ultraTab3,
+            ultraTab4});
       // 
       // ultraTabSharedControlsPage1
       // 
@@ -744,21 +783,25 @@
       this.Name = "frmMain";
       this.Text = "Groundwater Monitor Grapher";
       this.Load += new System.EventHandler(this.frmMain_Load);
-      this.ultraTabPageControl1.ResumeLayout(false);
-      this.ultraPanel2.ClientArea.ResumeLayout(false);
-      this.ultraPanel2.ClientArea.PerformLayout();
-      this.ultraPanel2.ResumeLayout(false);
+      this.tabPlotData.ResumeLayout(false);
+      this.pnlLoadClearChart.ClientArea.ResumeLayout(false);
+      this.pnlLoadClearChart.ResumeLayout(false);
+      this.pnlChooseMonitor.ClientArea.ResumeLayout(false);
+      this.pnlChooseMonitor.ClientArea.PerformLayout();
+      this.pnlChooseMonitor.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.cbxMonitorList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.mONITORLOCATIONSBindingSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSet)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.txtGwMonDateRange)).EndInit();
-      this.ultraPanel1.ClientArea.ResumeLayout(false);
-      this.ultraPanel1.ResumeLayout(false);
+      this.pnlCalendars.ClientArea.ResumeLayout(false);
+      this.pnlCalendars.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.chartGwData)).EndInit();
-      this.ultraTabPageControl2.ResumeLayout(false);
-      this.ultraTabPageControl2.PerformLayout();
+      this.tabLoadUpdates.ResumeLayout(false);
+      this.tabLoadUpdates.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dgvDataUpdate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.txtUploadFilePath)).EndInit();
+      this.tabMonitorMap.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.axMonitorMapControl)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).EndInit();
       this.tabControlMain.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).EndInit();
@@ -772,12 +815,12 @@
 
     private Infragistics.Win.UltraWinTabControl.UltraTabControl tabControlMain;
     private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage1;
-    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl1;
-    private Infragistics.Win.Misc.UltraPanel ultraPanel1;
+    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl tabPlotData;
+    private Infragistics.Win.Misc.UltraPanel pnlCalendars;
     private Infragistics.Win.Misc.UltraButton btnLoadGraph;
     private Infragistics.Win.UltraWinChart.UltraChart chartGwData;
     private Infragistics.Win.Misc.UltraButton btnClearChart;
-    private Infragistics.Win.Misc.UltraPanel ultraPanel2;
+    private Infragistics.Win.Misc.UltraPanel pnlChooseMonitor;
     private Infragistics.Win.Misc.UltraLabel lblAvailRange;
     private Infragistics.Win.Misc.UltraLabel lblChooseGwMon;
     private Infragistics.Win.Misc.UltraLabel lblGwMonEndDate;
@@ -785,7 +828,7 @@
     private System.Windows.Forms.DateTimePicker clndrGwMonEnd;
     private System.Windows.Forms.DateTimePicker clndrGwMonStart;
     private Infragistics.Win.UltraWinEditors.UltraTextEditor txtGwMonDateRange;
-    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl2;
+    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl tabLoadUpdates;
     private Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar expBarMain;
     private Infragistics.Win.UltraWinEditors.UltraTextEditor txtUploadFilePath;
     private Infragistics.Win.Misc.UltraButton btnLoadUpdateFile;
@@ -798,7 +841,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn head_psi;
     private System.Windows.Forms.DataGridViewTextBoxColumn temp_celsius;
     private System.Windows.Forms.OpenFileDialog ofdMain;
-    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl3;
+    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl tabUpdateErros;
     private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager toolBarManagerMain;
     private System.Windows.Forms.Panel frmMain_Fill_Panel;
     private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _frmMain_Toolbars_Dock_Area_Left;
@@ -809,6 +852,9 @@
     private GroundwaterMonitorDataSet groundwaterMonitorDataSet;
     private System.Windows.Forms.BindingSource mONITORLOCATIONSBindingSource;
     private GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter mONITOR_LOCATIONSTableAdapter;
+    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl tabMonitorMap;
+    private ESRI.ArcGIS.Controls.AxMapControl axMonitorMapControl;
+    private Infragistics.Win.Misc.UltraPanel pnlLoadClearChart;
   }
 }
 
