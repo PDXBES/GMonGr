@@ -49,6 +49,11 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="ESRI.ArcGIS.ADF" version="9.3.0.1770" publicKeyToken="8FC3CC631E44AD86" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="ESRI.ArcGIS.Animation" version="9.3.0.1770" publicKeyToken="8FC3CC631E44AD86" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
@@ -129,6 +134,11 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="ESRI.ArcGIS.LicenseControl" version="9.3.0.1770" publicKeyToken="8FC3CC631E44AD86" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="ESRI.ArcGIS.NetworkAnalyst" version="9.3.0.1770" publicKeyToken="8FC3CC631E44AD86" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
@@ -150,6 +160,11 @@
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="ESRI.ArcGIS.SystemUI" version="9.3.0.1770" publicKeyToken="8FC3CC631E44AD86" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="ESRI.ArcGIS.Utility" version="9.3.0.1770" publicKeyToken="8FC3CC631E44AD86" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -223,14 +238,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="889856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="915968">
       <assemblyIdentity name="GMonGr" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>PmeN/d3T++amhbThO66Y4MVkc7Q=</dsig:DigestValue>
+        <dsig:DigestValue>o1gps68wwwj0wY3ABcrHsaWzvDY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -252,13 +267,13 @@
       <dsig:DigestValue>1WzGT/IkyHUv9IW99TFpTTnW+18=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GWMonitoring.mdb" size="97173504" writeableType="applicationData">
+  <file name="GWMonitoring.mdb" size="97189888" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>dMz4URY8xIc05XaNeWFTnvHhjUU=</dsig:DigestValue>
+      <dsig:DigestValue>BLzD7SGNdOYE8lE1YKNpoZoiooU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

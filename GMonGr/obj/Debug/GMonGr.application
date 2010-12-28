@@ -4,14 +4,14 @@
   <description asmv2:publisher="City of Portland, BES - ASM" asmv2:product="GMonGr" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="GMonGr.exe.manifest" size="15262">
+    <dependentAssembly dependencyType="install" codebase="GMonGr.exe.manifest" size="16162">
       <assemblyIdentity name="GMonGr.exe" version="1.0.0.7" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zvp3Y6YCFKJ5OUBW0dBE0afg7vQ=</dsig:DigestValue>
+        <dsig:DigestValue>PeFHsNzNwj2WKaCUPujDNuelU+g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

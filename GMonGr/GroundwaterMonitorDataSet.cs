@@ -1,7 +1,27 @@
-﻿namespace GMonGr 
+﻿using System;
+using System.Data.Linq;
+using System.Collections.Generic;
+
+//namespace GMonGr
+namespace GMonGr 
 {     
     public partial class GroundwaterMonitorDataSet 
     {
+      partial class P1401DataTable
+      {
+
+      }
+    
+      partial class GwMonQcDataTable
+      {
+
+      }
+    
+      partial class GwMonUpdaterDataTable
+      {
+
+      }
+
       public void InitTableP1401()
       {
         GroundwaterMonitorDataSetTableAdapters.P1401TableAdapter p1401TA;
@@ -120,9 +140,22 @@
         tGD03BTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.TGD03BTableAdapter();
         tGD03BTA.Fill(tableTGD03B);
       }
+
+      public void InitGwMonUpdaterTable()
+      {
+        GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter gwMonUpdaterTA;
+        gwMonUpdaterTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter();
+        gwMonUpdaterTA.Fill(tableGwMonUpdater);
+      }
+
       public void InitGroundwaterMonitorDataSet()
       {
    
       }
     }
+}
+
+namespace GMonGr.GroundwaterMonitorDataSetTableAdapters
+{
+
 }

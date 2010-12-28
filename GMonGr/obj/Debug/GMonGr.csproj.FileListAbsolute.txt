@@ -30,3 +30,4 @@ C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\G
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe.licenses
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe.manifest
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.application
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\Template\UserUpdate.csv

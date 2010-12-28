@@ -61,6 +61,8 @@ namespace GMonGr {
         
         private MONITOR_LOCATIONSDataTable tableMONITOR_LOCATIONS;
         
+        private GwMonUpdaterDataTable tableGwMonUpdater;
+        
         private GwMonQcDataTable tableGwMonQc;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -142,6 +144,9 @@ namespace GMonGr {
                 }
                 if ((ds.Tables["MONITOR_LOCATIONS"] != null)) {
                     base.Tables.Add(new MONITOR_LOCATIONSDataTable(ds.Tables["MONITOR_LOCATIONS"]));
+                }
+                if ((ds.Tables["GwMonUpdater"] != null)) {
+                    base.Tables.Add(new GwMonUpdaterDataTable(ds.Tables["GwMonUpdater"]));
                 }
                 if ((ds.Tables["GwMonQc"] != null)) {
                     base.Tables.Add(new GwMonQcDataTable(ds.Tables["GwMonQc"]));
@@ -329,6 +334,15 @@ namespace GMonGr {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public GwMonUpdaterDataTable GwMonUpdater {
+            get {
+                return this.tableGwMonUpdater;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public GwMonQcDataTable GwMonQc {
             get {
                 return this.tableGwMonQc;
@@ -447,6 +461,9 @@ namespace GMonGr {
                 }
                 if ((ds.Tables["MONITOR_LOCATIONS"] != null)) {
                     base.Tables.Add(new MONITOR_LOCATIONSDataTable(ds.Tables["MONITOR_LOCATIONS"]));
+                }
+                if ((ds.Tables["GwMonUpdater"] != null)) {
+                    base.Tables.Add(new GwMonUpdaterDataTable(ds.Tables["GwMonUpdater"]));
                 }
                 if ((ds.Tables["GwMonQc"] != null)) {
                     base.Tables.Add(new GwMonQcDataTable(ds.Tables["GwMonQc"]));
@@ -589,6 +606,12 @@ namespace GMonGr {
                     this.tableMONITOR_LOCATIONS.InitVars();
                 }
             }
+            this.tableGwMonUpdater = ((GwMonUpdaterDataTable)(base.Tables["GwMonUpdater"]));
+            if ((initTable == true)) {
+                if ((this.tableGwMonUpdater != null)) {
+                    this.tableGwMonUpdater.InitVars();
+                }
+            }
             this.tableGwMonQc = ((GwMonQcDataTable)(base.Tables["GwMonQc"]));
             if ((initTable == true)) {
                 if ((this.tableGwMonQc != null)) {
@@ -640,6 +663,8 @@ namespace GMonGr {
             base.Tables.Add(this.tableTGD03B);
             this.tableMONITOR_LOCATIONS = new MONITOR_LOCATIONSDataTable();
             base.Tables.Add(this.tableMONITOR_LOCATIONS);
+            this.tableGwMonUpdater = new GwMonUpdaterDataTable();
+            base.Tables.Add(this.tableGwMonUpdater);
             this.tableGwMonQc = new GwMonQcDataTable();
             base.Tables.Add(this.tableGwMonQc);
         }
@@ -731,6 +756,11 @@ namespace GMonGr {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private bool ShouldSerializeMONITOR_LOCATIONS() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeGwMonUpdater() {
             return false;
         }
         
@@ -827,6 +857,8 @@ namespace GMonGr {
         public delegate void TGD03BRowChangeEventHandler(object sender, TGD03BRowChangeEvent e);
         
         public delegate void MONITOR_LOCATIONSRowChangeEventHandler(object sender, MONITOR_LOCATIONSRowChangeEvent e);
+        
+        public delegate void GwMonUpdaterRowChangeEventHandler(object sender, GwMonUpdaterRowChangeEvent e);
         
         public delegate void GwMonQcRowChangeEventHandler(object sender, GwMonQcRowChangeEvent e);
         
@@ -7794,6 +7826,291 @@ namespace GMonGr {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GwMonUpdaterDataTable : global::System.Data.TypedTableBase<GwMonUpdaterRow> {
+            
+            private global::System.Data.DataColumn columnreadingId;
+            
+            private global::System.Data.DataColumn columnreadingDate;
+            
+            private global::System.Data.DataColumn columnreadingHertz;
+            
+            private global::System.Data.DataColumn columnheadPsi;
+            
+            private global::System.Data.DataColumn columntempCelsius;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterDataTable() {
+                this.TableName = "GwMonUpdater";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal GwMonUpdaterDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected GwMonUpdaterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn readingIdColumn {
+                get {
+                    return this.columnreadingId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn readingDateColumn {
+                get {
+                    return this.columnreadingDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn readingHertzColumn {
+                get {
+                    return this.columnreadingHertz;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn headPsiColumn {
+                get {
+                    return this.columnheadPsi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn tempCelsiusColumn {
+                get {
+                    return this.columntempCelsius;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterRow this[int index] {
+                get {
+                    return ((GwMonUpdaterRow)(this.Rows[index]));
+                }
+            }
+            
+            public event GwMonUpdaterRowChangeEventHandler GwMonUpdaterRowChanging;
+            
+            public event GwMonUpdaterRowChangeEventHandler GwMonUpdaterRowChanged;
+            
+            public event GwMonUpdaterRowChangeEventHandler GwMonUpdaterRowDeleting;
+            
+            public event GwMonUpdaterRowChangeEventHandler GwMonUpdaterRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddGwMonUpdaterRow(GwMonUpdaterRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterRow AddGwMonUpdaterRow(int readingId, System.DateTime readingDate, double readingHertz, double headPsi, double tempCelsius) {
+                GwMonUpdaterRow rowGwMonUpdaterRow = ((GwMonUpdaterRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        readingId,
+                        readingDate,
+                        readingHertz,
+                        headPsi,
+                        tempCelsius};
+                rowGwMonUpdaterRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGwMonUpdaterRow);
+                return rowGwMonUpdaterRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterRow FindByreadingId(int readingId) {
+                return ((GwMonUpdaterRow)(this.Rows.Find(new object[] {
+                            readingId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                GwMonUpdaterDataTable cln = ((GwMonUpdaterDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GwMonUpdaterDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnreadingId = base.Columns["readingId"];
+                this.columnreadingDate = base.Columns["readingDate"];
+                this.columnreadingHertz = base.Columns["readingHertz"];
+                this.columnheadPsi = base.Columns["headPsi"];
+                this.columntempCelsius = base.Columns["tempCelsius"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnreadingId = new global::System.Data.DataColumn("readingId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreadingId);
+                this.columnreadingDate = new global::System.Data.DataColumn("readingDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreadingDate);
+                this.columnreadingHertz = new global::System.Data.DataColumn("readingHertz", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreadingHertz);
+                this.columnheadPsi = new global::System.Data.DataColumn("headPsi", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnheadPsi);
+                this.columntempCelsius = new global::System.Data.DataColumn("tempCelsius", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntempCelsius);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnreadingId}, true));
+                this.columnreadingId.AllowDBNull = false;
+                this.columnreadingId.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterRow NewGwMonUpdaterRow() {
+                return ((GwMonUpdaterRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GwMonUpdaterRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(GwMonUpdaterRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GwMonUpdaterRowChanged != null)) {
+                    this.GwMonUpdaterRowChanged(this, new GwMonUpdaterRowChangeEvent(((GwMonUpdaterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GwMonUpdaterRowChanging != null)) {
+                    this.GwMonUpdaterRowChanging(this, new GwMonUpdaterRowChangeEvent(((GwMonUpdaterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GwMonUpdaterRowDeleted != null)) {
+                    this.GwMonUpdaterRowDeleted(this, new GwMonUpdaterRowChangeEvent(((GwMonUpdaterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GwMonUpdaterRowDeleting != null)) {
+                    this.GwMonUpdaterRowDeleting(this, new GwMonUpdaterRowChangeEvent(((GwMonUpdaterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveGwMonUpdaterRow(GwMonUpdaterRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GroundwaterMonitorDataSet ds = new GroundwaterMonitorDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GwMonUpdaterDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GwMonQcDataTable : global::System.Data.TypedTableBase<GwMonQcRow> {
             
             private global::System.Data.DataColumn columnreadingDate;
@@ -13641,6 +13958,131 @@ namespace GMonGr {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class GwMonUpdaterRow : global::System.Data.DataRow {
+            
+            private GwMonUpdaterDataTable tableGwMonUpdater;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal GwMonUpdaterRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGwMonUpdater = ((GwMonUpdaterDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int readingId {
+                get {
+                    return ((int)(this[this.tableGwMonUpdater.readingIdColumn]));
+                }
+                set {
+                    this[this.tableGwMonUpdater.readingIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime readingDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGwMonUpdater.readingDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'readingDate\' in table \'GwMonUpdater\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGwMonUpdater.readingDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double readingHertz {
+                get {
+                    try {
+                        return ((double)(this[this.tableGwMonUpdater.readingHertzColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'readingHertz\' in table \'GwMonUpdater\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGwMonUpdater.readingHertzColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double headPsi {
+                get {
+                    try {
+                        return ((double)(this[this.tableGwMonUpdater.headPsiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'headPsi\' in table \'GwMonUpdater\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGwMonUpdater.headPsiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double tempCelsius {
+                get {
+                    try {
+                        return ((double)(this[this.tableGwMonUpdater.tempCelsiusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tempCelsius\' in table \'GwMonUpdater\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGwMonUpdater.tempCelsiusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsreadingDateNull() {
+                return this.IsNull(this.tableGwMonUpdater.readingDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetreadingDateNull() {
+                this[this.tableGwMonUpdater.readingDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsreadingHertzNull() {
+                return this.IsNull(this.tableGwMonUpdater.readingHertzColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetreadingHertzNull() {
+                this[this.tableGwMonUpdater.readingHertzColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsheadPsiNull() {
+                return this.IsNull(this.tableGwMonUpdater.headPsiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetheadPsiNull() {
+                this[this.tableGwMonUpdater.headPsiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IstempCelsiusNull() {
+                return this.IsNull(this.tableGwMonUpdater.tempCelsiusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SettempCelsiusNull() {
+                this[this.tableGwMonUpdater.tempCelsiusColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         public partial class GwMonQcRow : global::System.Data.DataRow {
             
             private GwMonQcDataTable tableGwMonQc;
@@ -14272,6 +14714,37 @@ namespace GMonGr {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public MONITOR_LOCATIONSRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class GwMonUpdaterRowChangeEvent : global::System.EventArgs {
+            
+            private GwMonUpdaterRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterRowChangeEvent(GwMonUpdaterRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GwMonUpdaterRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -26003,6 +26476,436 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class GwMonUpdaterTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.OleDb.OleDbDataAdapter _adapter;
+        
+        private global::System.Data.OleDb.OleDbConnection _connection;
+        
+        private global::System.Data.OleDb.OleDbTransaction _transaction;
+        
+        private global::System.Data.OleDb.OleDbCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public GwMonUpdaterTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.OleDb.OleDbDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.OleDb.OleDbConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.OleDb.OleDbTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.OleDb.OleDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "GwMonUpdater";
+            tableMapping.ColumnMappings.Add("readingId", "readingId");
+            tableMapping.ColumnMappings.Add("readingDate", "readingDate");
+            tableMapping.ColumnMappings.Add("readingHertz", "readingHertz");
+            tableMapping.ColumnMappings.Add("headPsi", "headPsi");
+            tableMapping.ColumnMappings.Add("tempCelsius", "tempCelsius");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `GwMonUpdater` WHERE ((`readingId` = ?) AND ((? = 1 AND `readingDate` IS NULL) OR (`readingDate` = ?)) AND ((? = 1 AND `readingHertz` IS NULL) OR (`readingHertz` = ?)) AND ((? = 1 AND `headPsi` IS NULL) OR (`headPsi` = ?)) AND ((? = 1 AND `tempCelsius` IS NULL) OR (`tempCelsius` = ?)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_readingId", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingId", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_readingDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingDate", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_readingDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingDate", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_readingHertz", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingHertz", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_readingHertz", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingHertz", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_headPsi", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "headPsi", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_headPsi", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "headPsi", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_tempCelsius", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tempCelsius", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_tempCelsius", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tempCelsius", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `GwMonUpdater` (`readingId`, `readingDate`, `readingHertz`, `headPsi`" +
+                ", `tempCelsius`) VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("readingId", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingId", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("readingDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingDate", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("readingHertz", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingHertz", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("headPsi", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "headPsi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("tempCelsius", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tempCelsius", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `GwMonUpdater` SET `readingId` = ?, `readingDate` = ?, `readingHertz` = ?, `headPsi` = ?, `tempCelsius` = ? WHERE ((`readingId` = ?) AND ((? = 1 AND `readingDate` IS NULL) OR (`readingDate` = ?)) AND ((? = 1 AND `readingHertz` IS NULL) OR (`readingHertz` = ?)) AND ((? = 1 AND `headPsi` IS NULL) OR (`headPsi` = ?)) AND ((? = 1 AND `tempCelsius` IS NULL) OR (`tempCelsius` = ?)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("readingId", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingId", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("readingDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingDate", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("readingHertz", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingHertz", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("headPsi", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "headPsi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("tempCelsius", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tempCelsius", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_readingId", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingId", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_readingDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingDate", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_readingDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingDate", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_readingHertz", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingHertz", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_readingHertz", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "readingHertz", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_headPsi", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "headPsi", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_headPsi", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "headPsi", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_tempCelsius", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tempCelsius", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_tempCelsius", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tempCelsius", global::System.Data.DataRowVersion.Original, false, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.OleDb.OleDbConnection();
+            this._connection.ConnectionString = global::GMonGr.Properties.Settings.Default.GwMonitoringConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
+            this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT     GwMonUpdater.*\r\nFROM         GwMonUpdater";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GroundwaterMonitorDataSet.GwMonUpdaterDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GroundwaterMonitorDataSet.GwMonUpdaterDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            GroundwaterMonitorDataSet.GwMonUpdaterDataTable dataTable = new GroundwaterMonitorDataSet.GwMonUpdaterDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet.GwMonUpdaterDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "GwMonUpdater");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(global::System.Nullable<int> Original_readingId, global::System.Nullable<global::System.DateTime> Original_readingDate, global::System.Nullable<double> Original_readingHertz, global::System.Nullable<double> Original_headPsi, global::System.Nullable<double> Original_tempCelsius) {
+            if ((Original_readingId.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_readingId.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((Original_readingDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_readingDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_readingHertz.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((double)(Original_readingHertz.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_headPsi.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_headPsi.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_tempCelsius.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_tempCelsius.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(global::System.Nullable<int> readingId, global::System.Nullable<global::System.DateTime> readingDate, global::System.Nullable<double> readingHertz, global::System.Nullable<double> headPsi, global::System.Nullable<double> tempCelsius) {
+            if ((readingId.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(readingId.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((readingDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(readingDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((readingHertz.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(readingHertz.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((headPsi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((double)(headPsi.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((tempCelsius.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(tempCelsius.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<int> readingId, global::System.Nullable<global::System.DateTime> readingDate, global::System.Nullable<double> readingHertz, global::System.Nullable<double> headPsi, global::System.Nullable<double> tempCelsius, global::System.Nullable<int> Original_readingId, global::System.Nullable<global::System.DateTime> Original_readingDate, global::System.Nullable<double> Original_readingHertz, global::System.Nullable<double> Original_headPsi, global::System.Nullable<double> Original_tempCelsius) {
+            if ((readingId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(readingId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((readingDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(readingDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((readingHertz.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((double)(readingHertz.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((headPsi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((double)(headPsi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((tempCelsius.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(tempCelsius.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_readingId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_readingId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_readingDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_readingDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_readingHertz.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((double)(Original_readingHertz.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Original_headPsi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((double)(Original_headPsi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Original_tempCelsius.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((double)(Original_tempCelsius.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<global::System.DateTime> readingDate, global::System.Nullable<double> readingHertz, global::System.Nullable<double> headPsi, global::System.Nullable<double> tempCelsius, global::System.Nullable<int> Original_readingId, global::System.Nullable<global::System.DateTime> Original_readingDate, global::System.Nullable<double> Original_readingHertz, global::System.Nullable<double> Original_headPsi, global::System.Nullable<double> Original_tempCelsius) {
+            return this.Update(Original_readingId, readingDate, readingHertz, headPsi, tempCelsius, Original_readingId, Original_readingDate, Original_readingHertz, Original_headPsi, Original_tempCelsius);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -26046,6 +26949,8 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
         private TGD03ATableAdapter _tGD03ATableAdapter;
         
         private TGD03BTableAdapter _tGD03BTableAdapter;
+        
+        private GwMonUpdaterTableAdapter _gwMonUpdaterTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -26270,6 +27175,19 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public GwMonUpdaterTableAdapter GwMonUpdaterTableAdapter {
+            get {
+                return this._gwMonUpdaterTableAdapter;
+            }
+            set {
+                this._gwMonUpdaterTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -26350,6 +27268,10 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                             && (this._tGD03BTableAdapter.Connection != null))) {
                     return this._tGD03BTableAdapter.Connection;
                 }
+                if (((this._gwMonUpdaterTableAdapter != null) 
+                            && (this._gwMonUpdaterTableAdapter.Connection != null))) {
+                    return this._gwMonUpdaterTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -26410,6 +27332,9 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                 if ((this._tGD03BTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._gwMonUpdaterTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -26420,21 +27345,30 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateUpdatedRows(GroundwaterMonitorDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tGD01BTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TGD01B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tGD01BTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tGD02ATableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TGD02A.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tGD02ATableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tGD02BTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TGD02B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tGD02BTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tGD01BTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TGD01B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tGD01BTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26456,12 +27390,12 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tGD02BTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TGD02B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._gwMonUpdaterTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tGD02BTableAdapter.Update(updatedRows));
+                    result = (result + this._gwMonUpdaterTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26483,21 +27417,21 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._p5203TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._p5203TableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._p4502TableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._p4502TableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._p4503TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._p4503TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26519,12 +27453,21 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._p4503TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._p5202TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P5202.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._p4503TableAdapter.Update(updatedRows));
+                    result = (result + this._p5202TableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._p5203TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._p5203TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26534,15 +27477,6 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._p5201TableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._p5202TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P5202.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._p5202TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26573,19 +27507,27 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateInsertedRows(GroundwaterMonitorDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tGD01BTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TGD01B.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tGD01BTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tGD02ATableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TGD02A.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tGD02ATableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tGD02BTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TGD02B.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tGD02BTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tGD01BTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TGD01B.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tGD01BTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26605,11 +27547,11 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tGD02BTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TGD02B.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._gwMonUpdaterTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tGD02BTableAdapter.Update(addedRows));
+                    result = (result + this._gwMonUpdaterTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26629,19 +27571,19 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._p5203TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._p5203TableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._p4502TableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._p4502TableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._p4503TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._p4503TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26661,11 +27603,19 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._p4503TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._p5202TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P5202.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._p4503TableAdapter.Update(addedRows));
+                    result = (result + this._p5202TableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._p5203TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._p5203TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26674,14 +27624,6 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._p5201TableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._p5202TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P5202.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._p5202TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26726,14 +27668,6 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p5202TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P5202.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._p5202TableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._p5201TableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -26742,11 +27676,19 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p4503TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p5203TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p4503TableAdapter.Update(deletedRows));
+                    result = (result + this._p5203TableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._p5202TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P5202.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._p5202TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26766,19 +27708,19 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._p4503TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._p4503TableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._p4502TableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._p4502TableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._p5203TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._p5203TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26798,11 +27740,11 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tGD02BTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TGD02B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._gwMonUpdaterTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tGD02BTableAdapter.Update(deletedRows));
+                    result = (result + this._gwMonUpdaterTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26822,19 +27764,27 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tGD02ATableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TGD02A.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tGD02ATableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tGD01BTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TGD01B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tGD01BTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tGD02BTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TGD02B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tGD02BTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tGD02ATableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TGD02A.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tGD02ATableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26952,6 +27902,11 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
             }
             if (((this._tGD03BTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tGD03BTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._gwMonUpdaterTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._gwMonUpdaterTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -27131,6 +28086,15 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tGD03BTableAdapter.Adapter);
                     }
                 }
+                if ((this._gwMonUpdaterTableAdapter != null)) {
+                    revertConnections.Add(this._gwMonUpdaterTableAdapter, this._gwMonUpdaterTableAdapter.Connection);
+                    this._gwMonUpdaterTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
+                    this._gwMonUpdaterTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
+                    if (this._gwMonUpdaterTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._gwMonUpdaterTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._gwMonUpdaterTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -27252,6 +28216,10 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
                 if ((this._tGD03BTableAdapter != null)) {
                     this._tGD03BTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._tGD03BTableAdapter]));
                     this._tGD03BTableAdapter.Transaction = null;
+                }
+                if ((this._gwMonUpdaterTableAdapter != null)) {
+                    this._gwMonUpdaterTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._gwMonUpdaterTableAdapter]));
+                    this._gwMonUpdaterTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

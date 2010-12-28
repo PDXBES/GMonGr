@@ -1826,8 +1826,14 @@ namespace GMonGr
     private bool PrepareUpdateFile(string fileName)
     {
       WriteGwMonUpdateFile(fileName);
+      LoadGwMonUpdateData();
+
       int qcCount = 0;
 
+      //SetProgress = 0;
+
+      gwMonDataSet.GwMonQc.Clear();
+      
       qcCount += QCQueryTimeConflict(gwMonDataSet.GwMonQc);
       qcCount += QCQueryPiezoReadingError(gwMonDataSet.GwMonQc);
 
@@ -1840,25 +1846,26 @@ namespace GMonGr
     /// with duplicate timestamps are not appended
     /// </summary>
     private int QCQueryTimeConflict(DataTable qcDt)
-    {
-      gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableP1401();
-      DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.P1401;
-         
+    {   
       int qcCount = 0;
-      var qryTimeRangeGwMon = 
-        from g in gwMonDataTable.AsEnumerable()
-          select g.Field<DateTime>("readingDate");
-      DateTime minReadingDate = qryTimeRangeGwMon.Min();
-      DateTime maxReadingDate = qryTimeRangeGwMon.Max();
      
+      var qryTimeRangeGwMon = 
+        from u in gwMonDataSet.GwMonUpdater
+        join g in gwMonDataSet.P1401
+        on u.readingDate equals g.readingDate
+        select new
+        {
+          readingDate = g.readingDate,
+          errorCode = (string)GwMonErrors.ReadingDateConflict,
+          errorDescription = g.readingDate + " already has reading for this date/time"
+        };
+          
       //TO-DO: update GWMonDataSet to include GWMonUpdate datatable
-      //foreach (var row in qryTimeRangeGwMon)
-      //{
-      //  qcDt.Rows.Add(row.readingDate, row.errorCode, row.errorDescription);
-      //  qcCount++;
-      //}
+      foreach (var row in qryTimeRangeGwMon)
+      {
+        qcDt.Rows.Add(row.readingDate, row.errorCode, row.errorDescription);
+        qcCount++;
+      }
       return qcCount;
     }
 
@@ -1870,21 +1877,21 @@ namespace GMonGr
       int qcCount = 0;
 
       //TO-DO: update GroundwaterMonitorDataSet to include GwMonUpdate datatable
-      //var qryPiezoError =
-      //  from u in gwMonDataSet.GwMonQc
-      //  where u.readingHertz = 0
-      //  select new
-      //  {
-      //    readingDate = u.readingDate,
-      //    errorCode = (string)GwMonErrors.PiezoReadingError,
-      //    errorDescription = u.readingDate + " has piezo reading error"
-      //  };
+      var qryPiezoError =
+        from u in gwMonDataSet.GwMonUpdater
+        where u.readingHertz == 0
+        select new
+        {
+          readingDate = u.readingDate,
+          errorCode = (string)GwMonErrors.PiezoReadingError,
+          errorDescription = u.readingDate + " has piezo reading error"
+        };
 
-      //foreach (var row in qryPiezoError)
-      //{
-      //  qcDt.Rows.Add(row.readingDate, row.errorCode, row.errorDescription);
-      //  qcCount++;
-      //}
+      foreach (var row in qryPiezoError)
+      {
+        qcDt.Rows.Add(row.readingDate, row.errorCode, row.errorDescription);
+        qcCount++;
+      }
       return qcCount;
     }
     #endregion
@@ -1898,6 +1905,17 @@ namespace GMonGr
       dgvDataUpdate.Visible = false;
       btnSubmitUpdates.Enabled = false;
       txtUploadFilePath.Clear();
+    }
+
+    private void LoadGwMonUpdateData()
+    {
+      GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter gwMonUpdaterTA;
+      gwMonUpdaterTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter();
+      gwMonUpdaterTA.Fill(gwMonDataSet.GwMonUpdater);
+
+      GroundwaterMonitorDataSetTableAdapters.P1401TableAdapter p1401TA;
+      p1401TA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.P1401TableAdapter();
+      p1401TA.Fill(gwMonDataSet.P1401);
     }
     #endregion
 
@@ -2087,8 +2105,6 @@ namespace GMonGr
           return;
       }
     }
-
- 
 
     private void cbxMonitorList_ValueChanged(object sender, EventArgs e)
     {
