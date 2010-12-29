@@ -98,6 +98,7 @@ namespace GMonGr
     /// </summary>
     private void CheckRange()
     {
+      //TO-DO: implement CheckRange method for normalized 'GROUNDWATER_DATA' table
       //gwMonDataSet = new GroundwaterMonitorDataSet();
       //gwMonDataSet.InitGroundwaterMonitorDataSet();
       //DataTable gwMonDataTable = new DataTable();
@@ -459,6 +460,7 @@ namespace GMonGr
     /// </summary>
     private void GraphGwMonData()
     {
+      //TO-DO: implement GraphGwMonData method for normalized 'GROUNDWATER_DATA' table
       //gwMonDataSet = new GroundwaterMonitorDataSet();
       //gwMonDataSet.InitGroundwaterMonitorDataSet();
       //DataTable gwMonDataTable = new DataTable();
@@ -554,33 +556,42 @@ namespace GMonGr
       DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
       DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
 
-      //if (minReadingDate <= clndrGwMonStart.Value || maxReadingDate>=clndrGwMonEnd.Value)
-      //{
-      //  throw new Exception("Selected begin date cannot be before and end date cannot be after specified date range for this monitor");
-      //}
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");    
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -592,25 +603,25 @@ namespace GMonGr
       chartGwData.TitleBottom.Text = "Monitor Reading Date";
       chartGwData.TitleBottom.Visible = true;
       chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-      chartGwData.Visible = true;
-      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
+      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.VerticalLeftFacing;
       chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
       chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
       chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
+      chartGwData.Visible = true;
 
       //set legend properties
       chartGwData.Legend.Visible = true;
-      chartGwData.Legend.Location = LegendLocation.Right;
+      chartGwData.Legend.Location = LegendLocation.Bottom;
       chartGwData.Legend.Margins.Left = 3;
       chartGwData.Legend.Margins.Right = 3;
       chartGwData.Legend.Margins.Top = 3;
       chartGwData.Legend.Margins.Bottom = 3;
-      chartGwData.Legend.SpanPercentage = 7;
+      chartGwData.Legend.SpanPercentage = 5;
       chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
       chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
       chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
       chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-      chartGwData.Refresh();
+      chartGwData.Refresh();    
     }
 
     /// <summary>
@@ -632,28 +643,46 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+      
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -705,28 +734,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -778,28 +827,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -851,28 +920,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -924,28 +1013,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -997,28 +1106,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1070,28 +1199,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1143,28 +1292,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1216,28 +1385,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1289,28 +1478,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1362,28 +1571,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1435,28 +1664,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1508,28 +1757,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+#endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1581,28 +1850,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1654,28 +1943,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1727,28 +2036,48 @@ namespace GMonGr
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
          select g);
 
+      var qrySelectGwMonReadingDate =
+        from g in gwMonDataTable.AsEnumerable()
+        select g.Field<DateTime>("readingDate");
+      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
+      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
+
+      #region ErrorHandling
+      //Throw exception if user has specified a date out of range
+      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
+      {
+        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
+      }
+
+      //Throw an exception if the user has chosen an end date preceding a start date
+      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
+      {
+        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
+      }
+      #endregion
+
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow gwElevDr in qrySelectGwMonRecords)
       {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), "C", false));
+        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow groundElevDr in qrySelectGwMonRecords)
       {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "C", false));
+        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
       {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "C", false));
+        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
       }
 
       Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
       foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
       {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "C", false));
+        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
       }
       //set chart properties
       chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -1999,11 +2328,6 @@ namespace GMonGr
       {
         MessageBox.Show("Error loading chart: " + ex.Message, "Chart Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
-
-      finally
-      {
-        chartGwData.Visible = true;
-      }
     }
 
     private void btnClearChart_Click(object sender, EventArgs e)
@@ -2108,6 +2432,10 @@ namespace GMonGr
 
     private void cbxMonitorList_ValueChanged(object sender, EventArgs e)
     {
+      if (cbxMonitorList.Value == null)
+      {
+        return;
+      }
       txtGwMonDateRange.Text = "";
       object gwMonSelection = cbxMonitorList.Value;
       switch (gwMonSelection.ToString())

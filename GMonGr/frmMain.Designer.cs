@@ -31,7 +31,7 @@
       this.components = new System.ComponentModel.Container();
       Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MONITOR_LOCATIONS", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensorName");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensorName");
       Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
@@ -129,7 +129,7 @@
       this.tabPlotData.Controls.Add(this.pnlChooseMonitor);
       this.tabPlotData.Controls.Add(this.pnlCalendars);
       this.tabPlotData.Controls.Add(this.chartGwData);
-      this.tabPlotData.Location = new System.Drawing.Point(-10000, -10000);
+      this.tabPlotData.Location = new System.Drawing.Point(1, 20);
       this.tabPlotData.Name = "tabPlotData";
       this.tabPlotData.Size = new System.Drawing.Size(784, 470);
       // 
@@ -187,9 +187,9 @@
       appearance18.BackColor2 = System.Drawing.Color.DarkGray;
       appearance18.BackGradientStyle = Infragistics.Win.GradientStyle.ForwardDiagonal;
       this.cbxMonitorList.DisplayLayout.Appearance = appearance18;
-      ultraGridColumn1.Header.VisiblePosition = 0;
+      ultraGridColumn2.Header.VisiblePosition = 0;
       ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn1});
+            ultraGridColumn2});
       this.cbxMonitorList.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
       this.cbxMonitorList.DisplayLayout.InterBandSpacing = 10;
       this.cbxMonitorList.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.InsetSoft;
@@ -319,7 +319,7 @@
       paintElement1.ElementType = Infragistics.UltraChart.Shared.Styles.PaintElementType.None;
       paintElement1.Fill = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(220)))));
       this.chartGwData.Axis.PE = paintElement1;
-      this.chartGwData.Axis.X.Extent = 17;
+      this.chartGwData.Axis.X.Extent = 102;
       this.chartGwData.Axis.X.Labels.Font = new System.Drawing.Font("Verdana", 7F);
       this.chartGwData.Axis.X.Labels.FontColor = System.Drawing.Color.DimGray;
       this.chartGwData.Axis.X.Labels.HorizontalAlign = System.Drawing.StringAlignment.Near;
@@ -371,7 +371,7 @@
       this.chartGwData.Axis.X2.MinorGridLines.Visible = false;
       this.chartGwData.Axis.X2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.X2.Visible = false;
-      this.chartGwData.Axis.Y.Extent = 34;
+      this.chartGwData.Axis.Y.Extent = 29;
       this.chartGwData.Axis.Y.Labels.Font = new System.Drawing.Font("Verdana", 7F);
       this.chartGwData.Axis.Y.Labels.FontColor = System.Drawing.Color.DimGray;
       this.chartGwData.Axis.Y.Labels.HorizontalAlign = System.Drawing.StringAlignment.Far;
@@ -593,7 +593,7 @@
       // 
       // tabMonitorMap
       // 
-      this.tabMonitorMap.Location = new System.Drawing.Point(1, 20);
+      this.tabMonitorMap.Location = new System.Drawing.Point(-10000, -10000);
       this.tabMonitorMap.Name = "tabMonitorMap";
       this.tabMonitorMap.Size = new System.Drawing.Size(784, 470);
       // 
