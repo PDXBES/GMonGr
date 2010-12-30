@@ -124,6 +124,15 @@
       <DependentUpon>GroundwaterMonitorDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="LicenseInitializer.cs" />
+    <Compile Include="NeptuneDataSet.cs">
+      <DependentUpon>NeptuneDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NeptuneDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NeptuneDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
@@ -172,6 +181,19 @@
     <Content Include="GWMonitoring.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="NeptuneDataSet.xsc">
+      <DependentUpon>NeptuneDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NeptuneDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NeptuneDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="NeptuneDataSet.xss">
+      <DependentUpon>NeptuneDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\map.gif" />
+    <None Include="Resources\map.png" />
     <None Include="GMonGr_TemporaryKey.pfx" />
     <None Include="Resources\UploadFile.png" />
     <None Include="Resources\linechart.png" />

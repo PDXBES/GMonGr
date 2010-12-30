@@ -48,6 +48,8 @@
       Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem2 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
       Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+      Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+      Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("toolBarMain");
       Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool1 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("fileMenu");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("deleteMe2");
@@ -645,9 +647,14 @@
       appearance3.Image = global::GMonGr.Properties.Resources.UploadFile;
       ultraExplorerBarItem2.Settings.AppearancesSmall.Appearance = appearance3;
       ultraExplorerBarItem2.Text = "Load Updates";
+      ultraExplorerBarItem3.Key = "monitorMap";
+      appearance5.Image = global::GMonGr.Properties.Resources.map1;
+      ultraExplorerBarItem3.Settings.AppearancesSmall.Appearance = appearance5;
+      ultraExplorerBarItem3.Text = "Monitor Map";
       ultraExplorerBarGroup1.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
             ultraExplorerBarItem1,
-            ultraExplorerBarItem2});
+            ultraExplorerBarItem2,
+            ultraExplorerBarItem3});
       ultraExplorerBarGroup1.Text = "Tasks";
       this.expBarMain.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {
             ultraExplorerBarGroup1});
@@ -658,6 +665,7 @@
       this.expBarMain.Size = new System.Drawing.Size(146, 490);
       this.expBarMain.TabIndex = 1;
       this.expBarMain.ViewStyle = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarViewStyle.VisualStudio2005;
+      this.expBarMain.ItemClick += new Infragistics.Win.UltraWinExplorerBar.ItemClickEventHandler(this.expBarMain_ItemClick);
       // 
       // ofdMain
       // 
@@ -769,7 +777,9 @@
       this.Controls.Add(this._frmMain_Toolbars_Dock_Area_Bottom);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "frmMain";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Groundwater Monitor Grapher";
+      this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.Load += new System.EventHandler(this.frmMain_Load);
       this.tabPlotData.ResumeLayout(false);
       this.pnlLoadClearChart.ClientArea.ResumeLayout(false);

@@ -1,18 +1,19 @@
 ﻿#region Using Directoves
+using Infragistics.UltraChart.Shared.Styles;
+using Infragistics.UltraChart.Resources.Appearance;
+using Infragistics.UltraChart.Core.Layers;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using Infragistics.UltraChart.Shared.Styles;
-using Infragistics.UltraChart.Resources.Appearance;
-using Infragistics.UltraChart.Core.Layers;
 using System.Threading;
+using System.Windows.Forms;
 
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
@@ -28,6 +29,7 @@ namespace GMonGr
   {
     #region GlobalVariables
     public GroundwaterMonitorDataSet gwMonDataSet;
+    public NeptuneDataSet neptuneDataSet;
     #endregion
 
     public frmMain()
@@ -536,92 +538,124 @@ namespace GMonGr
     /// </summary>
     private void GraphP1401()
     {
+      chartGwData.ChartType = ChartType.Composite;
+
+      ChartArea chartGwDataArea = new ChartArea();
+      chartGwData.CompositeChart.ChartAreas.Add(chartGwDataArea);
+      
+      //X-axis settings
+      AxisItem axisX = new AxisItem();
+      axisX.OrientationType = AxisNumber.X_Axis;
+      axisX.DataType = AxisDataType.String;
+      axisX.SetLabelAxisType = SetLabelAxisType.GroupBySeries;
+      axisX.Labels.ItemFormatString = "<ITEM_LABEL>";
+      axisX.Labels.Orientation = TextOrientation.VerticalLeftFacing;
+
+      //Y-axis settings
+      AxisItem axisY = new AxisItem();
+      axisY.OrientationType = AxisNumber.Y_Axis;
+      axisY.DataType = AxisDataType.Numeric;
+      axisY.Labels.ItemFormatString = "<DATA_VALUE:0.#>";
+
+      chartGwDataArea.Axes.Add(axisX);
+      chartGwDataArea.Axes.Add(axisY);
+
+      //Add data series to series collection
+      NumericTimeSeries gwElSeries = GetNumericTimeSeries();
+      chartGwData.CompositeChart.Series.Add(gwElSeries);
+
+      //Add a chart layer
+      ChartLayerAppearance chartGwDataChrtLyr = new ChartLayerAppearance();
+      chartGwDataChrtLyr.ChartType = ChartType.LineChart;
+      chartGwDataChrtLyr.ChartArea = chartGwDataArea;
+      chartGwDataChrtLyr.AxisX = axisX;
+      chartGwDataChrtLyr.AxisY = axisY;
+      chartGwDataChrtLyr.Series.Add(gwElSeries);
+      chartGwData.CompositeChart.ChartLayers.Add(chartGwDataChrtLyr);
+
+      //Add a legend
+      CompositeLegend chartGwDataLgd = new CompositeLegend();
+      chartGwDataLgd.ChartLayers.Add(chartGwDataChrtLyr);
+      chartGwDataLgd.Bounds = new Rectangle(0, 75, 20, 25);
+      chartGwDataLgd.BoundsMeasureType = MeasureType.Percentage;
+      chartGwDataLgd.PE.ElementType = PaintElementType.Gradient;
+      chartGwDataLgd.PE.FillGradientStyle = GradientStyle.ForwardDiagonal;
+      chartGwDataLgd.PE.Fill = Color.CornflowerBlue;
+      chartGwDataLgd.PE.FillStopColor = Color.Transparent;
+      chartGwDataLgd.Border.CornerRadius = 10;
+      chartGwDataLgd.Border.Thickness = 5;
+
+      chartGwData.CompositeChart.Legends.Add(chartGwDataLgd);
+      chartGwData.Visible = true;
+      
+    }
+
+    private static NumericTimeSeries GetNumericTimeSeries()
+    {
+      NumericTimeSeries gwElSeries = new NumericTimeSeries();
+      gwElSeries.Label = "Groundwater Elevation";
+      DataTable gwElTable = GetGwData();
+      
+      foreach (DataRow gwElDr in gwElTable.AsEnumerable())
+      {
+        gwElSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElDr.ItemArray[2].ToString()), System.Double.Parse(gwElDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElDr.ItemArray[2]), false));
+      }
+      
+      return gwElSeries;
+    }
+
+    private void SetCalendarStartSafe(DateTime startDateSafe)
+    {
+      startDateSafe = clndrGwMonStart.Value;
+      MessageBox.Show(startDateSafe.ToString());
+    }
+
+    private void SetCalendarEndSafe(DateTime endDateSafe)
+    {
+      endDateSafe = clndrGwMonEnd.Value;
+      MessageBox.Show(endDateSafe.ToString());
+    }
+
+    private void SetCalendarStartStringSafe(string startDateStringSafe)
+    {
+      startDateStringSafe = clndrGwMonStart.Value.ToShortDateString();
+      MessageBox.Show(startDateStringSafe.ToString());
+    }
+
+    private void SetCalendarEndStringSafe(string endDateStringSafe)
+    {
+      endDateStringSafe = clndrGwMonEnd.Value.ToShortDateString();
+      MessageBox.Show(endDateStringSafe.ToString());
+    }
+
+    
+    private static DataTable GetGwData()
+    {
+      GroundwaterMonitorDataSet gwMonDataSet;
       gwMonDataSet = new GroundwaterMonitorDataSet();
       gwMonDataSet.InitTableP1401();
+      
       DataTable gwMonDataTable = new DataTable();
-      DateTime startDate = clndrGwMonStart.Value;
-      DateTime endDate = clndrGwMonEnd.Value;
-      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
+      DataView gwMonDataView = new DataView();
+      DateTime startDate = new DateTime();
+      frmMain frm = new frmMain();
+      frm.SetCalendarStartSafe(startDate);
+      DateTime endDate = new DateTime();
+      frm.SetCalendarEndSafe(endDate);
+      string startDateStr = "";
+      frm.SetCalendarStartStringSafe(startDateStr);
+      string endDateStr = "";
+      frm.SetCalendarEndStringSafe(endDateStr);
+      
 
       gwMonDataTable = gwMonDataSet.P1401;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
-         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
+         where g.Field<DateTime>("readingDate") >= startDate && g.Field<DateTime>("readingDate") <= endDate
          select g);
-
-      var qrySelectGwMonReadingDate =
-        from g in gwMonDataTable.AsEnumerable()
-        select g.Field<DateTime>("readingDate");
-      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-      #region ErrorHandling
-      //Throw exception if user has specified a date out of range
-      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-      {
-        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");    
-      }
-
-      //Throw an exception if the user has chosen an end date preceding a start date
-      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-      {
-        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-      }
-      #endregion
-
-      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-      {
-        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-      }
-
-      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-      {
-        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-      }
-
-      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-      {
-        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-      }
-
-      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-      {
-        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-      }
-      //set chart properties
-      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-      chartGwData.TitleLeft.Text = "Elevation (ft)";
-      chartGwData.TitleLeft.Visible = true;
-      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-      chartGwData.TitleBottom.Visible = true;
-      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.VerticalLeftFacing;
-      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-      chartGwData.Visible = true;
-
-      //set legend properties
-      chartGwData.Legend.Visible = true;
-      chartGwData.Legend.Location = LegendLocation.Bottom;
-      chartGwData.Legend.Margins.Left = 3;
-      chartGwData.Legend.Margins.Right = 3;
-      chartGwData.Legend.Margins.Top = 3;
-      chartGwData.Legend.Margins.Bottom = 3;
-      chartGwData.Legend.SpanPercentage = 5;
-      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-      chartGwData.Refresh();    
+      gwMonDataView = qrySelectGwMonRecords.AsDataView();
+      gwMonDataTable = gwMonDataView.Table;
+      return gwMonDataTable;
     }
 
     /// <summary>
@@ -2256,6 +2290,11 @@ namespace GMonGr
       chartGwData.Visible = false;
       //LoadMapControl();
     }
+
+    private void expBarMain_ItemClick(object sender, Infragistics.Win.UltraWinExplorerBar.ItemEventArgs e)
+    {
+      LoadTab(e.Item.Key);
+    }
     
     private void btnLoadGraph_Click(object sender, EventArgs e)
     {
@@ -2498,6 +2537,7 @@ namespace GMonGr
     }
    
     #endregion
+
   }
 }
 

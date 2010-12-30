@@ -20,6 +20,7 @@ namespace GMonGr
       tmrSplashScreen.Start();
     }
 
+    #region events
     private void frmSplashScreen_Load(object sender, EventArgs e)
     {
       
@@ -34,7 +35,9 @@ namespace GMonGr
     {
       DialogResult = DialogResult.OK;
     }
+    #endregion
 
+    #region methods
     protected override void OnPaint(PaintEventArgs e)
     {
       //Do nothing here
@@ -58,5 +61,6 @@ namespace GMonGr
       }
       return this.ShowDialog();
     }
+    #endregion
   }
 }

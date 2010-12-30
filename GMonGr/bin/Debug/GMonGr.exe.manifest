@@ -238,14 +238,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="921600">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="985088">
       <assemblyIdentity name="GMonGr" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>047nPnmsd3xcdDvGgfTh3bbBUeQ=</dsig:DigestValue>
+        <dsig:DigestValue>MUvinJgRnkD8Ij4o6u6IVG0A8gE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -267,13 +267,13 @@
       <dsig:DigestValue>1WzGT/IkyHUv9IW99TFpTTnW+18=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GWMonitoring.mdb" size="97189888" writeableType="applicationData">
+  <file name="GWMonitoring.mdb" size="97193984" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>w+n9vwNy0zS3ROMuzlJVapbZtPs=</dsig:DigestValue>
+      <dsig:DigestValue>hZjtbsTPG5y0WLglYEaoj2w11GU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
