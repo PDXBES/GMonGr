@@ -80,7 +80,6 @@ namespace GMonGr
       {
         frmSp.ShowDialog(waitForClick);
       }
-
     }
 
     /// <summary>
@@ -342,9 +341,9 @@ namespace GMonGr
     private void CheckRangeTGD01A()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD01A();
+      gwMonDataSet.InitTableTGD1A();
       DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.TGD01A;
+      gwMonDataTable = gwMonDataSet.TGD1A;
 
       var qrySelectGwMonReadingDate =
         from g in gwMonDataTable.AsEnumerable()
@@ -362,9 +361,9 @@ namespace GMonGr
     private void CheckRangeTGD01B()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD01B();
+      gwMonDataSet.InitTableTGD1B();
       DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.TGD01B;
+      gwMonDataTable = gwMonDataSet.TGD1B;
 
       var qrySelectGwMonReadingDate =
         from g in gwMonDataTable.AsEnumerable()
@@ -382,9 +381,9 @@ namespace GMonGr
     private void CheckRangeTGD02A()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD02A();
+      gwMonDataSet.InitTableTGD2A();
       DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.TGD02A;
+      gwMonDataTable = gwMonDataSet.TGD2A;
 
       var qrySelectGwMonReadingDate =
         from g in gwMonDataTable.AsEnumerable()
@@ -402,9 +401,9 @@ namespace GMonGr
     private void CheckRangeTGD02B()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD02B();
+      gwMonDataSet.InitTableTGD2B();
       DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.TGD02B;
+      gwMonDataTable = gwMonDataSet.TGD2B;
 
       var qrySelectGwMonReadingDate =
         from g in gwMonDataTable.AsEnumerable()
@@ -422,9 +421,9 @@ namespace GMonGr
     private void CheckRangeTGD03A()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD03A();
+      gwMonDataSet.InitTableTGD3A();
       DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.TGD03A;
+      gwMonDataTable = gwMonDataSet.TGD3A;
 
       var qrySelectGwMonReadingDate =
         from g in gwMonDataTable.AsEnumerable()
@@ -442,9 +441,9 @@ namespace GMonGr
     private void CheckRangeTGD03B()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD03B();
+      gwMonDataSet.InitTableTGD3B();
       DataTable gwMonDataTable = new DataTable();
-      gwMonDataTable = gwMonDataSet.TGD03B;
+      gwMonDataTable = gwMonDataSet.TGD3B;
 
       var qrySelectGwMonReadingDate =
         from g in gwMonDataTable.AsEnumerable()
@@ -536,7 +535,7 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for P1401 monitor
     /// </summary>
-    private void GraphP1401()
+    private void GraphP1401(frmMain frm)
     {
       chartGwData.ChartType = ChartType.Composite;
 
@@ -556,13 +555,22 @@ namespace GMonGr
       axisY.OrientationType = AxisNumber.Y_Axis;
       axisY.DataType = AxisDataType.Numeric;
       axisY.Labels.ItemFormatString = "<DATA_VALUE:0.#>";
-
+      
       chartGwDataArea.Axes.Add(axisX);
       chartGwDataArea.Axes.Add(axisY);
-
+      
       //Add data series to series collection
-      NumericTimeSeries gwElSeries = GetNumericTimeSeries();
+      NumericTimeSeries gwElSeries = frm.GetNumericTimeSeries();
       chartGwData.CompositeChart.Series.Add(gwElSeries);
+
+      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + "startDate" + " - " + "endDate" + " " + cbxMonitorList.Value.ToString() + " Piezometer";
+      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
+      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
+      chartGwData.TitleLeft.Text = "Elevation (ft)";
+      chartGwData.TitleLeft.Visible = true;
+      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
+      chartGwData.TitleBottom.Text = "Monitor Reading Date";
+      chartGwData.TitleBottom.Visible = true;
 
       //Add a chart layer
       ChartLayerAppearance chartGwDataChrtLyr = new ChartLayerAppearance();
@@ -576,86 +584,17 @@ namespace GMonGr
       //Add a legend
       CompositeLegend chartGwDataLgd = new CompositeLegend();
       chartGwDataLgd.ChartLayers.Add(chartGwDataChrtLyr);
-      chartGwDataLgd.Bounds = new Rectangle(0, 75, 20, 25);
+      chartGwDataLgd.Bounds = new Rectangle(0,90,100,10);
       chartGwDataLgd.BoundsMeasureType = MeasureType.Percentage;
       chartGwDataLgd.PE.ElementType = PaintElementType.Gradient;
       chartGwDataLgd.PE.FillGradientStyle = GradientStyle.ForwardDiagonal;
       chartGwDataLgd.PE.Fill = Color.CornflowerBlue;
       chartGwDataLgd.PE.FillStopColor = Color.Transparent;
       chartGwDataLgd.Border.CornerRadius = 10;
-      chartGwDataLgd.Border.Thickness = 5;
+      chartGwDataLgd.Border.Thickness = 0;
 
       chartGwData.CompositeChart.Legends.Add(chartGwDataLgd);
-      chartGwData.Visible = true;
-      
-    }
-
-    private static NumericTimeSeries GetNumericTimeSeries()
-    {
-      NumericTimeSeries gwElSeries = new NumericTimeSeries();
-      gwElSeries.Label = "Groundwater Elevation";
-      DataTable gwElTable = GetGwData();
-      
-      foreach (DataRow gwElDr in gwElTable.AsEnumerable())
-      {
-        gwElSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElDr.ItemArray[2].ToString()), System.Double.Parse(gwElDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElDr.ItemArray[2]), false));
-      }
-      
-      return gwElSeries;
-    }
-
-    private void SetCalendarStartSafe(DateTime startDateSafe)
-    {
-      startDateSafe = clndrGwMonStart.Value;
-      MessageBox.Show(startDateSafe.ToString());
-    }
-
-    private void SetCalendarEndSafe(DateTime endDateSafe)
-    {
-      endDateSafe = clndrGwMonEnd.Value;
-      MessageBox.Show(endDateSafe.ToString());
-    }
-
-    private void SetCalendarStartStringSafe(string startDateStringSafe)
-    {
-      startDateStringSafe = clndrGwMonStart.Value.ToShortDateString();
-      MessageBox.Show(startDateStringSafe.ToString());
-    }
-
-    private void SetCalendarEndStringSafe(string endDateStringSafe)
-    {
-      endDateStringSafe = clndrGwMonEnd.Value.ToShortDateString();
-      MessageBox.Show(endDateStringSafe.ToString());
-    }
-
-    
-    private static DataTable GetGwData()
-    {
-      GroundwaterMonitorDataSet gwMonDataSet;
-      gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableP1401();
-      
-      DataTable gwMonDataTable = new DataTable();
-      DataView gwMonDataView = new DataView();
-      DateTime startDate = new DateTime();
-      frmMain frm = new frmMain();
-      frm.SetCalendarStartSafe(startDate);
-      DateTime endDate = new DateTime();
-      frm.SetCalendarEndSafe(endDate);
-      string startDateStr = "";
-      frm.SetCalendarStartStringSafe(startDateStr);
-      string endDateStr = "";
-      frm.SetCalendarEndStringSafe(endDateStr);
-      
-
-      gwMonDataTable = gwMonDataSet.P1401;
-      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-        (from g in gwMonDataTable.AsEnumerable()
-         where g.Field<DateTime>("readingDate") >= startDate && g.Field<DateTime>("readingDate") <= endDate
-         select g);
-      gwMonDataView = qrySelectGwMonRecords.AsDataView();
-      gwMonDataTable = gwMonDataView.Table;
-      return gwMonDataTable;
+      chartGwData.Visible = true;     
     }
 
     /// <summary>
@@ -1589,17 +1528,17 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for TGD01A monitor
     /// </summary>
-    private void GraphTGD01A()
+    private void GraphTGD1A()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD01A();
+      gwMonDataSet.InitTableTGD1A();
       DataTable gwMonDataTable = new DataTable();
       DateTime startDate = clndrGwMonStart.Value;
       DateTime endDate = clndrGwMonEnd.Value;
       string startDateStr = clndrGwMonStart.Value.ToShortDateString();
       string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
 
-      gwMonDataTable = gwMonDataSet.TGD01A;
+      gwMonDataTable = gwMonDataSet.TGD1A;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
@@ -1682,17 +1621,17 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for TGD01B monitor
     /// </summary>
-    private void GraphTGD01B()
+    private void GraphTGD1B()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD01B();
+      gwMonDataSet.InitTableTGD1B();
       DataTable gwMonDataTable = new DataTable();
       DateTime startDate = clndrGwMonStart.Value;
       DateTime endDate = clndrGwMonEnd.Value;
       string startDateStr = clndrGwMonStart.Value.ToShortDateString();
       string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
 
-      gwMonDataTable = gwMonDataSet.TGD01B;
+      gwMonDataTable = gwMonDataSet.TGD1B;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
@@ -1775,17 +1714,17 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for TGD02A monitor
     /// </summary>
-    private void GraphTGD02A()
+    private void GraphTGD2A()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD02A();
+      gwMonDataSet.InitTableTGD2A();
       DataTable gwMonDataTable = new DataTable();
       DateTime startDate = clndrGwMonStart.Value;
       DateTime endDate = clndrGwMonEnd.Value;
       string startDateStr = clndrGwMonStart.Value.ToShortDateString();
       string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
 
-      gwMonDataTable = gwMonDataSet.TGD02A;
+      gwMonDataTable = gwMonDataSet.TGD2A;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
@@ -1868,17 +1807,17 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for TGD02B monitor
     /// </summary>
-    private void GraphTGD02B()
+    private void GraphTGD2B()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD02B();
+      gwMonDataSet.InitTableTGD2B();
       DataTable gwMonDataTable = new DataTable();
       DateTime startDate = clndrGwMonStart.Value;
       DateTime endDate = clndrGwMonEnd.Value;
       string startDateStr = clndrGwMonStart.Value.ToShortDateString();
       string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
 
-      gwMonDataTable = gwMonDataSet.TGD02B;
+      gwMonDataTable = gwMonDataSet.TGD2B;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
@@ -1961,17 +1900,17 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for TGD03A monitor
     /// </summary>
-    private void GraphTGD03A()
+    private void GraphTGD3A()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD03A();
+      gwMonDataSet.InitTableTGD3A();
       DataTable gwMonDataTable = new DataTable();
       DateTime startDate = clndrGwMonStart.Value;
       DateTime endDate = clndrGwMonEnd.Value;
       string startDateStr = clndrGwMonStart.Value.ToShortDateString();
       string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
 
-      gwMonDataTable = gwMonDataSet.TGD03A;
+      gwMonDataTable = gwMonDataSet.TGD3A;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
@@ -2054,17 +1993,17 @@ namespace GMonGr
     /// <summary>
     /// Graphs selected/default date range for TGD03B monitor
     /// </summary>
-    private void GraphTGD03B()
+    private void GraphTGD3B()
     {
       gwMonDataSet = new GroundwaterMonitorDataSet();
-      gwMonDataSet.InitTableTGD03B();
+      gwMonDataSet.InitTableTGD3B();
       DataTable gwMonDataTable = new DataTable();
       DateTime startDate = clndrGwMonStart.Value;
       DateTime endDate = clndrGwMonEnd.Value;
       string startDateStr = clndrGwMonStart.Value.ToShortDateString();
       string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
 
-      gwMonDataTable = gwMonDataSet.TGD03B;
+      gwMonDataTable = gwMonDataSet.TGD3B;
       EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
         (from g in gwMonDataTable.AsEnumerable()
          where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
@@ -2142,6 +2081,101 @@ namespace GMonGr
       chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
       chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
       chartGwData.Refresh();
+    }
+
+    /// <summary>
+    /// Main method for accessing GwGwData method to pass acquired DataTable to
+    /// a NumericTimeSeries for use in graphing method
+    /// TO-DO: continue implementation
+    /// </summary>
+    private NumericTimeSeries GetNumericTimeSeries()
+    {
+      NumericTimeSeries gwElSeries = new NumericTimeSeries();
+      gwElSeries.Label = "Groundwater Elevation";
+      DataTable gwElTable = GetGwData(this);
+      EnumerableRowCollection gwElEnum = gwElTable.AsEnumerable();
+
+      foreach (DataRow gwElDr in gwElEnum)
+      {
+        gwElSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElDr.ItemArray[2].ToString()), System.Double.Parse(gwElDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElDr.ItemArray[2]), false));
+      }
+      return gwElSeries;
+    }
+
+    /// <summary>
+    /// Main method for accessing groundwater data and passing DataTable to main graphing method
+    /// TO-DO: continue implementation
+    /// </summary>
+    private DataTable GetGwData(frmMain frm)
+    {
+      GroundwaterMonitorDataSet gwMonDataSet;
+      gwMonDataSet = new GroundwaterMonitorDataSet();
+      gwMonDataSet.InitTableP1401();
+
+      DataTable gwMonDataTable = new DataTable();
+      DataView gwMonDataView = new DataView();
+      DateTime startDate = new DateTime();
+      
+      startDate = frm.SetCalendarStartSafe();
+      DateTime endDate = new DateTime();
+      endDate = frm.SetCalendarEndSafe();
+      string startDateStr = "";
+      startDateStr = frm.SetCalendarStartStringSafe();
+      string endDateStr = "";
+      endDateStr = frm.SetCalendarEndStringSafe();
+
+      gwMonDataTable = gwMonDataSet.P1401;
+      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
+        (from g in gwMonDataTable.AsEnumerable()
+         where g.Field<DateTime>("readingDate") >= startDate && g.Field<DateTime>("readingDate") <= endDate
+         select g);
+      gwMonDataView = qrySelectGwMonRecords.AsDataView();
+      gwMonDataTable = gwMonDataView.ToTable();
+      return gwMonDataTable;
+    }
+
+    /// <summary>
+    /// TO-DO: fill in summary
+    /// TO-DO: continue implementation
+    /// </summary>
+    public DateTime SetCalendarStartSafe()
+    {    
+      DateTime startDateSafe;
+      startDateSafe = clndrGwMonStart.Value;
+      return startDateSafe;
+    }
+
+    /// <summary>
+    /// TO-DO: fill in summary
+    /// TO-DO: continue implementation
+    /// </summary>
+    public DateTime SetCalendarEndSafe()
+    {
+      DateTime endDateSafe;
+      endDateSafe = clndrGwMonEnd.Value;
+      return endDateSafe;
+    }
+
+    /// <summary>
+    /// TO-DO: fill in summary
+    /// TO-DO: continue implementation
+    /// </summary>
+    public string SetCalendarStartStringSafe()
+    {
+      string startDateStringSafe = "";
+      startDateStringSafe = clndrGwMonStart.Value.ToShortDateString();
+      return startDateStringSafe;
+    }
+
+    /// <summary>
+    /// TO-DO: fill in summary
+    /// TO-DO: continue implementation
+    /// </summary>
+    public string SetCalendarEndStringSafe()
+    {
+      string endDateStringSafe = "";
+      endDateStringSafe = clndrGwMonEnd.Value.ToShortDateString();
+      return endDateStringSafe;
     }
 
     /// <summary>
@@ -2270,6 +2304,46 @@ namespace GMonGr
       txtUploadFilePath.Clear();
     }
 
+    private void UpdateGwMonTables()
+    {
+      int editSessionId = UpdateEditSession();
+      foreach (GroundwaterMonitorDataSet.GwMonUpdaterRow gwMonUpdaterRow in gwMonDataSet.GwMonUpdater)
+      {
+        DateTime readingDate = gwMonUpdaterRow.readingDate;
+        //UpdateGWMon();
+      }
+
+    }
+
+    private int UpdateEditSession()
+    {
+      //GroundwaterMonitorDataSet.SESSIONRow sessionRow =
+        //gwMonDataSet.SESSION.AddSESSIONRow(DateTime.Now,Environment.UserName);
+      
+      //return sessionRow.edit_id;
+      return 0;
+    }
+
+    private void UpdateGwMon(int editSessionId, GroundwaterMonitorDataSet.GwMonUpdaterRow gwMonUpdaterRow)
+    {
+      DateTime readingDate;
+      Double readingHertz;
+      Double headPsi;
+      Double tempCelsius;
+
+      readingDate = (DateTime)gwMonUpdaterRow.readingDate;
+      readingHertz = (Double)gwMonUpdaterRow.readingHertz;
+      headPsi = (Double)gwMonUpdaterRow.headPsi;
+      tempCelsius = (Double)gwMonUpdaterRow.tempCelsius;
+
+      //gwMonDataSet.GW_MONITORING.AddGW_MONITORINGRow(gwMonDataSet.SESSION.FindByedit_id(editSessionId),
+      //  DateTime.Now, Environment.UserName, gwMonUpdaterRow.readingDate, 
+      //  gwMonUpdaterRow.readingHertz, gwMonUpdaterRow.headPsi, 
+      //  gwMonUpdaterRow.tempCelsius, true);
+
+      return;
+    }
+
     private void LoadGwMonUpdateData()
     {
       GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter gwMonUpdaterTA;
@@ -2307,7 +2381,7 @@ namespace GMonGr
         switch (gwMonSelection.ToString())
         {
           case "P-14-01":
-            GraphP1401();
+            GraphP1401(this);
             break;
           case "P-14-02":
             GraphP1402();
@@ -2340,22 +2414,22 @@ namespace GMonGr
             GraphP5204();
             break;
           case "TGD-01A":
-            GraphTGD01A();
+            GraphTGD1A();
             break;
           case "TGD-01B":
-            GraphTGD01B();
+            GraphTGD1B();
             break;
           case "TGD-02A":
-            GraphTGD02A();
+            GraphTGD2A();
             break;
           case "TGD-02B":
-            GraphTGD02B();
+            GraphTGD2B();
             break;
           case "TGD-03A":
-            GraphTGD03A();
+            GraphTGD3A();
             break;
           case "TGD-03B":
-            GraphTGD03B();
+            GraphTGD3B();
             break;
           default:
             MessageBox.Show("Invalid selection. Please select a monitor from the drop-down box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2408,6 +2482,7 @@ namespace GMonGr
     private void btnSubmitUpdates_Click(object sender, EventArgs e)
     {
       Cursor.Current = Cursors.WaitCursor;
+      //TO-DO: implement SetStatus()
       //SetStatus("Submitting");
       
       if (!PrepareUpdateFile(txtUploadFilePath.Text))
@@ -2419,6 +2494,7 @@ namespace GMonGr
 
       try
       {
+        //TO-DO: implement UpdateGwMonData()
         //UpdateGwMonData();
         if (gwMonDataSet.HasErrors)
         {
@@ -2535,9 +2611,7 @@ namespace GMonGr
           break;
       }
     }
-   
     #endregion
-
   }
 }
 

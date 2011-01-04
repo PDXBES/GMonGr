@@ -29,12 +29,26 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MONITOR_LOCATIONS", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensorName");
-      Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
-      Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_id");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("serial_num");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_depth_ft");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("measure_down_ft");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("toc_elev_ft");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("cal_fact_psi_a");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("cal_fact_psi_b");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("cal_fact_psi_c");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("cal_fact_head_ft_a");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("cal_fact_head_ft_b");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn12 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("cal_fact_head_ft_c");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn13 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("northing_ft");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn14 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("easting_ft");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("notes");
+      Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
       Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
       Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
@@ -69,6 +83,7 @@
       this.pnlChooseMonitor = new Infragistics.Win.Misc.UltraPanel();
       this.cbxMonitorList = new Infragistics.Win.UltraWinGrid.UltraCombo();
       this.mONITORLOCATIONSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.groundwaterMonitorDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.groundwaterMonitorDataSet = new GMonGr.GroundwaterMonitorDataSet();
       this.txtGwMonDateRange = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
       this.lblAvailRange = new Infragistics.Win.Misc.UltraLabel();
@@ -110,6 +125,7 @@
       this.pnlChooseMonitor.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.cbxMonitorList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.mONITORLOCATIONSBindingSource)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSetBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSet)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.txtGwMonDateRange)).BeginInit();
       this.pnlCalendars.ClientArea.SuspendLayout();
@@ -185,50 +201,100 @@
       // 
       this.cbxMonitorList.CheckedListSettings.CheckStateMember = "";
       this.cbxMonitorList.DataSource = this.mONITORLOCATIONSBindingSource;
-      appearance18.BackColor = System.Drawing.Color.Gainsboro;
-      appearance18.BackColor2 = System.Drawing.Color.DarkGray;
-      appearance18.BackGradientStyle = Infragistics.Win.GradientStyle.ForwardDiagonal;
-      this.cbxMonitorList.DisplayLayout.Appearance = appearance18;
-      ultraGridColumn2.Header.VisiblePosition = 0;
+      appearance9.BackColor = System.Drawing.Color.Silver;
+      this.cbxMonitorList.DisplayLayout.Appearance = appearance9;
+      ultraGridColumn1.CellActivation = Infragistics.Win.UltraWinGrid.Activation.NoEdit;
+      ultraGridColumn1.Header.VisiblePosition = 0;
+      ultraGridColumn1.Hidden = true;
+      ultraGridColumn2.Header.Caption = "Sensor Name";
+      ultraGridColumn2.Header.Fixed = true;
+      ultraGridColumn2.Header.VisiblePosition = 1;
+      ultraGridColumn3.Header.VisiblePosition = 2;
+      ultraGridColumn3.Hidden = true;
+      ultraGridColumn4.Header.VisiblePosition = 3;
+      ultraGridColumn4.Hidden = true;
+      ultraGridColumn5.Header.VisiblePosition = 4;
+      ultraGridColumn5.Hidden = true;
+      ultraGridColumn6.Header.VisiblePosition = 5;
+      ultraGridColumn6.Hidden = true;
+      ultraGridColumn7.Header.VisiblePosition = 6;
+      ultraGridColumn7.Hidden = true;
+      ultraGridColumn8.Header.VisiblePosition = 7;
+      ultraGridColumn8.Hidden = true;
+      ultraGridColumn9.Header.VisiblePosition = 8;
+      ultraGridColumn9.Hidden = true;
+      ultraGridColumn10.Header.VisiblePosition = 9;
+      ultraGridColumn10.Hidden = true;
+      ultraGridColumn11.Header.VisiblePosition = 10;
+      ultraGridColumn11.Hidden = true;
+      ultraGridColumn12.Header.VisiblePosition = 11;
+      ultraGridColumn12.Hidden = true;
+      ultraGridColumn13.Header.VisiblePosition = 12;
+      ultraGridColumn13.Hidden = true;
+      ultraGridColumn14.Header.VisiblePosition = 13;
+      ultraGridColumn14.Hidden = true;
+      ultraGridColumn15.Header.VisiblePosition = 14;
+      ultraGridColumn15.Hidden = true;
       ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn2});
+            ultraGridColumn1,
+            ultraGridColumn2,
+            ultraGridColumn3,
+            ultraGridColumn4,
+            ultraGridColumn5,
+            ultraGridColumn6,
+            ultraGridColumn7,
+            ultraGridColumn8,
+            ultraGridColumn9,
+            ultraGridColumn10,
+            ultraGridColumn11,
+            ultraGridColumn12,
+            ultraGridColumn13,
+            ultraGridColumn14,
+            ultraGridColumn15});
       this.cbxMonitorList.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
-      this.cbxMonitorList.DisplayLayout.InterBandSpacing = 10;
-      this.cbxMonitorList.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.InsetSoft;
-      appearance15.BackColor = System.Drawing.Color.Transparent;
-      this.cbxMonitorList.DisplayLayout.Override.CardAreaAppearance = appearance15;
-      appearance16.BackColor = System.Drawing.Color.DarkGray;
-      appearance16.BackColor2 = System.Drawing.Color.Gainsboro;
-      appearance16.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-      appearance16.FontData.Name = "Tahoma";
-      appearance16.FontData.SizeInPoints = 9F;
-      appearance16.TextHAlignAsString = "Left";
-      appearance16.ThemedElementAlpha = Infragistics.Win.Alpha.Transparent;
-      this.cbxMonitorList.DisplayLayout.Override.HeaderAppearance = appearance16;
-      appearance17.BackColor = System.Drawing.Color.DarkGray;
-      appearance17.BackColor2 = System.Drawing.Color.Gainsboro;
-      appearance17.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-      this.cbxMonitorList.DisplayLayout.Override.RowSelectorAppearance = appearance17;
-      this.cbxMonitorList.DisplayLayout.Override.RowSelectorWidth = 20;
-      this.cbxMonitorList.DisplayLayout.Override.RowSpacingAfter = 1;
-      this.cbxMonitorList.DisplayLayout.Override.RowSpacingBefore = 3;
-      this.cbxMonitorList.DisplayLayout.RowConnectorColor = System.Drawing.Color.Gray;
-      this.cbxMonitorList.DisplayLayout.RowConnectorStyle = Infragistics.Win.UltraWinGrid.RowConnectorStyle.Dashed;
-      this.cbxMonitorList.DisplayMember = "sensorName";
+      this.cbxMonitorList.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No;
+      this.cbxMonitorList.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.False;
+      this.cbxMonitorList.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.False;
+      this.cbxMonitorList.DisplayLayout.Override.BorderStyleHeader = Infragistics.Win.UIElementBorderStyle.Raised;
+      appearance6.BackColor = System.Drawing.Color.Transparent;
+      this.cbxMonitorList.DisplayLayout.Override.CardAreaAppearance = appearance6;
+      this.cbxMonitorList.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.RowSelect;
+      this.cbxMonitorList.DisplayLayout.Override.ColumnAutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.AllRowsInBand;
+      this.cbxMonitorList.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+      appearance7.BorderColor = System.Drawing.Color.LightGray;
+      this.cbxMonitorList.DisplayLayout.Override.RowAppearance = appearance7;
+      appearance8.BackColor = System.Drawing.Color.Navy;
+      appearance8.ForeColor = System.Drawing.Color.White;
+      this.cbxMonitorList.DisplayLayout.Override.SelectedRowAppearance = appearance8;
+      this.cbxMonitorList.DisplayLayout.Override.SelectTypeCell = Infragistics.Win.UltraWinGrid.SelectType.None;
+      this.cbxMonitorList.DisplayLayout.Override.SelectTypeCol = Infragistics.Win.UltraWinGrid.SelectType.None;
+      this.cbxMonitorList.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.Single;
+      this.cbxMonitorList.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+      this.cbxMonitorList.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+      this.cbxMonitorList.DisplayLayout.TabNavigation = Infragistics.Win.UltraWinGrid.TabNavigation.NextControl;
+      this.cbxMonitorList.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand;
+      this.cbxMonitorList.DisplayMember = "sensor_name";
       this.cbxMonitorList.DisplayStyle = Infragistics.Win.EmbeddableElementDisplayStyle.WindowsVista;
       this.cbxMonitorList.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
       this.cbxMonitorList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cbxMonitorList.Location = new System.Drawing.Point(3, 27);
+      this.cbxMonitorList.Location = new System.Drawing.Point(3, 28);
       this.cbxMonitorList.Name = "cbxMonitorList";
+      this.cbxMonitorList.PreferredDropDownSize = new System.Drawing.Size(0, 0);
       this.cbxMonitorList.Size = new System.Drawing.Size(184, 22);
       this.cbxMonitorList.TabIndex = 4;
-      this.cbxMonitorList.ValueMember = "sensorName";
+      this.cbxMonitorList.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+      this.cbxMonitorList.ValueMember = "sensor_name";
       this.cbxMonitorList.ValueChanged += new System.EventHandler(this.cbxMonitorList_ValueChanged);
       // 
       // mONITORLOCATIONSBindingSource
       // 
       this.mONITORLOCATIONSBindingSource.DataMember = "MONITOR_LOCATIONS";
-      this.mONITORLOCATIONSBindingSource.DataSource = this.groundwaterMonitorDataSet;
+      this.mONITORLOCATIONSBindingSource.DataSource = this.groundwaterMonitorDataSetBindingSource;
+      // 
+      // groundwaterMonitorDataSetBindingSource
+      // 
+      this.groundwaterMonitorDataSetBindingSource.DataSource = this.groundwaterMonitorDataSet;
+      this.groundwaterMonitorDataSetBindingSource.Position = 0;
       // 
       // groundwaterMonitorDataSet
       // 
@@ -397,7 +463,7 @@
       this.chartGwData.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y.TickmarkInterval = 40;
+      this.chartGwData.Axis.Y.TickmarkInterval = 20;
       this.chartGwData.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y.Visible = true;
       this.chartGwData.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -424,7 +490,7 @@
       this.chartGwData.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y2.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y2.TickmarkInterval = 40;
+      this.chartGwData.Axis.Y2.TickmarkInterval = 20;
       this.chartGwData.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y2.Visible = false;
       this.chartGwData.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -789,6 +855,7 @@
       this.pnlChooseMonitor.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.cbxMonitorList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.mONITORLOCATIONSBindingSource)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSetBindingSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSet)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.txtGwMonDateRange)).EndInit();
       this.pnlCalendars.ClientArea.ResumeLayout(false);
@@ -844,12 +911,14 @@
     private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _frmMain_Toolbars_Dock_Area_Right;
     private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _frmMain_Toolbars_Dock_Area_Top;
     private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _frmMain_Toolbars_Dock_Area_Bottom;
-    private Infragistics.Win.UltraWinGrid.UltraCombo cbxMonitorList;
     private GroundwaterMonitorDataSet groundwaterMonitorDataSet;
-    private System.Windows.Forms.BindingSource mONITORLOCATIONSBindingSource;
-    private GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter mONITOR_LOCATIONSTableAdapter;
+
     private Infragistics.Win.UltraWinTabControl.UltraTabPageControl tabMonitorMap;
     private Infragistics.Win.Misc.UltraPanel pnlLoadClearChart;
+    private Infragistics.Win.UltraWinGrid.UltraCombo cbxMonitorList;
+    private System.Windows.Forms.BindingSource groundwaterMonitorDataSetBindingSource;
+    private System.Windows.Forms.BindingSource mONITORLOCATIONSBindingSource;
+    private GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter mONITOR_LOCATIONSTableAdapter;
   }
 }
 

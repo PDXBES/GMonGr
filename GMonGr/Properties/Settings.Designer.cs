@@ -26,7 +26,8 @@ namespace GMonGr.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\GWMonitoring.mdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=WS09884\\SQLEXPRESS;Initial Catalog=GWMONITORING;Integrated Security=T" +
+            "rue")]
         public string GwMonitoringConnectionString {
             get {
                 return ((string)(this["GwMonitoringConnectionString"]));
@@ -36,7 +37,8 @@ namespace GMonGr.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Template\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\GWMonitoring.mdb;Per" +
+            "sist Security Info=True")]
         public string GwMonUpdateConnectionString {
             get {
                 return ((string)(this["GwMonUpdateConnectionString"]));

@@ -169,57 +169,62 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Shared.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Shared.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.Misc.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.Misc.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinChart.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinChart.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinEditors.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinDataSource.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinExplorerBar.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinEditors.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinGrid.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinExplorerBar.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinSchedule.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinGrid.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinStatusBar.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinSchedule.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinTabControl.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinStatusBar.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.UltraWinToolbars.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinTabControl.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Infragistics2.Win.v10.1" version="10.1.20101.1007" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Infragistics2.Win.UltraWinToolbars.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Infragistics2.Win.v10.3" version="10.3.20103.1000" publicKeyToken="7DD5C3163F2CD0CB" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -238,14 +243,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="985088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GMonGr.exe" size="836096">
       <assemblyIdentity name="GMonGr" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>MUvinJgRnkD8Ij4o6u6IVG0A8gE=</dsig:DigestValue>
+        <dsig:DigestValue>WtI7+WQV+5DslMvQqebbCUeyu5w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -258,22 +263,22 @@
       <dsig:DigestValue>OtbB5wPsyjhRG4sYAzQDJiDJm1c=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GMonGr.exe.config" size="637">
+  <file name="GMonGr.exe.config" size="682">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>1WzGT/IkyHUv9IW99TFpTTnW+18=</dsig:DigestValue>
+      <dsig:DigestValue>PiqNmj+LWubabeM7RjdWODb6VUk=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GWMonitoring.mdb" size="97193984" writeableType="applicationData">
+  <file name="GWMonitoring.mdb" size="614400" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>hZjtbsTPG5y0WLglYEaoj2w11GU=</dsig:DigestValue>
+      <dsig:DigestValue>s8WB8b31eNcskj/aJ0nqnP5RpIA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
