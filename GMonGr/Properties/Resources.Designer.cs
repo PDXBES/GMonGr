@@ -88,6 +88,13 @@ namespace GMonGr.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap NetworkConnection {
+            get {
+                object obj = ResourceManager.GetObject("NetworkConnection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap UploadFile {
             get {
                 object obj = ResourceManager.GetObject("UploadFile", resourceCulture);

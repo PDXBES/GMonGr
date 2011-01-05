@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMonGr", "GMonGr\GMonGr.csproj", "{327FAF2A-DFB4-4783-9647-5679E2C76943}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GMonGrSetup", "GMonGrSetup\GMonGrSetup.vdproj", "{42F44007-9303-46E5-B006-15422A106BBC}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GMonGrSetup", "GMonGrSetup\GMonGrSetup.vdproj", "{DB32E1CC-AD3D-4F9C-9F6E-1C8D5548C45D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +15,8 @@ Global
 		{327FAF2A-DFB4-4783-9647-5679E2C76943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{327FAF2A-DFB4-4783-9647-5679E2C76943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{327FAF2A-DFB4-4783-9647-5679E2C76943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42F44007-9303-46E5-B006-15422A106BBC}.Debug|Any CPU.ActiveCfg = Debug
-		{42F44007-9303-46E5-B006-15422A106BBC}.Release|Any CPU.ActiveCfg = Release
+		{DB32E1CC-AD3D-4F9C-9F6E-1C8D5548C45D}.Debug|Any CPU.ActiveCfg = Debug
+		{DB32E1CC-AD3D-4F9C-9F6E-1C8D5548C45D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

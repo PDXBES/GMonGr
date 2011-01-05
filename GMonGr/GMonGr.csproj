@@ -31,7 +31,7 @@
     <PublisherName>City of Portland, BES - ASM</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -179,6 +179,7 @@
     <Content Include="GWMonitoring.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\NetworkConnection.jpg" />
     <None Include="GroundwaterMonitorDataSet.xsc">
       <DependentUpon>GroundwaterMonitorDataSet.xsd</DependentUpon>
     </None>

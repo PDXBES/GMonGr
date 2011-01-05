@@ -2404,7 +2404,14 @@ namespace GMonGr
 
     private void expBarMain_ItemClick(object sender, Infragistics.Win.UltraWinExplorerBar.ItemEventArgs e)
     {
-      LoadTab(e.Item.Key);
+      if(e.Item.Key.Equals("dataConnection"))
+      {
+        UpdateGwMonDataConnection();
+      }
+      else
+      {
+        LoadTab(e.Item.Key);
+      }
     }
     
     private void btnLoadGraph_Click(object sender, EventArgs e)

@@ -14,3 +14,7 @@ C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Release
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Release\GMonGr.application
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Release\GMonGr.exe
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Release\GMonGr.pdb
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Release\Template\UserUpdate.csv
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Release\Microsoft.Data.ConnectionUI.Dialog.dll
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Release\Microsoft.Data.ConnectionUI.dll
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Release\Microsoft.Data.ConnectionUI.xml
