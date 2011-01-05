@@ -25,7 +25,15 @@
             // Add code to handle the SettingsSaving event here.
         }
 
-        public string GwMonUpdateFile
+        public string SetGwMonConnectionString
+        {
+          set
+          {
+            this["GwMonitoringConnectionString"] = value;
+          }
+        }
+  
+      public string GwMonUpdateFile
         {
           get
           {

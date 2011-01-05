@@ -1,7 +1,17 @@
 ﻿#region Using Directoves
+using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Controls;
+using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Geometry;
+using ESRI.ArcGIS.esriSystem;
+
 using Infragistics.UltraChart.Shared.Styles;
 using Infragistics.UltraChart.Resources.Appearance;
 using Infragistics.UltraChart.Core.Layers;
+
+using Microsoft.SqlServer.Server;
+using Microsoft.SqlServer;
+using Microsoft.CSharp;
 
 using System;
 using System.Collections;
@@ -15,11 +25,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using ESRI.ArcGIS.Carto;
-using ESRI.ArcGIS.Controls;
-using ESRI.ArcGIS.Display;
-using ESRI.ArcGIS.Geometry;
-using ESRI.ArcGIS.esriSystem;
+
 
 #endregion
 
@@ -2304,6 +2310,37 @@ namespace GMonGr
       txtUploadFilePath.Clear();
     }
 
+    private void UpdateGwMonDataConnection()
+    {
+      Microsoft.Data.ConnectionUI.DataConnectionDialog dataConnectionDialog =
+        new Microsoft.Data.ConnectionUI.DataConnectionDialog();
+      Microsoft.Data.ConnectionUI.DataSource.AddStandardDataSources(dataConnectionDialog);
+
+      //TO-DO; Detect whether Master Data is SQL or Access (Jet) and set SelectedDataSource accordingly
+      string gwMonDataConnectionString = Properties.Settings.Default.GwMonitoringConnectionString;
+      dataConnectionDialog.SelectedDataSource = Microsoft.Data.ConnectionUI.DataSource.SqlDataSource;
+      dataConnectionDialog.SelectedDataProvider = Microsoft.Data.ConnectionUI.DataProvider.SqlDataProvider;
+      dataConnectionDialog.ConnectionString = gwMonDataConnectionString;
+
+      if (Microsoft.Data.ConnectionUI.DataConnectionDialog.Show(dataConnectionDialog) != DialogResult.OK)
+      {
+        return;
+      }
+
+      Properties.Settings.Default.SetGwMonConnectionString = dataConnectionDialog.ConnectionString;
+      Properties.Settings.Default.Save();
+      statusBarMain.Panels["gwMonDataConnection"].Text = "Monitor Data: " + ConnectionStringSummary(Properties.Settings.Default.GwMonitoringConnectionString);
+    }
+
+    private string ConnectionStringSummary(string connectionString)
+    {
+      System.Data.Common.DbConnectionStringBuilder csb;
+      csb = new System.Data.Common.DbConnectionStringBuilder();
+      csb.ConnectionString = connectionString;
+      string summary = csb["data source"].ToString();
+      return summary;
+    }
+
     private void UpdateGwMonTables()
     {
       int editSessionId = UpdateEditSession();
@@ -2530,6 +2567,14 @@ namespace GMonGr
       {
         case "loadTab":
           LoadTab(e.Tool.Key);
+          return;
+        default:
+          break;
+      }
+      switch (e.Tool.Key)
+      {
+        case "dataConnection":
+          UpdateGwMonDataConnection();
           return;
         default:
           break;

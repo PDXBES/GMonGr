@@ -64,17 +64,20 @@
       Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
       Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+      Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
       Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("toolBarMain");
       Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool1 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("fileMenu");
-      Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("deleteMe2");
+      Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool5 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("optionsMenu");
       Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool2 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("fileMenu");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("graphData");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("loadUpdate");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("exitProgram");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("exitProgram");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("loadUpdate");
-      Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("deleteMe");
       Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("graphData");
+      Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool6 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("optionsMenu");
+      Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool9 = new Infragistics.Win.UltraWinToolbars.ButtonTool("dataConnection");
+      Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool10 = new Infragistics.Win.UltraWinToolbars.ButtonTool("dataConnection");
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
       this.tabPlotData = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
       this.pnlLoadClearChart = new Infragistics.Win.Misc.UltraPanel();
@@ -112,12 +115,13 @@
       this.expBarMain = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
       this.ofdMain = new System.Windows.Forms.OpenFileDialog();
       this.frmMain_Fill_Panel = new System.Windows.Forms.Panel();
+      this.statusBarMain = new Infragistics.Win.UltraWinStatusBar.UltraStatusBar();
       this._frmMain_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-      this.toolBarManagerMain = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
       this._frmMain_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this._frmMain_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this._frmMain_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this.mONITOR_LOCATIONSTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter();
+      this.toolBarManagerMain = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
       this.tabPlotData.SuspendLayout();
       this.pnlLoadClearChart.ClientArea.SuspendLayout();
       this.pnlLoadClearChart.SuspendLayout();
@@ -138,6 +142,7 @@
       this.tabControlMain.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).BeginInit();
       this.frmMain_Fill_Panel.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.statusBarMain)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).BeginInit();
       this.SuspendLayout();
       // 
@@ -158,17 +163,17 @@
       // 
       this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnLoadGraph);
       this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnClearChart);
-      this.pnlLoadClearChart.Location = new System.Drawing.Point(3, 332);
+      this.pnlLoadClearChart.Location = new System.Drawing.Point(3, 339);
       this.pnlLoadClearChart.Name = "pnlLoadClearChart";
-      this.pnlLoadClearChart.Size = new System.Drawing.Size(192, 135);
+      this.pnlLoadClearChart.Size = new System.Drawing.Size(192, 114);
       this.pnlLoadClearChart.TabIndex = 5;
       // 
       // btnLoadGraph
       // 
       this.btnLoadGraph.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnLoadGraph.Location = new System.Drawing.Point(0, 3);
+      this.btnLoadGraph.Location = new System.Drawing.Point(5, 5);
       this.btnLoadGraph.Name = "btnLoadGraph";
-      this.btnLoadGraph.Size = new System.Drawing.Size(192, 62);
+      this.btnLoadGraph.Size = new System.Drawing.Size(182, 50);
       this.btnLoadGraph.TabIndex = 3;
       this.btnLoadGraph.Text = "Load Graph";
       this.btnLoadGraph.Click += new System.EventHandler(this.btnLoadGraph_Click);
@@ -176,9 +181,9 @@
       // btnClearChart
       // 
       this.btnClearChart.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnClearChart.Location = new System.Drawing.Point(0, 70);
+      this.btnClearChart.Location = new System.Drawing.Point(5, 61);
       this.btnClearChart.Name = "btnClearChart";
-      this.btnClearChart.Size = new System.Drawing.Size(192, 62);
+      this.btnClearChart.Size = new System.Drawing.Size(182, 50);
       this.btnClearChart.TabIndex = 4;
       this.btnClearChart.Text = "Clear Chart";
       this.btnClearChart.Click += new System.EventHandler(this.btnClearChart_Click);
@@ -342,12 +347,12 @@
       this.pnlCalendars.ClientArea.Controls.Add(this.lblGwMonStartDate);
       this.pnlCalendars.Location = new System.Drawing.Point(3, 133);
       this.pnlCalendars.Name = "pnlCalendars";
-      this.pnlCalendars.Size = new System.Drawing.Size(192, 193);
+      this.pnlCalendars.Size = new System.Drawing.Size(192, 200);
       this.pnlCalendars.TabIndex = 3;
       // 
       // clndrGwMonEnd
       // 
-      this.clndrGwMonEnd.Location = new System.Drawing.Point(3, 156);
+      this.clndrGwMonEnd.Location = new System.Drawing.Point(3, 161);
       this.clndrGwMonEnd.Name = "clndrGwMonEnd";
       this.clndrGwMonEnd.Size = new System.Drawing.Size(184, 20);
       this.clndrGwMonEnd.TabIndex = 8;
@@ -361,7 +366,7 @@
       // 
       // lblGwMonEndDate
       // 
-      this.lblGwMonEndDate.Location = new System.Drawing.Point(3, 133);
+      this.lblGwMonEndDate.Location = new System.Drawing.Point(3, 138);
       this.lblGwMonEndDate.Name = "lblGwMonEndDate";
       this.lblGwMonEndDate.Size = new System.Drawing.Size(100, 17);
       this.lblGwMonEndDate.TabIndex = 6;
@@ -463,7 +468,7 @@
       this.chartGwData.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y.TickmarkInterval = 20;
+      this.chartGwData.Axis.Y.TickmarkInterval = 50;
       this.chartGwData.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y.Visible = true;
       this.chartGwData.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -490,7 +495,7 @@
       this.chartGwData.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y2.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y2.TickmarkInterval = 20;
+      this.chartGwData.Axis.Y2.TickmarkInterval = 50;
       this.chartGwData.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y2.Visible = false;
       this.chartGwData.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -728,7 +733,7 @@
       this.expBarMain.Location = new System.Drawing.Point(10, 6);
       this.expBarMain.Margin = new System.Windows.Forms.Padding(1);
       this.expBarMain.Name = "expBarMain";
-      this.expBarMain.Size = new System.Drawing.Size(146, 490);
+      this.expBarMain.Size = new System.Drawing.Size(146, 473);
       this.expBarMain.TabIndex = 1;
       this.expBarMain.ViewStyle = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarViewStyle.VisualStudio2005;
       this.expBarMain.ItemClick += new Infragistics.Win.UltraWinExplorerBar.ItemClickEventHandler(this.expBarMain_ItemClick);
@@ -739,6 +744,7 @@
       // 
       // frmMain_Fill_Panel
       // 
+      this.frmMain_Fill_Panel.Controls.Add(this.statusBarMain);
       this.frmMain_Fill_Panel.Controls.Add(this.expBarMain);
       this.frmMain_Fill_Panel.Controls.Add(this.tabControlMain);
       this.frmMain_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
@@ -747,6 +753,20 @@
       this.frmMain_Fill_Panel.Name = "frmMain_Fill_Panel";
       this.frmMain_Fill_Panel.Size = new System.Drawing.Size(949, 506);
       this.frmMain_Fill_Panel.TabIndex = 0;
+      // 
+      // statusBarMain
+      // 
+      this.statusBarMain.Location = new System.Drawing.Point(0, 483);
+      this.statusBarMain.Name = "statusBarMain";
+      ultraStatusPanel1.Key = "gwMonDataConnection";
+      ultraStatusPanel1.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Automatic;
+      ultraStatusPanel1.Width = 200;
+      this.statusBarMain.Panels.AddRange(new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel[] {
+            ultraStatusPanel1});
+      this.statusBarMain.Size = new System.Drawing.Size(949, 23);
+      this.statusBarMain.TabIndex = 2;
+      this.statusBarMain.Text = "Status Bar Main";
+      this.statusBarMain.ViewStyle = Infragistics.Win.UltraWinStatusBar.ViewStyle.VisualStudio2005;
       // 
       // _frmMain_Toolbars_Dock_Area_Left
       // 
@@ -758,41 +778,6 @@
       this._frmMain_Toolbars_Dock_Area_Left.Name = "_frmMain_Toolbars_Dock_Area_Left";
       this._frmMain_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 506);
       this._frmMain_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManagerMain;
-      // 
-      // toolBarManagerMain
-      // 
-      this.toolBarManagerMain.DesignerFlags = 1;
-      this.toolBarManagerMain.DockWithinContainer = this;
-      this.toolBarManagerMain.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
-      this.toolBarManagerMain.MenuAnimationStyle = Infragistics.Win.UltraWinToolbars.MenuAnimationStyle.Slide;
-      this.toolBarManagerMain.SaveSettingsFormat = Infragistics.Win.SaveSettingsFormat.Xml;
-      ultraToolbar1.DockedColumn = 0;
-      ultraToolbar1.DockedRow = 0;
-      ultraToolbar1.IsMainMenuBar = true;
-      ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            popupMenuTool1});
-      ultraToolbar1.Text = "toolBarMain";
-      this.toolBarManagerMain.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
-            ultraToolbar1});
-      buttonTool2.SharedPropsInternal.Caption = "File";
-      popupMenuTool2.SharedPropsInternal.Caption = "&File";
-      popupMenuTool2.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool6,
-            buttonTool4,
-            buttonTool1});
-      buttonTool3.SharedPropsInternal.Caption = "&Exit";
-      buttonTool3.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.AltF4;
-      buttonTool5.SharedPropsInternal.Caption = "Load &Update";
-      buttonTool7.SharedPropsInternal.Caption = "&Graph Data";
-      buttonTool8.SharedPropsInternal.Caption = "&Graph Data";
-      this.toolBarManagerMain.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool2,
-            popupMenuTool2,
-            buttonTool3,
-            buttonTool5,
-            buttonTool7,
-            buttonTool8});
-      this.toolBarManagerMain.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.toolBarManagerMain_ToolClick);
       // 
       // _frmMain_Toolbars_Dock_Area_Right
       // 
@@ -830,6 +815,45 @@
       // mONITOR_LOCATIONSTableAdapter
       // 
       this.mONITOR_LOCATIONSTableAdapter.ClearBeforeFill = true;
+      // 
+      // toolBarManagerMain
+      // 
+      this.toolBarManagerMain.DesignerFlags = 1;
+      this.toolBarManagerMain.DockWithinContainer = this;
+      this.toolBarManagerMain.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
+      this.toolBarManagerMain.MenuAnimationStyle = Infragistics.Win.UltraWinToolbars.MenuAnimationStyle.Slide;
+      this.toolBarManagerMain.SaveSettingsFormat = Infragistics.Win.SaveSettingsFormat.Xml;
+      this.toolBarManagerMain.ShowFullMenusDelay = 500;
+      ultraToolbar1.DockedColumn = 0;
+      ultraToolbar1.DockedRow = 0;
+      ultraToolbar1.IsMainMenuBar = true;
+      ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            popupMenuTool1,
+            popupMenuTool5});
+      ultraToolbar1.Text = "toolBarMain";
+      this.toolBarManagerMain.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
+            ultraToolbar1});
+      popupMenuTool2.SharedPropsInternal.Caption = "&File";
+      popupMenuTool2.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool6,
+            buttonTool4,
+            buttonTool1});
+      buttonTool3.SharedPropsInternal.Caption = "&Exit";
+      buttonTool3.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.AltF4;
+      buttonTool5.SharedPropsInternal.Caption = "Load &Update";
+      buttonTool8.SharedPropsInternal.Caption = "&Graph Data";
+      popupMenuTool6.SharedPropsInternal.Caption = "&Options";
+      popupMenuTool6.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool9});
+      buttonTool10.SharedPropsInternal.Caption = "Change Data Connection...";
+      this.toolBarManagerMain.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            popupMenuTool2,
+            buttonTool3,
+            buttonTool5,
+            buttonTool8,
+            popupMenuTool6,
+            buttonTool10});
+      this.toolBarManagerMain.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.toolBarManagerMain_ToolClick);
       // 
       // frmMain
       // 
@@ -869,6 +893,7 @@
       this.tabControlMain.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).EndInit();
       this.frmMain_Fill_Panel.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.statusBarMain)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).EndInit();
       this.ResumeLayout(false);
 
@@ -919,6 +944,7 @@
     private System.Windows.Forms.BindingSource groundwaterMonitorDataSetBindingSource;
     private System.Windows.Forms.BindingSource mONITORLOCATIONSBindingSource;
     private GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter mONITOR_LOCATIONSTableAdapter;
+    private Infragistics.Win.UltraWinStatusBar.UltraStatusBar statusBarMain;
   }
 }
 
