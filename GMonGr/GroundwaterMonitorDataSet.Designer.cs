@@ -25,10 +25,6 @@ namespace GMonGr {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class GroundwaterMonitorDataSet : global::System.Data.DataSet {
         
-        private GW_MONITORINGDataTable tableGW_MONITORING;
-        
-        private MONITOR_LOCATIONSDataTable tableMONITOR_LOCATIONS;
-        
         private P1401DataTable tableP1401;
         
         private P1402DataTable tableP1402;
@@ -67,6 +63,12 @@ namespace GMonGr {
         
         private TGD3BDataTable tableTGD3B;
         
+        private MONITOR_LOCATIONSDataTable tableMONITOR_LOCATIONS;
+        
+        private GW_MONITORINGDataTable tableGW_MONITORING;
+        
+        private MonitorListDataTable tableMonitorList;
+        
         private GwMonQcDataTable tableGwMonQc;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -95,12 +97,6 @@ namespace GMonGr {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["GW_MONITORING"] != null)) {
-                    base.Tables.Add(new GW_MONITORINGDataTable(ds.Tables["GW_MONITORING"]));
-                }
-                if ((ds.Tables["MONITOR_LOCATIONS"] != null)) {
-                    base.Tables.Add(new MONITOR_LOCATIONSDataTable(ds.Tables["MONITOR_LOCATIONS"]));
-                }
                 if ((ds.Tables["P1401"] != null)) {
                     base.Tables.Add(new P1401DataTable(ds.Tables["P1401"]));
                 }
@@ -158,6 +154,15 @@ namespace GMonGr {
                 if ((ds.Tables["TGD3B"] != null)) {
                     base.Tables.Add(new TGD3BDataTable(ds.Tables["TGD3B"]));
                 }
+                if ((ds.Tables["MONITOR_LOCATIONS"] != null)) {
+                    base.Tables.Add(new MONITOR_LOCATIONSDataTable(ds.Tables["MONITOR_LOCATIONS"]));
+                }
+                if ((ds.Tables["GW_MONITORING"] != null)) {
+                    base.Tables.Add(new GW_MONITORINGDataTable(ds.Tables["GW_MONITORING"]));
+                }
+                if ((ds.Tables["MonitorList"] != null)) {
+                    base.Tables.Add(new MonitorListDataTable(ds.Tables["MonitorList"]));
+                }
                 if ((ds.Tables["GwMonQc"] != null)) {
                     base.Tables.Add(new GwMonQcDataTable(ds.Tables["GwMonQc"]));
                 }
@@ -177,24 +182,6 @@ namespace GMonGr {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public GW_MONITORINGDataTable GW_MONITORING {
-            get {
-                return this.tableGW_MONITORING;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MONITOR_LOCATIONSDataTable MONITOR_LOCATIONS {
-            get {
-                return this.tableMONITOR_LOCATIONS;
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -371,6 +358,33 @@ namespace GMonGr {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MONITOR_LOCATIONSDataTable MONITOR_LOCATIONS {
+            get {
+                return this.tableMONITOR_LOCATIONS;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public GW_MONITORINGDataTable GW_MONITORING {
+            get {
+                return this.tableGW_MONITORING;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MonitorListDataTable MonitorList {
+            get {
+                return this.tableMonitorList;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public GwMonQcDataTable GwMonQc {
             get {
                 return this.tableGwMonQc;
@@ -436,12 +450,6 @@ namespace GMonGr {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["GW_MONITORING"] != null)) {
-                    base.Tables.Add(new GW_MONITORINGDataTable(ds.Tables["GW_MONITORING"]));
-                }
-                if ((ds.Tables["MONITOR_LOCATIONS"] != null)) {
-                    base.Tables.Add(new MONITOR_LOCATIONSDataTable(ds.Tables["MONITOR_LOCATIONS"]));
-                }
                 if ((ds.Tables["P1401"] != null)) {
                     base.Tables.Add(new P1401DataTable(ds.Tables["P1401"]));
                 }
@@ -499,6 +507,15 @@ namespace GMonGr {
                 if ((ds.Tables["TGD3B"] != null)) {
                     base.Tables.Add(new TGD3BDataTable(ds.Tables["TGD3B"]));
                 }
+                if ((ds.Tables["MONITOR_LOCATIONS"] != null)) {
+                    base.Tables.Add(new MONITOR_LOCATIONSDataTable(ds.Tables["MONITOR_LOCATIONS"]));
+                }
+                if ((ds.Tables["GW_MONITORING"] != null)) {
+                    base.Tables.Add(new GW_MONITORINGDataTable(ds.Tables["GW_MONITORING"]));
+                }
+                if ((ds.Tables["MonitorList"] != null)) {
+                    base.Tables.Add(new MonitorListDataTable(ds.Tables["MonitorList"]));
+                }
                 if ((ds.Tables["GwMonQc"] != null)) {
                     base.Tables.Add(new GwMonQcDataTable(ds.Tables["GwMonQc"]));
                 }
@@ -532,18 +549,6 @@ namespace GMonGr {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableGW_MONITORING = ((GW_MONITORINGDataTable)(base.Tables["GW_MONITORING"]));
-            if ((initTable == true)) {
-                if ((this.tableGW_MONITORING != null)) {
-                    this.tableGW_MONITORING.InitVars();
-                }
-            }
-            this.tableMONITOR_LOCATIONS = ((MONITOR_LOCATIONSDataTable)(base.Tables["MONITOR_LOCATIONS"]));
-            if ((initTable == true)) {
-                if ((this.tableMONITOR_LOCATIONS != null)) {
-                    this.tableMONITOR_LOCATIONS.InitVars();
-                }
-            }
             this.tableP1401 = ((P1401DataTable)(base.Tables["P1401"]));
             if ((initTable == true)) {
                 if ((this.tableP1401 != null)) {
@@ -658,6 +663,24 @@ namespace GMonGr {
                     this.tableTGD3B.InitVars();
                 }
             }
+            this.tableMONITOR_LOCATIONS = ((MONITOR_LOCATIONSDataTable)(base.Tables["MONITOR_LOCATIONS"]));
+            if ((initTable == true)) {
+                if ((this.tableMONITOR_LOCATIONS != null)) {
+                    this.tableMONITOR_LOCATIONS.InitVars();
+                }
+            }
+            this.tableGW_MONITORING = ((GW_MONITORINGDataTable)(base.Tables["GW_MONITORING"]));
+            if ((initTable == true)) {
+                if ((this.tableGW_MONITORING != null)) {
+                    this.tableGW_MONITORING.InitVars();
+                }
+            }
+            this.tableMonitorList = ((MonitorListDataTable)(base.Tables["MonitorList"]));
+            if ((initTable == true)) {
+                if ((this.tableMonitorList != null)) {
+                    this.tableMonitorList.InitVars();
+                }
+            }
             this.tableGwMonQc = ((GwMonQcDataTable)(base.Tables["GwMonQc"]));
             if ((initTable == true)) {
                 if ((this.tableGwMonQc != null)) {
@@ -673,10 +696,6 @@ namespace GMonGr {
             this.Namespace = "http://tempuri.org/GroundwaterMonitorDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableGW_MONITORING = new GW_MONITORINGDataTable();
-            base.Tables.Add(this.tableGW_MONITORING);
-            this.tableMONITOR_LOCATIONS = new MONITOR_LOCATIONSDataTable();
-            base.Tables.Add(this.tableMONITOR_LOCATIONS);
             this.tableP1401 = new P1401DataTable();
             base.Tables.Add(this.tableP1401);
             this.tableP1402 = new P1402DataTable();
@@ -715,18 +734,14 @@ namespace GMonGr {
             base.Tables.Add(this.tableTGD3A);
             this.tableTGD3B = new TGD3BDataTable();
             base.Tables.Add(this.tableTGD3B);
+            this.tableMONITOR_LOCATIONS = new MONITOR_LOCATIONSDataTable();
+            base.Tables.Add(this.tableMONITOR_LOCATIONS);
+            this.tableGW_MONITORING = new GW_MONITORINGDataTable();
+            base.Tables.Add(this.tableGW_MONITORING);
+            this.tableMonitorList = new MonitorListDataTable();
+            base.Tables.Add(this.tableMonitorList);
             this.tableGwMonQc = new GwMonQcDataTable();
             base.Tables.Add(this.tableGwMonQc);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeGW_MONITORING() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeMONITOR_LOCATIONS() {
-            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -825,6 +840,21 @@ namespace GMonGr {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeMONITOR_LOCATIONS() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeGW_MONITORING() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeMonitorList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private bool ShouldSerializeGwMonQc() {
             return false;
         }
@@ -882,10 +912,6 @@ namespace GMonGr {
             return type;
         }
         
-        public delegate void GW_MONITORINGRowChangeEventHandler(object sender, GW_MONITORINGRowChangeEvent e);
-        
-        public delegate void MONITOR_LOCATIONSRowChangeEventHandler(object sender, MONITOR_LOCATIONSRowChangeEvent e);
-        
         public delegate void P1401RowChangeEventHandler(object sender, P1401RowChangeEvent e);
         
         public delegate void P1402RowChangeEventHandler(object sender, P1402RowChangeEvent e);
@@ -924,748 +950,13 @@ namespace GMonGr {
         
         public delegate void TGD3BRowChangeEventHandler(object sender, TGD3BRowChangeEvent e);
         
+        public delegate void MONITOR_LOCATIONSRowChangeEventHandler(object sender, MONITOR_LOCATIONSRowChangeEvent e);
+        
+        public delegate void GW_MONITORINGRowChangeEventHandler(object sender, GW_MONITORINGRowChangeEvent e);
+        
+        public delegate void MonitorListRowChangeEventHandler(object sender, MonitorListRowChangeEvent e);
+        
         public delegate void GwMonQcRowChangeEventHandler(object sender, GwMonQcRowChangeEvent e);
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GW_MONITORINGDataTable : global::System.Data.TypedTableBase<GW_MONITORINGRow> {
-            
-            private global::System.Data.DataColumn columngwmon_edit_id;
-            
-            private global::System.Data.DataColumn columnedit_id;
-            
-            private global::System.Data.DataColumn columnedit_date;
-            
-            private global::System.Data.DataColumn columnedited_by;
-            
-            private global::System.Data.DataColumn columnreading_date;
-            
-            private global::System.Data.DataColumn columnreading_hertz;
-            
-            private global::System.Data.DataColumn columnheas_psi;
-            
-            private global::System.Data.DataColumn columntemp_celsius;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public GW_MONITORINGDataTable() {
-                this.TableName = "GW_MONITORING";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal GW_MONITORINGDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected GW_MONITORINGDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn gwmon_edit_idColumn {
-                get {
-                    return this.columngwmon_edit_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn edit_idColumn {
-                get {
-                    return this.columnedit_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn edit_dateColumn {
-                get {
-                    return this.columnedit_date;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn edited_byColumn {
-                get {
-                    return this.columnedited_by;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn reading_dateColumn {
-                get {
-                    return this.columnreading_date;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn reading_hertzColumn {
-                get {
-                    return this.columnreading_hertz;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn heas_psiColumn {
-                get {
-                    return this.columnheas_psi;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn temp_celsiusColumn {
-                get {
-                    return this.columntemp_celsius;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public GW_MONITORINGRow this[int index] {
-                get {
-                    return ((GW_MONITORINGRow)(this.Rows[index]));
-                }
-            }
-            
-            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowChanging;
-            
-            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowChanged;
-            
-            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowDeleting;
-            
-            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddGW_MONITORINGRow(GW_MONITORINGRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public GW_MONITORINGRow AddGW_MONITORINGRow(int gwmon_edit_id, int edit_id, System.DateTime edit_date, string edited_by, System.DateTime reading_date, double reading_hertz, double heas_psi, double temp_celsius) {
-                GW_MONITORINGRow rowGW_MONITORINGRow = ((GW_MONITORINGRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        gwmon_edit_id,
-                        edit_id,
-                        edit_date,
-                        edited_by,
-                        reading_date,
-                        reading_hertz,
-                        heas_psi,
-                        temp_celsius};
-                rowGW_MONITORINGRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowGW_MONITORINGRow);
-                return rowGW_MONITORINGRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                GW_MONITORINGDataTable cln = ((GW_MONITORINGDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new GW_MONITORINGDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columngwmon_edit_id = base.Columns["gwmon_edit_id"];
-                this.columnedit_id = base.Columns["edit_id"];
-                this.columnedit_date = base.Columns["edit_date"];
-                this.columnedited_by = base.Columns["edited_by"];
-                this.columnreading_date = base.Columns["reading_date"];
-                this.columnreading_hertz = base.Columns["reading_hertz"];
-                this.columnheas_psi = base.Columns["heas_psi"];
-                this.columntemp_celsius = base.Columns["temp_celsius"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columngwmon_edit_id = new global::System.Data.DataColumn("gwmon_edit_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columngwmon_edit_id);
-                this.columnedit_id = new global::System.Data.DataColumn("edit_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnedit_id);
-                this.columnedit_date = new global::System.Data.DataColumn("edit_date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnedit_date);
-                this.columnedited_by = new global::System.Data.DataColumn("edited_by", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnedited_by);
-                this.columnreading_date = new global::System.Data.DataColumn("reading_date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnreading_date);
-                this.columnreading_hertz = new global::System.Data.DataColumn("reading_hertz", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnreading_hertz);
-                this.columnheas_psi = new global::System.Data.DataColumn("heas_psi", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnheas_psi);
-                this.columntemp_celsius = new global::System.Data.DataColumn("temp_celsius", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntemp_celsius);
-                this.columngwmon_edit_id.AllowDBNull = false;
-                this.columnedit_id.AllowDBNull = false;
-                this.columnedit_date.AllowDBNull = false;
-                this.columnedited_by.AllowDBNull = false;
-                this.columnedited_by.MaxLength = 50;
-                this.columnreading_date.AllowDBNull = false;
-                this.columnreading_hertz.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public GW_MONITORINGRow NewGW_MONITORINGRow() {
-                return ((GW_MONITORINGRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new GW_MONITORINGRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(GW_MONITORINGRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.GW_MONITORINGRowChanged != null)) {
-                    this.GW_MONITORINGRowChanged(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.GW_MONITORINGRowChanging != null)) {
-                    this.GW_MONITORINGRowChanging(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.GW_MONITORINGRowDeleted != null)) {
-                    this.GW_MONITORINGRowDeleted(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.GW_MONITORINGRowDeleting != null)) {
-                    this.GW_MONITORINGRowDeleting(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveGW_MONITORINGRow(GW_MONITORINGRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GroundwaterMonitorDataSet ds = new GroundwaterMonitorDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "GW_MONITORINGDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MONITOR_LOCATIONSDataTable : global::System.Data.TypedTableBase<MONITOR_LOCATIONSRow> {
-            
-            private global::System.Data.DataColumn columnsensor_id;
-            
-            private global::System.Data.DataColumn columnsensor_name;
-            
-            private global::System.Data.DataColumn columnserial_num;
-            
-            private global::System.Data.DataColumn columnsensor_depth_ft;
-            
-            private global::System.Data.DataColumn columnmeasure_down_ft;
-            
-            private global::System.Data.DataColumn columntoc_elev_ft;
-            
-            private global::System.Data.DataColumn columncal_fact_psi_a;
-            
-            private global::System.Data.DataColumn columncal_fact_psi_b;
-            
-            private global::System.Data.DataColumn columncal_fact_psi_c;
-            
-            private global::System.Data.DataColumn columncal_fact_head_ft_a;
-            
-            private global::System.Data.DataColumn columncal_fact_head_ft_b;
-            
-            private global::System.Data.DataColumn columncal_fact_head_ft_c;
-            
-            private global::System.Data.DataColumn columnnorthing_ft;
-            
-            private global::System.Data.DataColumn columneasting_ft;
-            
-            private global::System.Data.DataColumn columnnotes;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MONITOR_LOCATIONSDataTable() {
-                this.TableName = "MONITOR_LOCATIONS";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal MONITOR_LOCATIONSDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected MONITOR_LOCATIONSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn sensor_idColumn {
-                get {
-                    return this.columnsensor_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn sensor_nameColumn {
-                get {
-                    return this.columnsensor_name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn serial_numColumn {
-                get {
-                    return this.columnserial_num;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn sensor_depth_ftColumn {
-                get {
-                    return this.columnsensor_depth_ft;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn measure_down_ftColumn {
-                get {
-                    return this.columnmeasure_down_ft;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn toc_elev_ftColumn {
-                get {
-                    return this.columntoc_elev_ft;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cal_fact_psi_aColumn {
-                get {
-                    return this.columncal_fact_psi_a;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cal_fact_psi_bColumn {
-                get {
-                    return this.columncal_fact_psi_b;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cal_fact_psi_cColumn {
-                get {
-                    return this.columncal_fact_psi_c;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cal_fact_head_ft_aColumn {
-                get {
-                    return this.columncal_fact_head_ft_a;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cal_fact_head_ft_bColumn {
-                get {
-                    return this.columncal_fact_head_ft_b;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cal_fact_head_ft_cColumn {
-                get {
-                    return this.columncal_fact_head_ft_c;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn northing_ftColumn {
-                get {
-                    return this.columnnorthing_ft;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn easting_ftColumn {
-                get {
-                    return this.columneasting_ft;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn notesColumn {
-                get {
-                    return this.columnnotes;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MONITOR_LOCATIONSRow this[int index] {
-                get {
-                    return ((MONITOR_LOCATIONSRow)(this.Rows[index]));
-                }
-            }
-            
-            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowChanging;
-            
-            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowChanged;
-            
-            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowDeleting;
-            
-            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddMONITOR_LOCATIONSRow(MONITOR_LOCATIONSRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MONITOR_LOCATIONSRow AddMONITOR_LOCATIONSRow(string sensor_id, string sensor_name, string serial_num, double sensor_depth_ft, double measure_down_ft, double toc_elev_ft, double cal_fact_psi_a, double cal_fact_psi_b, double cal_fact_psi_c, double cal_fact_head_ft_a, double cal_fact_head_ft_b, double cal_fact_head_ft_c, double northing_ft, double easting_ft, string notes) {
-                MONITOR_LOCATIONSRow rowMONITOR_LOCATIONSRow = ((MONITOR_LOCATIONSRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        sensor_id,
-                        sensor_name,
-                        serial_num,
-                        sensor_depth_ft,
-                        measure_down_ft,
-                        toc_elev_ft,
-                        cal_fact_psi_a,
-                        cal_fact_psi_b,
-                        cal_fact_psi_c,
-                        cal_fact_head_ft_a,
-                        cal_fact_head_ft_b,
-                        cal_fact_head_ft_c,
-                        northing_ft,
-                        easting_ft,
-                        notes};
-                rowMONITOR_LOCATIONSRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMONITOR_LOCATIONSRow);
-                return rowMONITOR_LOCATIONSRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                MONITOR_LOCATIONSDataTable cln = ((MONITOR_LOCATIONSDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new MONITOR_LOCATIONSDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnsensor_id = base.Columns["sensor_id"];
-                this.columnsensor_name = base.Columns["sensor_name"];
-                this.columnserial_num = base.Columns["serial_num"];
-                this.columnsensor_depth_ft = base.Columns["sensor_depth_ft"];
-                this.columnmeasure_down_ft = base.Columns["measure_down_ft"];
-                this.columntoc_elev_ft = base.Columns["toc_elev_ft"];
-                this.columncal_fact_psi_a = base.Columns["cal_fact_psi_a"];
-                this.columncal_fact_psi_b = base.Columns["cal_fact_psi_b"];
-                this.columncal_fact_psi_c = base.Columns["cal_fact_psi_c"];
-                this.columncal_fact_head_ft_a = base.Columns["cal_fact_head_ft_a"];
-                this.columncal_fact_head_ft_b = base.Columns["cal_fact_head_ft_b"];
-                this.columncal_fact_head_ft_c = base.Columns["cal_fact_head_ft_c"];
-                this.columnnorthing_ft = base.Columns["northing_ft"];
-                this.columneasting_ft = base.Columns["easting_ft"];
-                this.columnnotes = base.Columns["notes"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnsensor_id = new global::System.Data.DataColumn("sensor_id", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsensor_id);
-                this.columnsensor_name = new global::System.Data.DataColumn("sensor_name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsensor_name);
-                this.columnserial_num = new global::System.Data.DataColumn("serial_num", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnserial_num);
-                this.columnsensor_depth_ft = new global::System.Data.DataColumn("sensor_depth_ft", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsensor_depth_ft);
-                this.columnmeasure_down_ft = new global::System.Data.DataColumn("measure_down_ft", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmeasure_down_ft);
-                this.columntoc_elev_ft = new global::System.Data.DataColumn("toc_elev_ft", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntoc_elev_ft);
-                this.columncal_fact_psi_a = new global::System.Data.DataColumn("cal_fact_psi_a", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncal_fact_psi_a);
-                this.columncal_fact_psi_b = new global::System.Data.DataColumn("cal_fact_psi_b", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncal_fact_psi_b);
-                this.columncal_fact_psi_c = new global::System.Data.DataColumn("cal_fact_psi_c", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncal_fact_psi_c);
-                this.columncal_fact_head_ft_a = new global::System.Data.DataColumn("cal_fact_head_ft_a", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncal_fact_head_ft_a);
-                this.columncal_fact_head_ft_b = new global::System.Data.DataColumn("cal_fact_head_ft_b", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncal_fact_head_ft_b);
-                this.columncal_fact_head_ft_c = new global::System.Data.DataColumn("cal_fact_head_ft_c", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncal_fact_head_ft_c);
-                this.columnnorthing_ft = new global::System.Data.DataColumn("northing_ft", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnorthing_ft);
-                this.columneasting_ft = new global::System.Data.DataColumn("easting_ft", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columneasting_ft);
-                this.columnnotes = new global::System.Data.DataColumn("notes", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnotes);
-                this.columnsensor_id.AllowDBNull = false;
-                this.columnsensor_id.MaxLength = 50;
-                this.columnsensor_name.AllowDBNull = false;
-                this.columnsensor_name.MaxLength = 50;
-                this.columnserial_num.MaxLength = 50;
-                this.columnsensor_depth_ft.AllowDBNull = false;
-                this.columnmeasure_down_ft.AllowDBNull = false;
-                this.columntoc_elev_ft.AllowDBNull = false;
-                this.columncal_fact_psi_a.AllowDBNull = false;
-                this.columncal_fact_psi_b.AllowDBNull = false;
-                this.columncal_fact_psi_c.AllowDBNull = false;
-                this.columncal_fact_head_ft_a.AllowDBNull = false;
-                this.columncal_fact_head_ft_b.AllowDBNull = false;
-                this.columncal_fact_head_ft_c.AllowDBNull = false;
-                this.columnnotes.MaxLength = 2147483647;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MONITOR_LOCATIONSRow NewMONITOR_LOCATIONSRow() {
-                return ((MONITOR_LOCATIONSRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MONITOR_LOCATIONSRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(MONITOR_LOCATIONSRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.MONITOR_LOCATIONSRowChanged != null)) {
-                    this.MONITOR_LOCATIONSRowChanged(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.MONITOR_LOCATIONSRowChanging != null)) {
-                    this.MONITOR_LOCATIONSRowChanging(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.MONITOR_LOCATIONSRowDeleted != null)) {
-                    this.MONITOR_LOCATIONSRowDeleted(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.MONITOR_LOCATIONSRowDeleting != null)) {
-                    this.MONITOR_LOCATIONSRowDeleting(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveMONITOR_LOCATIONSRow(MONITOR_LOCATIONSRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GroundwaterMonitorDataSet ds = new GroundwaterMonitorDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MONITOR_LOCATIONSDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -8723,6 +8014,1036 @@ namespace GMonGr {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MONITOR_LOCATIONSDataTable : global::System.Data.TypedTableBase<MONITOR_LOCATIONSRow> {
+            
+            private global::System.Data.DataColumn columnsensor_id;
+            
+            private global::System.Data.DataColumn columnsensor_name;
+            
+            private global::System.Data.DataColumn columnserial_num;
+            
+            private global::System.Data.DataColumn columnsensor_depth_ft;
+            
+            private global::System.Data.DataColumn columnmeasure_down_ft;
+            
+            private global::System.Data.DataColumn columntoc_elev_ft;
+            
+            private global::System.Data.DataColumn columncal_fact_psi_a;
+            
+            private global::System.Data.DataColumn columncal_fact_psi_b;
+            
+            private global::System.Data.DataColumn columncal_fact_psi_c;
+            
+            private global::System.Data.DataColumn columncal_fact_head_ft_a;
+            
+            private global::System.Data.DataColumn columncal_fact_head_ft_b;
+            
+            private global::System.Data.DataColumn columncal_fact_head_ft_c;
+            
+            private global::System.Data.DataColumn columnnorthing_ft;
+            
+            private global::System.Data.DataColumn columneasting_ft;
+            
+            private global::System.Data.DataColumn columnnotes;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MONITOR_LOCATIONSDataTable() {
+                this.TableName = "MONITOR_LOCATIONS";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal MONITOR_LOCATIONSDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected MONITOR_LOCATIONSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn sensor_idColumn {
+                get {
+                    return this.columnsensor_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn sensor_nameColumn {
+                get {
+                    return this.columnsensor_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn serial_numColumn {
+                get {
+                    return this.columnserial_num;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn sensor_depth_ftColumn {
+                get {
+                    return this.columnsensor_depth_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn measure_down_ftColumn {
+                get {
+                    return this.columnmeasure_down_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn toc_elev_ftColumn {
+                get {
+                    return this.columntoc_elev_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn cal_fact_psi_aColumn {
+                get {
+                    return this.columncal_fact_psi_a;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn cal_fact_psi_bColumn {
+                get {
+                    return this.columncal_fact_psi_b;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn cal_fact_psi_cColumn {
+                get {
+                    return this.columncal_fact_psi_c;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn cal_fact_head_ft_aColumn {
+                get {
+                    return this.columncal_fact_head_ft_a;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn cal_fact_head_ft_bColumn {
+                get {
+                    return this.columncal_fact_head_ft_b;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn cal_fact_head_ft_cColumn {
+                get {
+                    return this.columncal_fact_head_ft_c;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn northing_ftColumn {
+                get {
+                    return this.columnnorthing_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn easting_ftColumn {
+                get {
+                    return this.columneasting_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn notesColumn {
+                get {
+                    return this.columnnotes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MONITOR_LOCATIONSRow this[int index] {
+                get {
+                    return ((MONITOR_LOCATIONSRow)(this.Rows[index]));
+                }
+            }
+            
+            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowChanging;
+            
+            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowChanged;
+            
+            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowDeleting;
+            
+            public event MONITOR_LOCATIONSRowChangeEventHandler MONITOR_LOCATIONSRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddMONITOR_LOCATIONSRow(MONITOR_LOCATIONSRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MONITOR_LOCATIONSRow AddMONITOR_LOCATIONSRow(string sensor_id, string sensor_name, string serial_num, double sensor_depth_ft, double measure_down_ft, double toc_elev_ft, double cal_fact_psi_a, double cal_fact_psi_b, double cal_fact_psi_c, double cal_fact_head_ft_a, double cal_fact_head_ft_b, double cal_fact_head_ft_c, double northing_ft, double easting_ft, string notes) {
+                MONITOR_LOCATIONSRow rowMONITOR_LOCATIONSRow = ((MONITOR_LOCATIONSRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        sensor_id,
+                        sensor_name,
+                        serial_num,
+                        sensor_depth_ft,
+                        measure_down_ft,
+                        toc_elev_ft,
+                        cal_fact_psi_a,
+                        cal_fact_psi_b,
+                        cal_fact_psi_c,
+                        cal_fact_head_ft_a,
+                        cal_fact_head_ft_b,
+                        cal_fact_head_ft_c,
+                        northing_ft,
+                        easting_ft,
+                        notes};
+                rowMONITOR_LOCATIONSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMONITOR_LOCATIONSRow);
+                return rowMONITOR_LOCATIONSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                MONITOR_LOCATIONSDataTable cln = ((MONITOR_LOCATIONSDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MONITOR_LOCATIONSDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnsensor_id = base.Columns["sensor_id"];
+                this.columnsensor_name = base.Columns["sensor_name"];
+                this.columnserial_num = base.Columns["serial_num"];
+                this.columnsensor_depth_ft = base.Columns["sensor_depth_ft"];
+                this.columnmeasure_down_ft = base.Columns["measure_down_ft"];
+                this.columntoc_elev_ft = base.Columns["toc_elev_ft"];
+                this.columncal_fact_psi_a = base.Columns["cal_fact_psi_a"];
+                this.columncal_fact_psi_b = base.Columns["cal_fact_psi_b"];
+                this.columncal_fact_psi_c = base.Columns["cal_fact_psi_c"];
+                this.columncal_fact_head_ft_a = base.Columns["cal_fact_head_ft_a"];
+                this.columncal_fact_head_ft_b = base.Columns["cal_fact_head_ft_b"];
+                this.columncal_fact_head_ft_c = base.Columns["cal_fact_head_ft_c"];
+                this.columnnorthing_ft = base.Columns["northing_ft"];
+                this.columneasting_ft = base.Columns["easting_ft"];
+                this.columnnotes = base.Columns["notes"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnsensor_id = new global::System.Data.DataColumn("sensor_id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsensor_id);
+                this.columnsensor_name = new global::System.Data.DataColumn("sensor_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsensor_name);
+                this.columnserial_num = new global::System.Data.DataColumn("serial_num", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnserial_num);
+                this.columnsensor_depth_ft = new global::System.Data.DataColumn("sensor_depth_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsensor_depth_ft);
+                this.columnmeasure_down_ft = new global::System.Data.DataColumn("measure_down_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmeasure_down_ft);
+                this.columntoc_elev_ft = new global::System.Data.DataColumn("toc_elev_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntoc_elev_ft);
+                this.columncal_fact_psi_a = new global::System.Data.DataColumn("cal_fact_psi_a", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncal_fact_psi_a);
+                this.columncal_fact_psi_b = new global::System.Data.DataColumn("cal_fact_psi_b", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncal_fact_psi_b);
+                this.columncal_fact_psi_c = new global::System.Data.DataColumn("cal_fact_psi_c", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncal_fact_psi_c);
+                this.columncal_fact_head_ft_a = new global::System.Data.DataColumn("cal_fact_head_ft_a", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncal_fact_head_ft_a);
+                this.columncal_fact_head_ft_b = new global::System.Data.DataColumn("cal_fact_head_ft_b", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncal_fact_head_ft_b);
+                this.columncal_fact_head_ft_c = new global::System.Data.DataColumn("cal_fact_head_ft_c", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncal_fact_head_ft_c);
+                this.columnnorthing_ft = new global::System.Data.DataColumn("northing_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnorthing_ft);
+                this.columneasting_ft = new global::System.Data.DataColumn("easting_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columneasting_ft);
+                this.columnnotes = new global::System.Data.DataColumn("notes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnotes);
+                this.columnsensor_id.AllowDBNull = false;
+                this.columnsensor_id.MaxLength = 50;
+                this.columnsensor_name.AllowDBNull = false;
+                this.columnsensor_name.MaxLength = 50;
+                this.columnserial_num.MaxLength = 50;
+                this.columnsensor_depth_ft.AllowDBNull = false;
+                this.columnmeasure_down_ft.AllowDBNull = false;
+                this.columntoc_elev_ft.AllowDBNull = false;
+                this.columncal_fact_psi_a.AllowDBNull = false;
+                this.columncal_fact_psi_b.AllowDBNull = false;
+                this.columncal_fact_psi_c.AllowDBNull = false;
+                this.columncal_fact_head_ft_a.AllowDBNull = false;
+                this.columncal_fact_head_ft_b.AllowDBNull = false;
+                this.columncal_fact_head_ft_c.AllowDBNull = false;
+                this.columnnotes.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MONITOR_LOCATIONSRow NewMONITOR_LOCATIONSRow() {
+                return ((MONITOR_LOCATIONSRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MONITOR_LOCATIONSRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(MONITOR_LOCATIONSRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MONITOR_LOCATIONSRowChanged != null)) {
+                    this.MONITOR_LOCATIONSRowChanged(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MONITOR_LOCATIONSRowChanging != null)) {
+                    this.MONITOR_LOCATIONSRowChanging(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MONITOR_LOCATIONSRowDeleted != null)) {
+                    this.MONITOR_LOCATIONSRowDeleted(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MONITOR_LOCATIONSRowDeleting != null)) {
+                    this.MONITOR_LOCATIONSRowDeleting(this, new MONITOR_LOCATIONSRowChangeEvent(((MONITOR_LOCATIONSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveMONITOR_LOCATIONSRow(MONITOR_LOCATIONSRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GroundwaterMonitorDataSet ds = new GroundwaterMonitorDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MONITOR_LOCATIONSDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GW_MONITORINGDataTable : global::System.Data.TypedTableBase<GW_MONITORINGRow> {
+            
+            private global::System.Data.DataColumn columngwmon_edit_id;
+            
+            private global::System.Data.DataColumn columnedit_id;
+            
+            private global::System.Data.DataColumn columnedit_date;
+            
+            private global::System.Data.DataColumn columnedited_by;
+            
+            private global::System.Data.DataColumn columnsensor_name;
+            
+            private global::System.Data.DataColumn columnreading_date;
+            
+            private global::System.Data.DataColumn columnreading_hertz;
+            
+            private global::System.Data.DataColumn columnhead_psi;
+            
+            private global::System.Data.DataColumn columnhead_ft;
+            
+            private global::System.Data.DataColumn columntemp_celsius;
+            
+            private global::System.Data.DataColumn columngw_depth_ft;
+            
+            private global::System.Data.DataColumn columngw_elev_ft;
+            
+            private global::System.Data.DataColumn columndata_qual_flag;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GW_MONITORINGDataTable() {
+                this.TableName = "GW_MONITORING";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal GW_MONITORINGDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected GW_MONITORINGDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn gwmon_edit_idColumn {
+                get {
+                    return this.columngwmon_edit_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn edit_idColumn {
+                get {
+                    return this.columnedit_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn edit_dateColumn {
+                get {
+                    return this.columnedit_date;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn edited_byColumn {
+                get {
+                    return this.columnedited_by;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn sensor_nameColumn {
+                get {
+                    return this.columnsensor_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn reading_dateColumn {
+                get {
+                    return this.columnreading_date;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn reading_hertzColumn {
+                get {
+                    return this.columnreading_hertz;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn head_psiColumn {
+                get {
+                    return this.columnhead_psi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn head_ftColumn {
+                get {
+                    return this.columnhead_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn temp_celsiusColumn {
+                get {
+                    return this.columntemp_celsius;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn gw_depth_ftColumn {
+                get {
+                    return this.columngw_depth_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn gw_elev_ftColumn {
+                get {
+                    return this.columngw_elev_ft;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn data_qual_flagColumn {
+                get {
+                    return this.columndata_qual_flag;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GW_MONITORINGRow this[int index] {
+                get {
+                    return ((GW_MONITORINGRow)(this.Rows[index]));
+                }
+            }
+            
+            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowChanging;
+            
+            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowChanged;
+            
+            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowDeleting;
+            
+            public event GW_MONITORINGRowChangeEventHandler GW_MONITORINGRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddGW_MONITORINGRow(GW_MONITORINGRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GW_MONITORINGRow AddGW_MONITORINGRow(int gwmon_edit_id, int edit_id, System.DateTime edit_date, string edited_by, string sensor_name, System.DateTime reading_date, double reading_hertz, double head_psi, double head_ft, double temp_celsius, double gw_depth_ft, double gw_elev_ft, string data_qual_flag) {
+                GW_MONITORINGRow rowGW_MONITORINGRow = ((GW_MONITORINGRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        gwmon_edit_id,
+                        edit_id,
+                        edit_date,
+                        edited_by,
+                        sensor_name,
+                        reading_date,
+                        reading_hertz,
+                        head_psi,
+                        head_ft,
+                        temp_celsius,
+                        gw_depth_ft,
+                        gw_elev_ft,
+                        data_qual_flag};
+                rowGW_MONITORINGRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGW_MONITORINGRow);
+                return rowGW_MONITORINGRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                GW_MONITORINGDataTable cln = ((GW_MONITORINGDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GW_MONITORINGDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columngwmon_edit_id = base.Columns["gwmon_edit_id"];
+                this.columnedit_id = base.Columns["edit_id"];
+                this.columnedit_date = base.Columns["edit_date"];
+                this.columnedited_by = base.Columns["edited_by"];
+                this.columnsensor_name = base.Columns["sensor_name"];
+                this.columnreading_date = base.Columns["reading_date"];
+                this.columnreading_hertz = base.Columns["reading_hertz"];
+                this.columnhead_psi = base.Columns["head_psi"];
+                this.columnhead_ft = base.Columns["head_ft"];
+                this.columntemp_celsius = base.Columns["temp_celsius"];
+                this.columngw_depth_ft = base.Columns["gw_depth_ft"];
+                this.columngw_elev_ft = base.Columns["gw_elev_ft"];
+                this.columndata_qual_flag = base.Columns["data_qual_flag"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columngwmon_edit_id = new global::System.Data.DataColumn("gwmon_edit_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngwmon_edit_id);
+                this.columnedit_id = new global::System.Data.DataColumn("edit_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnedit_id);
+                this.columnedit_date = new global::System.Data.DataColumn("edit_date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnedit_date);
+                this.columnedited_by = new global::System.Data.DataColumn("edited_by", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnedited_by);
+                this.columnsensor_name = new global::System.Data.DataColumn("sensor_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsensor_name);
+                this.columnreading_date = new global::System.Data.DataColumn("reading_date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreading_date);
+                this.columnreading_hertz = new global::System.Data.DataColumn("reading_hertz", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreading_hertz);
+                this.columnhead_psi = new global::System.Data.DataColumn("head_psi", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhead_psi);
+                this.columnhead_ft = new global::System.Data.DataColumn("head_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhead_ft);
+                this.columntemp_celsius = new global::System.Data.DataColumn("temp_celsius", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntemp_celsius);
+                this.columngw_depth_ft = new global::System.Data.DataColumn("gw_depth_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngw_depth_ft);
+                this.columngw_elev_ft = new global::System.Data.DataColumn("gw_elev_ft", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngw_elev_ft);
+                this.columndata_qual_flag = new global::System.Data.DataColumn("data_qual_flag", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndata_qual_flag);
+                this.columnedited_by.MaxLength = 50;
+                this.columnsensor_name.AllowDBNull = false;
+                this.columnsensor_name.MaxLength = 50;
+                this.columnreading_date.AllowDBNull = false;
+                this.columnreading_hertz.AllowDBNull = false;
+                this.columndata_qual_flag.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GW_MONITORINGRow NewGW_MONITORINGRow() {
+                return ((GW_MONITORINGRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GW_MONITORINGRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(GW_MONITORINGRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GW_MONITORINGRowChanged != null)) {
+                    this.GW_MONITORINGRowChanged(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GW_MONITORINGRowChanging != null)) {
+                    this.GW_MONITORINGRowChanging(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GW_MONITORINGRowDeleted != null)) {
+                    this.GW_MONITORINGRowDeleted(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GW_MONITORINGRowDeleting != null)) {
+                    this.GW_MONITORINGRowDeleting(this, new GW_MONITORINGRowChangeEvent(((GW_MONITORINGRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveGW_MONITORINGRow(GW_MONITORINGRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GroundwaterMonitorDataSet ds = new GroundwaterMonitorDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GW_MONITORINGDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MonitorListDataTable : global::System.Data.TypedTableBase<MonitorListRow> {
+            
+            private global::System.Data.DataColumn columnsensor_name;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MonitorListDataTable() {
+                this.TableName = "MonitorList";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal MonitorListDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected MonitorListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn sensor_nameColumn {
+                get {
+                    return this.columnsensor_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MonitorListRow this[int index] {
+                get {
+                    return ((MonitorListRow)(this.Rows[index]));
+                }
+            }
+            
+            public event MonitorListRowChangeEventHandler MonitorListRowChanging;
+            
+            public event MonitorListRowChangeEventHandler MonitorListRowChanged;
+            
+            public event MonitorListRowChangeEventHandler MonitorListRowDeleting;
+            
+            public event MonitorListRowChangeEventHandler MonitorListRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddMonitorListRow(MonitorListRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MonitorListRow AddMonitorListRow(string sensor_name) {
+                MonitorListRow rowMonitorListRow = ((MonitorListRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        sensor_name};
+                rowMonitorListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMonitorListRow);
+                return rowMonitorListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                MonitorListDataTable cln = ((MonitorListDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MonitorListDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnsensor_name = base.Columns["sensor_name"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnsensor_name = new global::System.Data.DataColumn("sensor_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsensor_name);
+                this.columnsensor_name.AllowDBNull = false;
+                this.columnsensor_name.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MonitorListRow NewMonitorListRow() {
+                return ((MonitorListRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MonitorListRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(MonitorListRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MonitorListRowChanged != null)) {
+                    this.MonitorListRowChanged(this, new MonitorListRowChangeEvent(((MonitorListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MonitorListRowChanging != null)) {
+                    this.MonitorListRowChanging(this, new MonitorListRowChangeEvent(((MonitorListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MonitorListRowDeleted != null)) {
+                    this.MonitorListRowDeleted(this, new MonitorListRowChangeEvent(((MonitorListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MonitorListRowDeleting != null)) {
+                    this.MonitorListRowDeleting(this, new MonitorListRowChangeEvent(((MonitorListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveMonitorListRow(MonitorListRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GroundwaterMonitorDataSet ds = new GroundwaterMonitorDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MonitorListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GwMonQcDataTable : global::System.Data.TypedTableBase<GwMonQcRow> {
             
             private global::System.Data.DataColumn columnreadingDate;
@@ -8963,356 +9284,6 @@ namespace GMonGr {
                 }
                 xs.Add(dsSchema);
                 return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class GW_MONITORINGRow : global::System.Data.DataRow {
-            
-            private GW_MONITORINGDataTable tableGW_MONITORING;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal GW_MONITORINGRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableGW_MONITORING = ((GW_MONITORINGDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int gwmon_edit_id {
-                get {
-                    return ((int)(this[this.tableGW_MONITORING.gwmon_edit_idColumn]));
-                }
-                set {
-                    this[this.tableGW_MONITORING.gwmon_edit_idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int edit_id {
-                get {
-                    return ((int)(this[this.tableGW_MONITORING.edit_idColumn]));
-                }
-                set {
-                    this[this.tableGW_MONITORING.edit_idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime edit_date {
-                get {
-                    return ((global::System.DateTime)(this[this.tableGW_MONITORING.edit_dateColumn]));
-                }
-                set {
-                    this[this.tableGW_MONITORING.edit_dateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string edited_by {
-                get {
-                    return ((string)(this[this.tableGW_MONITORING.edited_byColumn]));
-                }
-                set {
-                    this[this.tableGW_MONITORING.edited_byColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime reading_date {
-                get {
-                    return ((global::System.DateTime)(this[this.tableGW_MONITORING.reading_dateColumn]));
-                }
-                set {
-                    this[this.tableGW_MONITORING.reading_dateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double reading_hertz {
-                get {
-                    return ((double)(this[this.tableGW_MONITORING.reading_hertzColumn]));
-                }
-                set {
-                    this[this.tableGW_MONITORING.reading_hertzColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double heas_psi {
-                get {
-                    try {
-                        return ((double)(this[this.tableGW_MONITORING.heas_psiColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'heas_psi\' in table \'GW_MONITORING\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGW_MONITORING.heas_psiColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double temp_celsius {
-                get {
-                    try {
-                        return ((double)(this[this.tableGW_MONITORING.temp_celsiusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'temp_celsius\' in table \'GW_MONITORING\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGW_MONITORING.temp_celsiusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Isheas_psiNull() {
-                return this.IsNull(this.tableGW_MONITORING.heas_psiColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setheas_psiNull() {
-                this[this.tableGW_MONITORING.heas_psiColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Istemp_celsiusNull() {
-                return this.IsNull(this.tableGW_MONITORING.temp_celsiusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Settemp_celsiusNull() {
-                this[this.tableGW_MONITORING.temp_celsiusColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class MONITOR_LOCATIONSRow : global::System.Data.DataRow {
-            
-            private MONITOR_LOCATIONSDataTable tableMONITOR_LOCATIONS;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal MONITOR_LOCATIONSRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableMONITOR_LOCATIONS = ((MONITOR_LOCATIONSDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string sensor_id {
-                get {
-                    return ((string)(this[this.tableMONITOR_LOCATIONS.sensor_idColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.sensor_idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string sensor_name {
-                get {
-                    return ((string)(this[this.tableMONITOR_LOCATIONS.sensor_nameColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.sensor_nameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string serial_num {
-                get {
-                    try {
-                        return ((string)(this[this.tableMONITOR_LOCATIONS.serial_numColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'serial_num\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.serial_numColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double sensor_depth_ft {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.sensor_depth_ftColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.sensor_depth_ftColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double measure_down_ft {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.measure_down_ftColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.measure_down_ftColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double toc_elev_ft {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.toc_elev_ftColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.toc_elev_ftColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double cal_fact_psi_a {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_psi_aColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.cal_fact_psi_aColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double cal_fact_psi_b {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_psi_bColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.cal_fact_psi_bColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double cal_fact_psi_c {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_psi_cColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.cal_fact_psi_cColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double cal_fact_head_ft_a {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_aColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_aColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double cal_fact_head_ft_b {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_bColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_bColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double cal_fact_head_ft_c {
-                get {
-                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_cColumn]));
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_cColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double northing_ft {
-                get {
-                    try {
-                        return ((double)(this[this.tableMONITOR_LOCATIONS.northing_ftColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'northing_ft\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.northing_ftColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double easting_ft {
-                get {
-                    try {
-                        return ((double)(this[this.tableMONITOR_LOCATIONS.easting_ftColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'easting_ft\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.easting_ftColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string notes {
-                get {
-                    try {
-                        return ((string)(this[this.tableMONITOR_LOCATIONS.notesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'notes\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMONITOR_LOCATIONS.notesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Isserial_numNull() {
-                return this.IsNull(this.tableMONITOR_LOCATIONS.serial_numColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setserial_numNull() {
-                this[this.tableMONITOR_LOCATIONS.serial_numColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Isnorthing_ftNull() {
-                return this.IsNull(this.tableMONITOR_LOCATIONS.northing_ftColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setnorthing_ftNull() {
-                this[this.tableMONITOR_LOCATIONS.northing_ftColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Iseasting_ftNull() {
-                return this.IsNull(this.tableMONITOR_LOCATIONS.easting_ftColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Seteasting_ftNull() {
-                this[this.tableMONITOR_LOCATIONS.easting_ftColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsnotesNull() {
-                return this.IsNull(this.tableMONITOR_LOCATIONS.notesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetnotesNull() {
-                this[this.tableMONITOR_LOCATIONS.notesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15320,6 +15291,551 @@ namespace GMonGr {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class MONITOR_LOCATIONSRow : global::System.Data.DataRow {
+            
+            private MONITOR_LOCATIONSDataTable tableMONITOR_LOCATIONS;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal MONITOR_LOCATIONSRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMONITOR_LOCATIONS = ((MONITOR_LOCATIONSDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string sensor_id {
+                get {
+                    return ((string)(this[this.tableMONITOR_LOCATIONS.sensor_idColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.sensor_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string sensor_name {
+                get {
+                    return ((string)(this[this.tableMONITOR_LOCATIONS.sensor_nameColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.sensor_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string serial_num {
+                get {
+                    try {
+                        return ((string)(this[this.tableMONITOR_LOCATIONS.serial_numColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'serial_num\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.serial_numColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double sensor_depth_ft {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.sensor_depth_ftColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.sensor_depth_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double measure_down_ft {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.measure_down_ftColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.measure_down_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double toc_elev_ft {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.toc_elev_ftColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.toc_elev_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double cal_fact_psi_a {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_psi_aColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.cal_fact_psi_aColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double cal_fact_psi_b {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_psi_bColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.cal_fact_psi_bColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double cal_fact_psi_c {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_psi_cColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.cal_fact_psi_cColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double cal_fact_head_ft_a {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_aColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_aColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double cal_fact_head_ft_b {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_bColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_bColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double cal_fact_head_ft_c {
+                get {
+                    return ((double)(this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_cColumn]));
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.cal_fact_head_ft_cColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double northing_ft {
+                get {
+                    try {
+                        return ((double)(this[this.tableMONITOR_LOCATIONS.northing_ftColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'northing_ft\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.northing_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double easting_ft {
+                get {
+                    try {
+                        return ((double)(this[this.tableMONITOR_LOCATIONS.easting_ftColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'easting_ft\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.easting_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string notes {
+                get {
+                    try {
+                        return ((string)(this[this.tableMONITOR_LOCATIONS.notesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'notes\' in table \'MONITOR_LOCATIONS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMONITOR_LOCATIONS.notesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isserial_numNull() {
+                return this.IsNull(this.tableMONITOR_LOCATIONS.serial_numColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setserial_numNull() {
+                this[this.tableMONITOR_LOCATIONS.serial_numColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isnorthing_ftNull() {
+                return this.IsNull(this.tableMONITOR_LOCATIONS.northing_ftColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setnorthing_ftNull() {
+                this[this.tableMONITOR_LOCATIONS.northing_ftColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Iseasting_ftNull() {
+                return this.IsNull(this.tableMONITOR_LOCATIONS.easting_ftColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Seteasting_ftNull() {
+                this[this.tableMONITOR_LOCATIONS.easting_ftColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsnotesNull() {
+                return this.IsNull(this.tableMONITOR_LOCATIONS.notesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetnotesNull() {
+                this[this.tableMONITOR_LOCATIONS.notesColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class GW_MONITORINGRow : global::System.Data.DataRow {
+            
+            private GW_MONITORINGDataTable tableGW_MONITORING;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal GW_MONITORINGRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGW_MONITORING = ((GW_MONITORINGDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int gwmon_edit_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableGW_MONITORING.gwmon_edit_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'gwmon_edit_id\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.gwmon_edit_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int edit_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableGW_MONITORING.edit_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'edit_id\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.edit_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime edit_date {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGW_MONITORING.edit_dateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'edit_date\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.edit_dateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string edited_by {
+                get {
+                    try {
+                        return ((string)(this[this.tableGW_MONITORING.edited_byColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'edited_by\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.edited_byColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string sensor_name {
+                get {
+                    return ((string)(this[this.tableGW_MONITORING.sensor_nameColumn]));
+                }
+                set {
+                    this[this.tableGW_MONITORING.sensor_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime reading_date {
+                get {
+                    return ((global::System.DateTime)(this[this.tableGW_MONITORING.reading_dateColumn]));
+                }
+                set {
+                    this[this.tableGW_MONITORING.reading_dateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double reading_hertz {
+                get {
+                    return ((double)(this[this.tableGW_MONITORING.reading_hertzColumn]));
+                }
+                set {
+                    this[this.tableGW_MONITORING.reading_hertzColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double head_psi {
+                get {
+                    try {
+                        return ((double)(this[this.tableGW_MONITORING.head_psiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'head_psi\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.head_psiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double head_ft {
+                get {
+                    try {
+                        return ((double)(this[this.tableGW_MONITORING.head_ftColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'head_ft\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.head_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double temp_celsius {
+                get {
+                    try {
+                        return ((double)(this[this.tableGW_MONITORING.temp_celsiusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'temp_celsius\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.temp_celsiusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double gw_depth_ft {
+                get {
+                    try {
+                        return ((double)(this[this.tableGW_MONITORING.gw_depth_ftColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'gw_depth_ft\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.gw_depth_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double gw_elev_ft {
+                get {
+                    try {
+                        return ((double)(this[this.tableGW_MONITORING.gw_elev_ftColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'gw_elev_ft\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.gw_elev_ftColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string data_qual_flag {
+                get {
+                    try {
+                        return ((string)(this[this.tableGW_MONITORING.data_qual_flagColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'data_qual_flag\' in table \'GW_MONITORING\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGW_MONITORING.data_qual_flagColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isgwmon_edit_idNull() {
+                return this.IsNull(this.tableGW_MONITORING.gwmon_edit_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setgwmon_edit_idNull() {
+                this[this.tableGW_MONITORING.gwmon_edit_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isedit_idNull() {
+                return this.IsNull(this.tableGW_MONITORING.edit_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setedit_idNull() {
+                this[this.tableGW_MONITORING.edit_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isedit_dateNull() {
+                return this.IsNull(this.tableGW_MONITORING.edit_dateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setedit_dateNull() {
+                this[this.tableGW_MONITORING.edit_dateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isedited_byNull() {
+                return this.IsNull(this.tableGW_MONITORING.edited_byColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setedited_byNull() {
+                this[this.tableGW_MONITORING.edited_byColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Ishead_psiNull() {
+                return this.IsNull(this.tableGW_MONITORING.head_psiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Sethead_psiNull() {
+                this[this.tableGW_MONITORING.head_psiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Ishead_ftNull() {
+                return this.IsNull(this.tableGW_MONITORING.head_ftColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Sethead_ftNull() {
+                this[this.tableGW_MONITORING.head_ftColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Istemp_celsiusNull() {
+                return this.IsNull(this.tableGW_MONITORING.temp_celsiusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Settemp_celsiusNull() {
+                this[this.tableGW_MONITORING.temp_celsiusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isgw_depth_ftNull() {
+                return this.IsNull(this.tableGW_MONITORING.gw_depth_ftColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setgw_depth_ftNull() {
+                this[this.tableGW_MONITORING.gw_depth_ftColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isgw_elev_ftNull() {
+                return this.IsNull(this.tableGW_MONITORING.gw_elev_ftColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setgw_elev_ftNull() {
+                this[this.tableGW_MONITORING.gw_elev_ftColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isdata_qual_flagNull() {
+                return this.IsNull(this.tableGW_MONITORING.data_qual_flagColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setdata_qual_flagNull() {
+                this[this.tableGW_MONITORING.data_qual_flagColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class MonitorListRow : global::System.Data.DataRow {
+            
+            private MonitorListDataTable tableMonitorList;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal MonitorListRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMonitorList = ((MonitorListDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string sensor_name {
+                get {
+                    return ((string)(this[this.tableMonitorList.sensor_nameColumn]));
+                }
+                set {
+                    this[this.tableMonitorList.sensor_nameColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         public partial class GwMonQcRow : global::System.Data.DataRow {
             
             private GwMonQcDataTable tableGwMonQc;
@@ -15403,68 +15919,6 @@ namespace GMonGr {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetErrorDescriptionNull() {
                 this[this.tableGwMonQc.ErrorDescriptionColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class GW_MONITORINGRowChangeEvent : global::System.EventArgs {
-            
-            private GW_MONITORINGRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public GW_MONITORINGRowChangeEvent(GW_MONITORINGRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public GW_MONITORINGRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class MONITOR_LOCATIONSRowChangeEvent : global::System.EventArgs {
-            
-            private MONITOR_LOCATIONSRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MONITOR_LOCATIONSRowChangeEvent(MONITOR_LOCATIONSRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MONITOR_LOCATIONSRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
             }
         }
         
@@ -16061,6 +16515,99 @@ namespace GMonGr {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class MONITOR_LOCATIONSRowChangeEvent : global::System.EventArgs {
+            
+            private MONITOR_LOCATIONSRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MONITOR_LOCATIONSRowChangeEvent(MONITOR_LOCATIONSRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MONITOR_LOCATIONSRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class GW_MONITORINGRowChangeEvent : global::System.EventArgs {
+            
+            private GW_MONITORINGRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GW_MONITORINGRowChangeEvent(GW_MONITORINGRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GW_MONITORINGRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class MonitorListRowChangeEvent : global::System.EventArgs {
+            
+            private MonitorListRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MonitorListRowChangeEvent(MonitorListRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public MonitorListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         public class GwMonQcRowChangeEvent : global::System.EventArgs {
             
             private GwMonQcRow eventRow;
@@ -16091,530 +16638,6 @@ namespace GMonGr {
 }
 namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
     
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class GW_MONITORINGTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public GW_MONITORINGTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "GW_MONITORING";
-            tableMapping.ColumnMappings.Add("gwmon_edit_id", "gwmon_edit_id");
-            tableMapping.ColumnMappings.Add("edit_id", "edit_id");
-            tableMapping.ColumnMappings.Add("edit_date", "edit_date");
-            tableMapping.ColumnMappings.Add("edited_by", "edited_by");
-            tableMapping.ColumnMappings.Add("reading_date", "reading_date");
-            tableMapping.ColumnMappings.Add("reading_hertz", "reading_hertz");
-            tableMapping.ColumnMappings.Add("heas_psi", "heas_psi");
-            tableMapping.ColumnMappings.Add("temp_celsius", "temp_celsius");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [GW_MONITORING] ([gwmon_edit_id], [edit_id], [edit_date], [edited_by], [reading_date], [reading_hertz], [heas_psi], [temp_celsius]) VALUES (@gwmon_edit_id, @edit_id, @edit_date, @edited_by, @reading_date, @reading_hertz, @heas_psi, @temp_celsius)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gwmon_edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gwmon_edit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edited_by", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edited_by", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reading_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reading_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reading_hertz", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reading_hertz", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@heas_psi", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "heas_psi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@temp_celsius", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "temp_celsius", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GMonGr.Properties.Settings.Default.GwMonitoringConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT     GW_MONITORING.*\r\nFROM         GW_MONITORING";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GroundwaterMonitorDataSet.GW_MONITORINGDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GroundwaterMonitorDataSet.GW_MONITORINGDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            GroundwaterMonitorDataSet.GW_MONITORINGDataTable dataTable = new GroundwaterMonitorDataSet.GW_MONITORINGDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(GroundwaterMonitorDataSet.GW_MONITORINGDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(GroundwaterMonitorDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "GW_MONITORING");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int gwmon_edit_id, int edit_id, System.DateTime edit_date, string edited_by, System.DateTime reading_date, double reading_hertz, global::System.Nullable<double> heas_psi, global::System.Nullable<double> temp_celsius) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(gwmon_edit_id));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(edit_id));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(edit_date));
-            if ((edited_by == null)) {
-                throw new global::System.ArgumentNullException("edited_by");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(edited_by));
-            }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(reading_date));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((double)(reading_hertz));
-            if ((heas_psi.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((double)(heas_psi.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((temp_celsius.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((double)(temp_celsius.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class MONITOR_LOCATIONSTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public MONITOR_LOCATIONSTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "MONITOR_LOCATIONS";
-            tableMapping.ColumnMappings.Add("sensor_id", "sensor_id");
-            tableMapping.ColumnMappings.Add("sensor_name", "sensor_name");
-            tableMapping.ColumnMappings.Add("serial_num", "serial_num");
-            tableMapping.ColumnMappings.Add("sensor_depth_ft", "sensor_depth_ft");
-            tableMapping.ColumnMappings.Add("measure_down_ft", "measure_down_ft");
-            tableMapping.ColumnMappings.Add("toc_elev_ft", "toc_elev_ft");
-            tableMapping.ColumnMappings.Add("cal_fact_psi_a", "cal_fact_psi_a");
-            tableMapping.ColumnMappings.Add("cal_fact_psi_b", "cal_fact_psi_b");
-            tableMapping.ColumnMappings.Add("cal_fact_psi_c", "cal_fact_psi_c");
-            tableMapping.ColumnMappings.Add("cal_fact_head_ft_a", "cal_fact_head_ft_a");
-            tableMapping.ColumnMappings.Add("cal_fact_head_ft_b", "cal_fact_head_ft_b");
-            tableMapping.ColumnMappings.Add("cal_fact_head_ft_c", "cal_fact_head_ft_c");
-            tableMapping.ColumnMappings.Add("northing_ft", "northing_ft");
-            tableMapping.ColumnMappings.Add("easting_ft", "easting_ft");
-            tableMapping.ColumnMappings.Add("notes", "notes");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [MONITOR_LOCATIONS] ([sensor_id], [sensor_name], [serial_num], [sensor_depth_ft], [measure_down_ft], [toc_elev_ft], [cal_fact_psi_a], [cal_fact_psi_b], [cal_fact_psi_c], [cal_fact_head_ft_a], [cal_fact_head_ft_b], [cal_fact_head_ft_c], [northing_ft], [easting_ft], [notes]) VALUES (@sensor_id, @sensor_name, @serial_num, @sensor_depth_ft, @measure_down_ft, @toc_elev_ft, @cal_fact_psi_a, @cal_fact_psi_b, @cal_fact_psi_c, @cal_fact_head_ft_a, @cal_fact_head_ft_b, @cal_fact_head_ft_c, @northing_ft, @easting_ft, @notes)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serial_num", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serial_num", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_depth_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_depth_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@measure_down_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "measure_down_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@toc_elev_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "toc_elev_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_psi_a", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_psi_a", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_psi_b", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_psi_b", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_psi_c", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_psi_c", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_head_ft_a", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_head_ft_a", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_head_ft_b", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_head_ft_b", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_head_ft_c", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_head_ft_c", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@northing_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "northing_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@easting_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "easting_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GMonGr.Properties.Settings.Default.GwMonitoringConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT     MONITOR_LOCATIONS.*\r\nFROM         MONITOR_LOCATIONS";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable dataTable = new GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(GroundwaterMonitorDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "MONITOR_LOCATIONS");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string sensor_id, string sensor_name, string serial_num, double sensor_depth_ft, double measure_down_ft, double toc_elev_ft, double cal_fact_psi_a, double cal_fact_psi_b, double cal_fact_psi_c, double cal_fact_head_ft_a, double cal_fact_head_ft_b, double cal_fact_head_ft_c, global::System.Nullable<double> northing_ft, global::System.Nullable<double> easting_ft, string notes) {
-            if ((sensor_id == null)) {
-                throw new global::System.ArgumentNullException("sensor_id");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(sensor_id));
-            }
-            if ((sensor_name == null)) {
-                throw new global::System.ArgumentNullException("sensor_name");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(sensor_name));
-            }
-            if ((serial_num == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(serial_num));
-            }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((double)(sensor_depth_ft));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((double)(measure_down_ft));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((double)(toc_elev_ft));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((double)(cal_fact_psi_a));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((double)(cal_fact_psi_b));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((double)(cal_fact_psi_c));
-            this.Adapter.InsertCommand.Parameters[9].Value = ((double)(cal_fact_head_ft_a));
-            this.Adapter.InsertCommand.Parameters[10].Value = ((double)(cal_fact_head_ft_b));
-            this.Adapter.InsertCommand.Parameters[11].Value = ((double)(cal_fact_head_ft_c));
-            if ((northing_ft.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((double)(northing_ft.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((easting_ft.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((double)(easting_ft.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((notes == null)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(notes));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -22627,6 +22650,798 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MONITOR_LOCATIONSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public MONITOR_LOCATIONSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MONITOR_LOCATIONS";
+            tableMapping.ColumnMappings.Add("sensor_id", "sensor_id");
+            tableMapping.ColumnMappings.Add("sensor_name", "sensor_name");
+            tableMapping.ColumnMappings.Add("serial_num", "serial_num");
+            tableMapping.ColumnMappings.Add("sensor_depth_ft", "sensor_depth_ft");
+            tableMapping.ColumnMappings.Add("measure_down_ft", "measure_down_ft");
+            tableMapping.ColumnMappings.Add("toc_elev_ft", "toc_elev_ft");
+            tableMapping.ColumnMappings.Add("cal_fact_psi_a", "cal_fact_psi_a");
+            tableMapping.ColumnMappings.Add("cal_fact_psi_b", "cal_fact_psi_b");
+            tableMapping.ColumnMappings.Add("cal_fact_psi_c", "cal_fact_psi_c");
+            tableMapping.ColumnMappings.Add("cal_fact_head_ft_a", "cal_fact_head_ft_a");
+            tableMapping.ColumnMappings.Add("cal_fact_head_ft_b", "cal_fact_head_ft_b");
+            tableMapping.ColumnMappings.Add("cal_fact_head_ft_c", "cal_fact_head_ft_c");
+            tableMapping.ColumnMappings.Add("northing_ft", "northing_ft");
+            tableMapping.ColumnMappings.Add("easting_ft", "easting_ft");
+            tableMapping.ColumnMappings.Add("notes", "notes");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [MONITOR_LOCATIONS] ([sensor_id], [sensor_name], [serial_num], [sensor_depth_ft], [measure_down_ft], [toc_elev_ft], [cal_fact_psi_a], [cal_fact_psi_b], [cal_fact_psi_c], [cal_fact_head_ft_a], [cal_fact_head_ft_b], [cal_fact_head_ft_c], [northing_ft], [easting_ft], [notes]) VALUES (@sensor_id, @sensor_name, @serial_num, @sensor_depth_ft, @measure_down_ft, @toc_elev_ft, @cal_fact_psi_a, @cal_fact_psi_b, @cal_fact_psi_c, @cal_fact_head_ft_a, @cal_fact_head_ft_b, @cal_fact_head_ft_c, @northing_ft, @easting_ft, @notes)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serial_num", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serial_num", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_depth_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_depth_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@measure_down_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "measure_down_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@toc_elev_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "toc_elev_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_psi_a", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_psi_a", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_psi_b", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_psi_b", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_psi_c", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_psi_c", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_head_ft_a", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_head_ft_a", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_head_ft_b", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_head_ft_b", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cal_fact_head_ft_c", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cal_fact_head_ft_c", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@northing_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "northing_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@easting_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "easting_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::GMonGr.Properties.Settings.Default.GwMonitoringConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT     MONITOR_LOCATIONS.*\r\nFROM         MONITOR_LOCATIONS";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable dataTable = new GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet.MONITOR_LOCATIONSDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "MONITOR_LOCATIONS");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string sensor_id, string sensor_name, string serial_num, double sensor_depth_ft, double measure_down_ft, double toc_elev_ft, double cal_fact_psi_a, double cal_fact_psi_b, double cal_fact_psi_c, double cal_fact_head_ft_a, double cal_fact_head_ft_b, double cal_fact_head_ft_c, global::System.Nullable<double> northing_ft, global::System.Nullable<double> easting_ft, string notes) {
+            if ((sensor_id == null)) {
+                throw new global::System.ArgumentNullException("sensor_id");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(sensor_id));
+            }
+            if ((sensor_name == null)) {
+                throw new global::System.ArgumentNullException("sensor_name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(sensor_name));
+            }
+            if ((serial_num == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(serial_num));
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((double)(sensor_depth_ft));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((double)(measure_down_ft));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((double)(toc_elev_ft));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((double)(cal_fact_psi_a));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((double)(cal_fact_psi_b));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((double)(cal_fact_psi_c));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((double)(cal_fact_head_ft_a));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((double)(cal_fact_head_ft_b));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((double)(cal_fact_head_ft_c));
+            if ((northing_ft.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((double)(northing_ft.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((easting_ft.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((double)(easting_ft.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((notes == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(notes));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class GW_MONITORINGTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public GW_MONITORINGTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "GW_MONITORING";
+            tableMapping.ColumnMappings.Add("gwmon_edit_id", "gwmon_edit_id");
+            tableMapping.ColumnMappings.Add("edit_id", "edit_id");
+            tableMapping.ColumnMappings.Add("edit_date", "edit_date");
+            tableMapping.ColumnMappings.Add("edited_by", "edited_by");
+            tableMapping.ColumnMappings.Add("sensor_name", "sensor_name");
+            tableMapping.ColumnMappings.Add("reading_date", "reading_date");
+            tableMapping.ColumnMappings.Add("reading_hertz", "reading_hertz");
+            tableMapping.ColumnMappings.Add("head_psi", "head_psi");
+            tableMapping.ColumnMappings.Add("head_ft", "head_ft");
+            tableMapping.ColumnMappings.Add("temp_celsius", "temp_celsius");
+            tableMapping.ColumnMappings.Add("gw_depth_ft", "gw_depth_ft");
+            tableMapping.ColumnMappings.Add("gw_elev_ft", "gw_elev_ft");
+            tableMapping.ColumnMappings.Add("data_qual_flag", "data_qual_flag");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [GW_MONITORING] ([gwmon_edit_id], [edit_id], [edit_date], [edited_by], [sensor_name], [reading_date], [reading_hertz], [head_psi], [head_ft], [temp_celsius], [gw_depth_ft], [gw_elev_ft], [data_qual_flag]) VALUES (@gwmon_edit_id, @edit_id, @edit_date, @edited_by, @sensor_name, @reading_date, @reading_hertz, @head_psi, @head_ft, @temp_celsius, @gw_depth_ft, @gw_elev_ft, @data_qual_flag)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gwmon_edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gwmon_edit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edited_by", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edited_by", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reading_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reading_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reading_hertz", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reading_hertz", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@head_psi", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "head_psi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@head_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "head_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@temp_celsius", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "temp_celsius", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gw_depth_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gw_depth_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gw_elev_ft", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gw_elev_ft", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_qual_flag", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_qual_flag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::GMonGr.Properties.Settings.Default.GwMonitoringConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT     GW_MONITORING.*\r\nFROM         GW_MONITORING";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GroundwaterMonitorDataSet.GW_MONITORINGDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GroundwaterMonitorDataSet.GW_MONITORINGDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            GroundwaterMonitorDataSet.GW_MONITORINGDataTable dataTable = new GroundwaterMonitorDataSet.GW_MONITORINGDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet.GW_MONITORINGDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "GW_MONITORING");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(global::System.Nullable<int> gwmon_edit_id, global::System.Nullable<int> edit_id, global::System.Nullable<global::System.DateTime> edit_date, string edited_by, string sensor_name, System.DateTime reading_date, double reading_hertz, global::System.Nullable<double> head_psi, global::System.Nullable<double> head_ft, global::System.Nullable<double> temp_celsius, global::System.Nullable<double> gw_depth_ft, global::System.Nullable<double> gw_elev_ft, string data_qual_flag) {
+            if ((gwmon_edit_id.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(gwmon_edit_id.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((edit_id.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(edit_id.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((edit_date.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(edit_date.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((edited_by == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(edited_by));
+            }
+            if ((sensor_name == null)) {
+                throw new global::System.ArgumentNullException("sensor_name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(sensor_name));
+            }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(reading_date));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((double)(reading_hertz));
+            if ((head_psi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((double)(head_psi.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((head_ft.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((double)(head_ft.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((temp_celsius.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((double)(temp_celsius.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((gw_depth_ft.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((double)(gw_depth_ft.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((gw_elev_ft.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((double)(gw_elev_ft.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((data_qual_flag == null)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(data_qual_flag));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MonitorListTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public MonitorListTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MonitorList";
+            tableMapping.ColumnMappings.Add("sensor_name", "sensor_name");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [MonitorList] ([sensor_name]) VALUES (@sensor_name)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::GMonGr.Properties.Settings.Default.GwMonitoringConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT     MonitorList.*\r\nFROM         MonitorList";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GroundwaterMonitorDataSet.MonitorListDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GroundwaterMonitorDataSet.MonitorListDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            GroundwaterMonitorDataSet.MonitorListDataTable dataTable = new GroundwaterMonitorDataSet.MonitorListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet.MonitorListDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GroundwaterMonitorDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "MonitorList");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string sensor_name) {
+            if ((sensor_name == null)) {
+                throw new global::System.ArgumentNullException("sensor_name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(sensor_name));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -22638,10 +23453,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
     public partial class TableAdapterManager : global::System.ComponentModel.Component {
         
         private UpdateOrderOption _updateOrder;
-        
-        private GW_MONITORINGTableAdapter _gW_MONITORINGTableAdapter;
-        
-        private MONITOR_LOCATIONSTableAdapter _mONITOR_LOCATIONSTableAdapter;
         
         private P1401TableAdapter _p1401TableAdapter;
         
@@ -22681,6 +23492,12 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         
         private TGD3BTableAdapter _tGD3BTableAdapter;
         
+        private MONITOR_LOCATIONSTableAdapter _mONITOR_LOCATIONSTableAdapter;
+        
+        private GW_MONITORINGTableAdapter _gW_MONITORINGTableAdapter;
+        
+        private MonitorListTableAdapter _monitorListTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -22692,32 +23509,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
-            "", "System.Drawing.Design.UITypeEditor")]
-        public GW_MONITORINGTableAdapter GW_MONITORINGTableAdapter {
-            get {
-                return this._gW_MONITORINGTableAdapter;
-            }
-            set {
-                this._gW_MONITORINGTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
-            "", "System.Drawing.Design.UITypeEditor")]
-        public MONITOR_LOCATIONSTableAdapter MONITOR_LOCATIONSTableAdapter {
-            get {
-                return this._mONITOR_LOCATIONSTableAdapter;
-            }
-            set {
-                this._mONITOR_LOCATIONSTableAdapter = value;
             }
         }
         
@@ -22969,6 +23760,45 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public MONITOR_LOCATIONSTableAdapter MONITOR_LOCATIONSTableAdapter {
+            get {
+                return this._mONITOR_LOCATIONSTableAdapter;
+            }
+            set {
+                this._mONITOR_LOCATIONSTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public GW_MONITORINGTableAdapter GW_MONITORINGTableAdapter {
+            get {
+                return this._gW_MONITORINGTableAdapter;
+            }
+            set {
+                this._gW_MONITORINGTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+            "", "System.Drawing.Design.UITypeEditor")]
+        public MonitorListTableAdapter MonitorListTableAdapter {
+            get {
+                return this._monitorListTableAdapter;
+            }
+            set {
+                this._monitorListTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -22984,14 +23814,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             get {
                 if ((this._connection != null)) {
                     return this._connection;
-                }
-                if (((this._gW_MONITORINGTableAdapter != null) 
-                            && (this._gW_MONITORINGTableAdapter.Connection != null))) {
-                    return this._gW_MONITORINGTableAdapter.Connection;
-                }
-                if (((this._mONITOR_LOCATIONSTableAdapter != null) 
-                            && (this._mONITOR_LOCATIONSTableAdapter.Connection != null))) {
-                    return this._mONITOR_LOCATIONSTableAdapter.Connection;
                 }
                 if (((this._p1401TableAdapter != null) 
                             && (this._p1401TableAdapter.Connection != null))) {
@@ -23069,6 +23891,18 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                             && (this._tGD3BTableAdapter.Connection != null))) {
                     return this._tGD3BTableAdapter.Connection;
                 }
+                if (((this._mONITOR_LOCATIONSTableAdapter != null) 
+                            && (this._mONITOR_LOCATIONSTableAdapter.Connection != null))) {
+                    return this._mONITOR_LOCATIONSTableAdapter.Connection;
+                }
+                if (((this._gW_MONITORINGTableAdapter != null) 
+                            && (this._gW_MONITORINGTableAdapter.Connection != null))) {
+                    return this._gW_MONITORINGTableAdapter.Connection;
+                }
+                if (((this._monitorListTableAdapter != null) 
+                            && (this._monitorListTableAdapter.Connection != null))) {
+                    return this._monitorListTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -23081,12 +23915,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._gW_MONITORINGTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._p1401TableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -23144,6 +23972,15 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                 if ((this._tGD3BTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._gW_MONITORINGTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._monitorListTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -23154,78 +23991,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateUpdatedRows(GroundwaterMonitorDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._gwMonUpdaterTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._gwMonUpdaterTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tGD1ATableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TGD1A.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tGD1ATableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._sESSIONTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SESSION.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sESSIONTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._p5203TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._p5203TableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._p5204TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P5204.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._p5204TableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tGD1BTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TGD1B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tGD1BTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tGD3BTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TGD3B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tGD3BTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tGD3ATableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TGD3A.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tGD3ATableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tGD2ATableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TGD2A.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -23244,12 +24009,102 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._p1402TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P1402.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tGD1BTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TGD1B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._p1402TableAdapter.Update(updatedRows));
+                    result = (result + this._tGD1BTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._gwMonUpdaterTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._gwMonUpdaterTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tGD1ATableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TGD1A.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tGD1ATableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tGD3ATableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TGD3A.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tGD3ATableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._gW_MONITORINGTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GW_MONITORING.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._gW_MONITORINGTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._monitorListTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MonitorList.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._monitorListTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MONITOR_LOCATIONS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._mONITOR_LOCATIONSTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tGD3BTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TGD3B.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tGD3BTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._sESSIONTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SESSION.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._sESSIONTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._p4502TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._p4502TableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._p4503TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._p4503TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -23271,39 +24126,39 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._gW_MONITORINGTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.GW_MONITORING.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._p1402TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P1402.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._gW_MONITORINGTableAdapter.Update(updatedRows));
+                    result = (result + this._p1402TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.MONITOR_LOCATIONS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._p4504TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P4504.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._mONITOR_LOCATIONSTableAdapter.Update(updatedRows));
+                    result = (result + this._p4504TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._p4502TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._p5203TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._p4502TableAdapter.Update(updatedRows));
+                    result = (result + this._p5203TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._p5201TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._p5204TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P5204.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._p5201TableAdapter.Update(updatedRows));
+                    result = (result + this._p5204TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -23325,21 +24180,12 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._p4503TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._p5201TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._p4503TableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._p4504TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.P4504.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._p4504TableAdapter.Update(updatedRows));
+                    result = (result + this._p5201TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -23352,70 +24198,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateInsertedRows(GroundwaterMonitorDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._gwMonUpdaterTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._gwMonUpdaterTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tGD1ATableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TGD1A.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tGD1ATableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._sESSIONTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SESSION.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sESSIONTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._p5203TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._p5203TableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._p5204TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P5204.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._p5204TableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tGD1BTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TGD1B.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tGD1BTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tGD3BTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TGD3B.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tGD3BTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tGD3ATableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TGD3A.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tGD3ATableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tGD2ATableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TGD2A.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -23432,11 +24214,91 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._p1402TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P1402.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tGD1BTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TGD1B.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._p1402TableAdapter.Update(addedRows));
+                    result = (result + this._tGD1BTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._gwMonUpdaterTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GwMonUpdater.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._gwMonUpdaterTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tGD1ATableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TGD1A.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tGD1ATableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tGD3ATableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TGD3A.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tGD3ATableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._gW_MONITORINGTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GW_MONITORING.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._gW_MONITORINGTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._monitorListTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MonitorList.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._monitorListTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MONITOR_LOCATIONS.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._mONITOR_LOCATIONSTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tGD3BTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TGD3B.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tGD3BTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._sESSIONTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SESSION.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._sESSIONTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._p4502TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._p4502TableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._p4503TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._p4503TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -23456,35 +24318,35 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._gW_MONITORINGTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.GW_MONITORING.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._p1402TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P1402.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._gW_MONITORINGTableAdapter.Update(addedRows));
+                    result = (result + this._p1402TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.MONITOR_LOCATIONS.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._p4504TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P4504.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._mONITOR_LOCATIONSTableAdapter.Update(addedRows));
+                    result = (result + this._p4504TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._p4502TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._p5203TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._p4502TableAdapter.Update(addedRows));
+                    result = (result + this._p5203TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._p5201TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._p5204TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P5204.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._p5201TableAdapter.Update(addedRows));
+                    result = (result + this._p5204TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -23504,19 +24366,11 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._p4503TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._p5201TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._p4503TableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._p4504TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.P4504.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._p4504TableAdapter.Update(addedRows));
+                    result = (result + this._p5201TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -23529,19 +24383,11 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateDeletedRows(GroundwaterMonitorDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._p4504TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P4504.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p5201TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p4504TableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._p4503TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._p4503TableAdapter.Update(deletedRows));
+                    result = (result + this._p5201TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -23561,35 +24407,35 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p5201TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P5201.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p5204TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P5204.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p5201TableAdapter.Update(deletedRows));
+                    result = (result + this._p5204TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p4502TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p5203TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p4502TableAdapter.Update(deletedRows));
+                    result = (result + this._p5203TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.MONITOR_LOCATIONS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p4504TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P4504.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._mONITOR_LOCATIONSTableAdapter.Update(deletedRows));
+                    result = (result + this._p4504TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._gW_MONITORINGTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.GW_MONITORING.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p1402TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P1402.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._gW_MONITORINGTableAdapter.Update(deletedRows));
+                    result = (result + this._p1402TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -23609,35 +24455,27 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p1402TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P1402.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p4503TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P4503.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p1402TableAdapter.Update(deletedRows));
+                    result = (result + this._p4503TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tGD2BTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TGD2B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._p4502TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.P4502.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tGD2BTableAdapter.Update(deletedRows));
+                    result = (result + this._p4502TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tGD2ATableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TGD2A.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._sESSIONTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SESSION.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tGD2ATableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tGD3ATableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TGD3A.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tGD3ATableAdapter.Update(deletedRows));
+                    result = (result + this._sESSIONTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -23649,35 +24487,35 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tGD1BTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TGD1B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.MONITOR_LOCATIONS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tGD1BTableAdapter.Update(deletedRows));
+                    result = (result + this._mONITOR_LOCATIONSTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p5204TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P5204.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._monitorListTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.MonitorList.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p5204TableAdapter.Update(deletedRows));
+                    result = (result + this._monitorListTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._p5203TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.P5203.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._gW_MONITORINGTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GW_MONITORING.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._p5203TableAdapter.Update(deletedRows));
+                    result = (result + this._gW_MONITORINGTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._sESSIONTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SESSION.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tGD3ATableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TGD3A.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._sESSIONTableAdapter.Update(deletedRows));
+                    result = (result + this._tGD3ATableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -23694,6 +24532,30 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._gwMonUpdaterTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tGD1BTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TGD1B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tGD1BTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tGD2BTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TGD2B.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tGD2BTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tGD2ATableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TGD2A.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tGD2ATableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -23733,16 +24595,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._gW_MONITORINGTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._gW_MONITORINGTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._mONITOR_LOCATIONSTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._mONITOR_LOCATIONSTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             if (((this._p1401TableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._p1401TableAdapter.Connection) == false))) {
@@ -23839,6 +24691,21 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._mONITOR_LOCATIONSTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._mONITOR_LOCATIONSTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._gW_MONITORINGTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._gW_MONITORINGTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._monitorListTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._monitorListTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -23871,24 +24738,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._gW_MONITORINGTableAdapter != null)) {
-                    revertConnections.Add(this._gW_MONITORINGTableAdapter, this._gW_MONITORINGTableAdapter.Connection);
-                    this._gW_MONITORINGTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._gW_MONITORINGTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._gW_MONITORINGTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._gW_MONITORINGTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._gW_MONITORINGTableAdapter.Adapter);
-                    }
-                }
-                if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
-                    revertConnections.Add(this._mONITOR_LOCATIONSTableAdapter, this._mONITOR_LOCATIONSTableAdapter.Connection);
-                    this._mONITOR_LOCATIONSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._mONITOR_LOCATIONSTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._mONITOR_LOCATIONSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._mONITOR_LOCATIONSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._mONITOR_LOCATIONSTableAdapter.Adapter);
-                    }
-                }
                 if ((this._p1401TableAdapter != null)) {
                     revertConnections.Add(this._p1401TableAdapter, this._p1401TableAdapter.Connection);
                     this._p1401TableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -24060,6 +24909,33 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tGD3BTableAdapter.Adapter);
                     }
                 }
+                if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
+                    revertConnections.Add(this._mONITOR_LOCATIONSTableAdapter, this._mONITOR_LOCATIONSTableAdapter.Connection);
+                    this._mONITOR_LOCATIONSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._mONITOR_LOCATIONSTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._mONITOR_LOCATIONSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._mONITOR_LOCATIONSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._mONITOR_LOCATIONSTableAdapter.Adapter);
+                    }
+                }
+                if ((this._gW_MONITORINGTableAdapter != null)) {
+                    revertConnections.Add(this._gW_MONITORINGTableAdapter, this._gW_MONITORINGTableAdapter.Connection);
+                    this._gW_MONITORINGTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._gW_MONITORINGTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._gW_MONITORINGTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._gW_MONITORINGTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._gW_MONITORINGTableAdapter.Adapter);
+                    }
+                }
+                if ((this._monitorListTableAdapter != null)) {
+                    revertConnections.Add(this._monitorListTableAdapter, this._monitorListTableAdapter.Connection);
+                    this._monitorListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._monitorListTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._monitorListTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._monitorListTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._monitorListTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -24117,14 +24993,6 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._gW_MONITORINGTableAdapter != null)) {
-                    this._gW_MONITORINGTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._gW_MONITORINGTableAdapter]));
-                    this._gW_MONITORINGTableAdapter.Transaction = null;
-                }
-                if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
-                    this._mONITOR_LOCATIONSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._mONITOR_LOCATIONSTableAdapter]));
-                    this._mONITOR_LOCATIONSTableAdapter.Transaction = null;
                 }
                 if ((this._p1401TableAdapter != null)) {
                     this._p1401TableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._p1401TableAdapter]));
@@ -24201,6 +25069,18 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
                 if ((this._tGD3BTableAdapter != null)) {
                     this._tGD3BTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tGD3BTableAdapter]));
                     this._tGD3BTableAdapter.Transaction = null;
+                }
+                if ((this._mONITOR_LOCATIONSTableAdapter != null)) {
+                    this._mONITOR_LOCATIONSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._mONITOR_LOCATIONSTableAdapter]));
+                    this._mONITOR_LOCATIONSTableAdapter.Transaction = null;
+                }
+                if ((this._gW_MONITORINGTableAdapter != null)) {
+                    this._gW_MONITORINGTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._gW_MONITORINGTableAdapter]));
+                    this._gW_MONITORINGTableAdapter.Transaction = null;
+                }
+                if ((this._monitorListTableAdapter != null)) {
+                    this._monitorListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._monitorListTableAdapter]));
+                    this._monitorListTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
