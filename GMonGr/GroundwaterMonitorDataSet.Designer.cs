@@ -1112,6 +1112,8 @@ namespace GMonGr {
             
             private global::System.Data.DataColumn columnedited_by;
             
+            private global::System.Data.DataColumn columnsensor_name;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public SESSIONDataTable() {
                 this.TableName = "SESSION";
@@ -1164,6 +1166,13 @@ namespace GMonGr {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn sensor_nameColumn {
+                get {
+                    return this.columnsensor_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1192,12 +1201,13 @@ namespace GMonGr {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SESSIONRow AddSESSIONRow(System.DateTime edit_date, string edited_by) {
+            public SESSIONRow AddSESSIONRow(System.DateTime edit_date, string edited_by, string sensor_name) {
                 SESSIONRow rowSESSIONRow = ((SESSIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         edit_date,
-                        edited_by};
+                        edited_by,
+                        sensor_name};
                 rowSESSIONRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSESSIONRow);
                 return rowSESSIONRow;
@@ -1226,6 +1236,7 @@ namespace GMonGr {
                 this.columnedit_id = base.Columns["edit_id"];
                 this.columnedit_date = base.Columns["edit_date"];
                 this.columnedited_by = base.Columns["edited_by"];
+                this.columnsensor_name = base.Columns["sensor_name"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1236,6 +1247,8 @@ namespace GMonGr {
                 base.Columns.Add(this.columnedit_date);
                 this.columnedited_by = new global::System.Data.DataColumn("edited_by", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnedited_by);
+                this.columnsensor_name = new global::System.Data.DataColumn("sensor_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsensor_name);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnedit_id}, true));
                 this.columnedit_id.AutoIncrement = true;
@@ -1244,6 +1257,7 @@ namespace GMonGr {
                 this.columnedit_date.AllowDBNull = false;
                 this.columnedited_by.AllowDBNull = false;
                 this.columnedited_by.MaxLength = 50;
+                this.columnsensor_name.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2672,6 +2686,31 @@ namespace GMonGr {
                 set {
                     this[this.tableSESSION.edited_byColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string sensor_name {
+                get {
+                    try {
+                        return ((string)(this[this.tableSESSION.sensor_nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'sensor_name\' in table \'SESSION\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSESSION.sensor_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Issensor_nameNull() {
+                return this.IsNull(this.tableSESSION.sensor_nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setsensor_nameNull() {
+                this[this.tableSESSION.sensor_nameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4440,35 +4479,44 @@ namespace GMonGr.GroundwaterMonitorDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("edit_id", "edit_id");
             tableMapping.ColumnMappings.Add("edit_date", "edit_date");
             tableMapping.ColumnMappings.Add("edited_by", "edited_by");
+            tableMapping.ColumnMappings.Add("sensor_name", "sensor_name");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [SESSION] WHERE (([edit_id] = @Original_edit_id) AND ([edit_date] = @" +
-                "Original_edit_date) AND ([edited_by] = @Original_edited_by))";
+                "Original_edit_date) AND ([edited_by] = @Original_edited_by) AND ((@IsNull_sensor" +
+                "_name = 1 AND [sensor_name] IS NULL) OR ([sensor_name] = @Original_sensor_name))" +
+                ")";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_edit_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_edited_by", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edited_by", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_sensor_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [SESSION] ([edit_id], [edit_date], [edited_by]) VALUES (@edit_id, @ed" +
-                "it_date, @edited_by);\r\nSELECT edit_id, edit_date, edited_by FROM SESSION WHERE (" +
-                "edit_id = @edit_id)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [SESSION] ([edit_id], [edit_date], [edited_by], [sensor_name]) VALUES" +
+                " (@edit_id, @edit_date, @edited_by, @sensor_name);\r\nSELECT edit_id, edit_date, e" +
+                "dited_by, sensor_name FROM SESSION WHERE (edit_id = @edit_id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edited_by", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edited_by", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [SESSION] SET [edit_id] = @edit_id, [edit_date] = @edit_date, [edited_by] = @edited_by WHERE (([edit_id] = @Original_edit_id) AND ([edit_date] = @Original_edit_date) AND ([edited_by] = @Original_edited_by));
-SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [SESSION] SET [edit_id] = @edit_id, [edit_date] = @edit_date, [edited_by] = @edited_by, [sensor_name] = @sensor_name WHERE (([edit_id] = @Original_edit_id) AND ([edit_date] = @Original_edit_date) AND ([edited_by] = @Original_edited_by) AND ((@IsNull_sensor_name = 1 AND [sensor_name] IS NULL) OR ([sensor_name] = @Original_sensor_name)));
+SELECT edit_id, edit_date, edited_by, sensor_name FROM SESSION WHERE (edit_id = @edit_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edit_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edited_by", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edited_by", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_edit_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_edit_date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edit_date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_edited_by", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "edited_by", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_sensor_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_sensor_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sensor_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4482,7 +4530,7 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT     edit_id, edit_date, edited_by\r\nFROM         SESSION";
+            this._commandCollection[0].CommandText = "SELECT     edit_id, edit_date, edited_by, sensor_name\r\nFROM         SESSION";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4536,7 +4584,7 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_edit_id, System.DateTime Original_edit_date, string Original_edited_by) {
+        public virtual int Delete(int Original_edit_id, System.DateTime Original_edit_date, string Original_edited_by, string Original_sensor_name) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_edit_id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_edit_date));
             if ((Original_edited_by == null)) {
@@ -4544,6 +4592,14 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_edited_by));
+            }
+            if ((Original_sensor_name == null)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_sensor_name));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4564,7 +4620,7 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int edit_id, System.DateTime edit_date, string edited_by) {
+        public virtual int Insert(int edit_id, System.DateTime edit_date, string edited_by, string sensor_name) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(edit_id));
             this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(edit_date));
             if ((edited_by == null)) {
@@ -4572,6 +4628,12 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(edited_by));
+            }
+            if ((sensor_name == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(sensor_name));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4592,7 +4654,7 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int edit_id, System.DateTime edit_date, string edited_by, int Original_edit_id, System.DateTime Original_edit_date, string Original_edited_by) {
+        public virtual int Update(int edit_id, System.DateTime edit_date, string edited_by, string sensor_name, int Original_edit_id, System.DateTime Original_edit_date, string Original_edited_by, string Original_sensor_name) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(edit_id));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(edit_date));
             if ((edited_by == null)) {
@@ -4601,13 +4663,27 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(edited_by));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_edit_id));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(Original_edit_date));
+            if ((sensor_name == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(sensor_name));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_edit_id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Original_edit_date));
             if ((Original_edited_by == null)) {
                 throw new global::System.ArgumentNullException("Original_edited_by");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_edited_by));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_edited_by));
+            }
+            if ((Original_sensor_name == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_sensor_name));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4628,8 +4704,8 @@ SELECT edit_id, edit_date, edited_by FROM SESSION WHERE (edit_id = @edit_id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime edit_date, string edited_by, int Original_edit_id, System.DateTime Original_edit_date, string Original_edited_by) {
-            return this.Update(Original_edit_id, edit_date, edited_by, Original_edit_id, Original_edit_date, Original_edited_by);
+        public virtual int Update(System.DateTime edit_date, string edited_by, string sensor_name, int Original_edit_id, System.DateTime Original_edit_date, string Original_edited_by, string Original_sensor_name) {
+            return this.Update(Original_edit_id, edit_date, edited_by, sensor_name, Original_edit_id, Original_edit_date, Original_edited_by, Original_sensor_name);
         }
     }
     

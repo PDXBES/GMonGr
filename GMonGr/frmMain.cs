@@ -49,10 +49,6 @@ namespace GMonGr
       InitializeComponent();
     }
 
-    #region GlobalVariables
-    //there shouldn't be anything here, ideally
-    #endregion
-
     #region Methods
     /// <summary>
     /// 
@@ -175,7 +171,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Sets status bar label during various events and methods
     /// </summary>
     /// <param name="status"></param>
     private void SetStatus(string status)
@@ -184,7 +180,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Sets progress bar's progress level for various events and methods
     /// </summary>
     private int SetProgress
     {
@@ -262,7 +258,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Obtains connection string info for display in status bar
     /// </summary>
     /// <param name="connectionString"></param>
     /// <returns></returns>
@@ -291,7 +287,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Opens connection string builder dialog window for viewing and changing connection string settings
     /// </summary>
     private void UpdateGwMonDataConnection()
     {
@@ -575,8 +571,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// TO-DO: fill in summary
-    /// TO-DO: continue implementation
+    /// sets calendar start date for graphing methods
     /// </summary>
     public DateTime SetCalendarStartSafe()
     {    
@@ -586,8 +581,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// TO-DO: fill in summary
-    /// TO-DO: continue implementation
+    /// sets calendar end date for graphing methods
     /// </summary>
     public DateTime SetCalendarEndSafe()
     {
@@ -597,8 +591,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// TO-DO: fill in summary
-    /// TO-DO: continue implementation
+    /// sets calendar start date string for graphing methods
     /// </summary>
     public string SetCalendarStartStringSafe()
     {
@@ -608,8 +601,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// TO-DO: fill in summary
-    /// TO-DO: continue implementation
+    /// sets calendar end date string for graphing methods
     /// </summary>
     public string SetCalendarEndStringSafe()
     {
@@ -774,7 +766,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Loads data from GWMONITORING DB for use in graphing functions GW_MONITORING and MONITOR_LOCATIONS tables
     /// </summary>
     private void LoadGwMonGraphingData()
     {
@@ -812,7 +804,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Loads groundwater monitor data from GWMONITORING DB for use in update processes, including GW_MONITORING and SESSION tables
     /// </summary>
     private void LoadGwMonUpdateData()
     {
@@ -843,7 +835,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Loads data from GWMONITORING DB for use in data updates, including SESSION table
     /// </summary>
     private void LoadGwMonSessionData()
     {
@@ -868,7 +860,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Loads groundwater monitor locations table, MONITOR_LOCATIONS
     /// </summary>
     private void LoadGwMonLocationsData()
     {
@@ -893,7 +885,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Obtains the current edit_id value and increments to next edit_id value for use in data update of SESSION table
     /// </summary>
     /// <returns></returns>
     private int GetSessionEditId()
@@ -937,7 +929,7 @@ namespace GMonGr
     }
     
     /// <summary>
-    /// 
+    /// Runs update of table that will get appended to GW_MONITORING; final step before updates are committted
     /// </summary>
     /// <param name="editSessionId"></param>
     /// <param name="gwMonUpdaterRow"></param>
@@ -994,7 +986,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Updates GwMonUpdater table with required field values for input to main data table, GW_MONITORING
     /// </summary>
     private void UpdateGwMonTables()
     {
@@ -1021,30 +1013,6 @@ namespace GMonGr
       {
         SetStatus("Updating groundwater monitor tables...");
 
-        //groundwaterMonitorDataSet.GwMonUpdater.Columns.Remove("headPsi");
-        //groundwaterMonitorDataSet.GwMonUpdater.Columns.Remove("f2Scale");
-        //DataColumn headPsiCol = new DataColumn();
-        //headPsiCol.ColumnName = "headPsi";
-        //DataColumn headFtCol = new DataColumn();
-        //headFtCol.ColumnName = "headFt";
-        //DataColumn gwDepthFtCol = new DataColumn();
-        //gwDepthFtCol.ColumnName = "gwDepthFt";
-        //DataColumn gwElevFtCol = new DataColumn();
-        //gwElevFtCol.ColumnName = "gwElevFt";
-        //headPsiCol.DataType = System.Type.GetType("System.Double");
-        //headFtCol.DataType = System.Type.GetType("System.Double");
-        //gwDepthFtCol.DataType = System.Type.GetType("System.Double");
-        //gwElevFtCol.DataType = System.Type.GetType("System.Double");
-        //headPsiCol.DefaultValue = 0;
-        //headFtCol.DefaultValue = 0;
-        //gwDepthFtCol.DefaultValue = 0;
-        //gwElevFtCol.DefaultValue = 0;
-        //groundwaterMonitorDataSet.GwMonUpdater.Columns.Add(headPsiCol);
-        //groundwaterMonitorDataSet.GwMonUpdater.Columns.Add(headFtCol);
-        //groundwaterMonitorDataSet.GwMonUpdater.Columns.Add(gwDepthFtCol);
-        //groundwaterMonitorDataSet.GwMonUpdater.Columns.Add(gwElevFtCol);
-        
-        //TODo: document following method...
         LoadGwMonLocationsData();
         
         sensorName = cbxUpdateMonitorList.Value.ToString();
@@ -1118,7 +1086,8 @@ namespace GMonGr
         
         groundwaterMonitorDataSet.SESSION.AddSESSIONRow
           (DateTime.Now,
-           (Environment.UserDomainName + "\\" + Environment.UserName));
+           (Environment.UserDomainName + "\\" + Environment.UserName),
+           sensorName);
 
         return;
       }
@@ -1136,21 +1105,23 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Updates edit_id value for the SESSION table data update
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// editId
+    /// </returns>
     private int UpdateEditSession()
     {
       int editId = GetSessionEditId();
       GroundwaterMonitorDataSet.SESSIONRow sessionRow =
         groundwaterMonitorDataSet.SESSION.AddSESSIONRow
-        (DateTime.Now, Environment.UserDomainName+ "\\" +Environment.UserName);
+        (DateTime.Now, Environment.UserDomainName+ "\\" +Environment.UserName,"");
       
       return sessionRow.edit_id;
     }
 
     /// <summary>
-    /// 
+    /// Commits user update changes 
     /// </summary>
     private void SaveGwMonData()
     {
@@ -1161,18 +1132,12 @@ namespace GMonGr
 
         GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter gwMonUpdaterTA;
         gwMonUpdaterTA = new GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter();
-        //gwMonUpdaterTA.Update(changedGroundwaterMonitorDataSet.GwMonUpdater);
-
-        //IEnumerable<DateTime> readingDates = from g in groundwaterMonitorDataSet.GwMonUpdater select g.readingDate;
-
+   
         GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter gwMonTA = new GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter();
         gwMonTA.Update(changedGroundwaterMonitorDataSet.GW_MONITORING);
 
         GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter sessionTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter();
         sessionTA.Update(changedGroundwaterMonitorDataSet.SESSION);
-
-        //TODO: determine if the following method is truly needed here...
-        //LoadGwMonUpdateData();
       }
 
       catch (Exception ex)
@@ -1188,7 +1153,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Primary method for flagging data specified by the user as not being valid for graphing and/or analysis
     /// </summary>
     private void FlagGwMonData()
     {
@@ -1336,1781 +1301,12 @@ namespace GMonGr
     //}
     #endregion  
 
-    #region cleanup
-
-    /// <summary>
-    /// 
-    /// </summary>
-    //private void LoadP1401GwGraphingData()
-    //{
-    //  try
-    //  {
-    //    string sensorName = cbxMonitorList.Value.ToString();
-    //    GroundwaterMonitorDataSetTableAdapters.P1401TableAdapter p1401TA;
-    //    p1401TA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.P1401TableAdapter();
-    //    p1401TA.Fill(groundwaterMonitorDataSet.P1401);
-
-    //    GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter monLocationsTA;
-    //    monLocationsTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter();
-    //    monLocationsTA.FillMonLocationBySensorName(groundwaterMonitorDataSet.MONITOR_LOCATIONS, sensorname);
-    //  }
-
-    //  catch (Exception ex)
-    //  {
-    //    MessageBox.Show("Error running LoadP1401GwGraphingData: " + ex.Message, "Error Loading P1401 Graphing Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    //  }
-    //}
-
-    /// <summary>
-    /// Gets test groundwater data collection for returning to the GetP1401NumericTimeSeries method
-    /// </summary>
-    private Dictionary<string, System.Data.DataTable> GetP1401GwDataCollection()
-    {
-      Dictionary<string, System.Data.DataTable> dataTableDict = new Dictionary<string, System.Data.DataTable>();
-      try
-      {
-        double grndElFt = 0;
-        double maxElFt = 0;
-        double minElFt = 0;
-
-        System.Data.DataTable grndElDt = new System.Data.DataTable();
-        System.Data.DataTable gwDataDt = new System.Data.DataTable();
-        System.Data.DataView gwDataDv = new System.Data.DataView();
-
-        DateTime startDate = new DateTime();
-        startDate = SetCalendarStartSafe();
-        DateTime endDate = new DateTime();
-        endDate = SetCalendarEndSafe();
-     
-        grndElDt = groundwaterMonitorDataSet.MONITOR_LOCATIONS;
-
-        EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-          (from g in gwDataDt.AsEnumerable()
-           where g.Field<DateTime>("readingDate") >= startDate && g.Field<DateTime>("readingDate") <= endDate
-           select g);
-
-        EnumerableRowCollection<DataRow> qrySelectGrndEl =
-          (from m in grndElDt.AsEnumerable()
-           where m.Field<double>("toc_elev_ft") != null
-           select m);
-
-        grndElFt = qrySelectGrndEl.Max(q => q.Field<double>("toc_elev_ft"));
-        maxElFt = qrySelectGwMonRecords.Max(q => q.Field<double>("gwElevation"));
-        minElFt = qrySelectGwMonRecords.Min(q => q.Field<double>("gwElevation"));
-
-        gwDataDv = qrySelectGwMonRecords.AsDataView();
-        gwDataDt = gwDataDv.ToTable();
-
-        foreach (DataRow dr in gwDataDt.AsEnumerable())
-        {
-          //gwDataDt.Columns.Add("groundElevation");
-          gwDataDt.Columns["groundElevation"].Equals(grndElFt);
-          //gwDataDt.Columns.Add("maxGwElev");
-          gwDataDt.Columns["gwMax"].Equals(maxElFt);
-          //gwDataDt.Columns.Add("minGwElev");
-          gwDataDt.Columns["gwMin"].Equals(minElFt);
-        }
-        dataTableDict.Add("gwDataDt", gwDataDt);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Error running GetP1401GwDataCollection: " + ex.Message, "Error Loading Gw Data Collection", MessageBoxButtons.OK, MessageBoxIcon.Error);
-      }
-      return dataTableDict;
-      //GroundwaterMonitorDataSet gwMonDataSet;
-      //gwMonDataSet = new GroundwaterMonitorDataSet();
-      //gwMonDataSet.InitTableP1401();
-
-      //DataTable gwMonDataTable = new DataTable();
-      //DataView gwMonDataView = new DataView();
-
-      //DateTime startDate = new DateTime();      
-      //startDate = frm.SetCalendarStartSafe();
-      //DateTime endDate = new DateTime();
-      //endDate = frm.SetCalendarEndSafe();
-
-      //string startDateStr = "";
-      //startDateStr = frm.SetCalendarStartStringSafe();
-      //string endDateStr = "";
-      //endDateStr = frm.SetCalendarEndStringSafe();
-
-      //gwMonDataTable = gwMonDataSet.P1401;
-      //EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-      //  (from g in gwMonDataTable.AsEnumerable()
-      //   where g.Field<DateTime>("readingDate") >= startDate && g.Field<DateTime>("readingDate") <= endDate
-      //   select g);
-      //gwMonDataView = qrySelectGwMonRecords.AsDataView();
-      //gwMonDataTable = gwMonDataView.ToTable();
-      //return gwMonDataTable;
-    }
-
-    /// <summary>
-    /// Graphs selected/default date range for P1401 monitor
-    /// </summary>
-    private void GraphP1401(frmMain frm)
-    {
-      try
-      {
-        //chartGwData.ChartType = ChartType.Composite;
-
-        //ChartArea chartGwDataArea = new ChartArea();
-        //chartGwData.CompositeChart.ChartAreas.Add(chartGwDataArea);
-
-        ////X-axis settings
-        //AxisItem axisX = new AxisItem();
-        //axisX.OrientationType = AxisNumber.X_Axis;
-        //axisX.DataType = AxisDataType.String;
-        //axisX.SetLabelAxisType = SetLabelAxisType.GroupBySeries;
-        //axisX.Labels.ItemFormatString = "<ITEM_LABEL>";
-        //axisX.Labels.Orientation = TextOrientation.VerticalLeftFacing;
-
-        ////Y-axis settings
-        //AxisItem axisY = new AxisItem();
-        //axisY.OrientationType = AxisNumber.Y_Axis;
-        //axisY.DataType = AxisDataType.Numeric;
-        //axisY.Labels.ItemFormatString = "<DATA_VALUE:0.#>";
-
-        //chartGwDataArea.Axes.Add(axisX);
-        //chartGwDataArea.Axes.Add(axisY);
-
-        //Add data series to series collection
-        Dictionary<string, NumericTimeSeries> numTimeSeriesDict = frm.GetP1401NumericTimeSeriesCollection();
-
-        NumericTimeSeries grndElSeries = new NumericTimeSeries();
-        NumericTimeSeries maxGwElSeries = new NumericTimeSeries();
-        NumericTimeSeries gwElSeries = new NumericTimeSeries();
-        NumericTimeSeries minGwElSeries = new NumericTimeSeries();
-
-        grndElSeries = numTimeSeriesDict["grndElSeries"];
-        maxGwElSeries = numTimeSeriesDict["maxGwElSeries"];
-        gwElSeries = numTimeSeriesDict["gwElSeries"];
-        minGwElSeries = numTimeSeriesDict["minGwElSeries"];
-
-        grndElSeries.Label = "Ground Elev. (ft)";
-        maxGwElSeries.Label = "Max GW Elev. (ft)";
-        gwElSeries.Label = "GW Elev. (ft)";
-        minGwElSeries.Label = "Min GW Elev. (ft)";
-
-        //chartGwData.CompositeChart.Series.Add(gwElSeries);
-
-        //set chart properties
-        //chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-        chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-        chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-        chartGwData.TitleLeft.Text = "Elevation (ft)";
-        chartGwData.TitleLeft.Visible = true;
-        chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-        chartGwData.TitleBottom.Text = "Monitor Reading Date";
-        chartGwData.TitleBottom.Visible = true;
-        chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-        chartGwData.Visible = true;
-        chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-        chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-        chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-        chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-        //set legend properties
-        chartGwData.Legend.Visible = true;
-        chartGwData.Legend.Location = LegendLocation.Bottom;
-        chartGwData.Legend.Margins.Left = 3;
-        chartGwData.Legend.Margins.Right = 3;
-        chartGwData.Legend.Margins.Top = 3;
-        chartGwData.Legend.Margins.Bottom = 3;
-        chartGwData.Legend.SpanPercentage = 15;
-        chartGwData.Legend.ChartComponent.Series.Add(grndElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(maxGwElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(gwElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(minGwElSeries);
-        chartGwData.Refresh();
-
-        chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + clndrGwMonStart.Value.ToShortDateString() + " - " + clndrGwMonEnd.Value.ToShortDateString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-        //chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-        //chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-        //chartGwData.TitleLeft.Text = "Elevation (ft)";
-        //chartGwData.TitleLeft.Visible = true;
-        //chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-        //chartGwData.TitleBottom.Text = "Monitor Reading Date";
-        //chartGwData.TitleBottom.Visible = true;
-
-        ////Add a chart layer
-        //ChartLayerAppearance chartGwDataChrtLyr = new ChartLayerAppearance();
-        //chartGwDataChrtLyr.ChartType = ChartType.LineChart;
-        //chartGwDataChrtLyr.ChartArea = chartGwDataArea;
-        //chartGwDataChrtLyr.AxisX = axisX;
-        //chartGwDataChrtLyr.AxisY = axisY;
-        //chartGwDataChrtLyr.Series.Add(gwElSeries);
-        //chartGwData.CompositeChart.ChartLayers.Add(chartGwDataChrtLyr);
-
-        ////Add a legend
-        //CompositeLegend chartGwDataLgd = new CompositeLegend();
-        //chartGwDataLgd.ChartLayers.Add(chartGwDataChrtLyr);
-        //chartGwDataLgd.Bounds = new Rectangle(0,90,100,10);
-        //chartGwDataLgd.BoundsMeasureType = MeasureType.Percentage;
-        //chartGwDataLgd.PE.ElementType = PaintElementType.Gradient;
-        //chartGwDataLgd.PE.FillGradientStyle = GradientStyle.ForwardDiagonal;
-        //chartGwDataLgd.PE.Fill = Color.CornflowerBlue;
-        //chartGwDataLgd.PE.FillStopColor = Color.Transparent;
-        //chartGwDataLgd.Border.CornerRadius = 10;
-        //chartGwDataLgd.Border.Thickness = 0;
-
-        //chartGwData.CompositeChart.Legends.Add(chartGwDataLgd);
-        //chartGwData.Visible = true;     
-      }
-
-      catch (Exception ex)
-      {
-        MessageBox.Show("Error running GraphP1401 function: " + ex.Message, "Graphing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-      }
-
-    }
-
-    /// <summary>
-    /// Graphs selected/default date range for P1402 monitor
-    /// </summary>
-    //    private void GraphP1402()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP1402();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P1402;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P4501 monitor
-    //    /// </summary>
-    //    private void GraphP4501()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP4501();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P4501;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P4502 monitor
-    //    /// </summary>
-    //    private void GraphP4502()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP4502();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P4502;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P4503 monitor
-    //    /// </summary>
-    //    private void GraphP4503()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP4503();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P4503;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P4504 monitor
-    //    /// </summary>
-    //    private void GraphP4504()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP4504();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P4504;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P4505 monitor
-    //    /// </summary>
-    //    private void GraphP4505()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP4505();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P4505;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P5201 monitor
-    //    /// </summary>
-    //    private void GraphP5201()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP5201();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P5201;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P5202 monitor
-    //    /// </summary>
-    //    private void GraphP5202()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP5202();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P5202;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P5203 monitor
-    //    /// </summary>
-    //    private void GraphP5203()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP5203();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P5203;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for P5204 monitor
-    //    /// </summary>
-    //    private void GraphP5204()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableP5204();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.P5204;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for TGD01A monitor
-    //    /// </summary>
-    //    private void GraphTGD1A()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableTGD1A();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.TGD1A;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for TGD01B monitor
-    //    /// </summary>
-    //    private void GraphTGD1B()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableTGD1B();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.TGD1B;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for TGD02A monitor
-    //    /// </summary>
-    //    private void GraphTGD2A()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableTGD2A();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.TGD2A;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //#endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for TGD02B monitor
-    //    /// </summary>
-    //    private void GraphTGD2B()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableTGD2B();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.TGD2B;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for TGD03A monitor
-    //    /// </summary>
-    //    private void GraphTGD3A()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableTGD3A();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.TGD3A;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    //    /// <summary>
-    //    /// Graphs selected/default date range for TGD03B monitor
-    //    /// </summary>
-    //    private void GraphTGD3B()
-    //    {
-    //      gwMonDataSet = new GroundwaterMonitorDataSet();
-    //      gwMonDataSet.InitTableTGD3B();
-    //      DataTable gwMonDataTable = new DataTable();
-    //      DateTime startDate = clndrGwMonStart.Value;
-    //      DateTime endDate = clndrGwMonEnd.Value;
-    //      string startDateStr = clndrGwMonStart.Value.ToShortDateString();
-    //      string endDateStr = clndrGwMonEnd.Value.ToShortDateString();
-
-    //      gwMonDataTable = gwMonDataSet.TGD3B;
-    //      EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
-    //        (from g in gwMonDataTable.AsEnumerable()
-    //         where g.Field<DateTime>("readingDate") >= clndrGwMonStart.Value && g.Field<DateTime>("readingDate") <= clndrGwMonEnd.Value
-    //         select g);
-
-    //      var qrySelectGwMonReadingDate =
-    //        from g in gwMonDataTable.AsEnumerable()
-    //        select g.Field<DateTime>("readingDate");
-    //      DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
-    //      DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
-
-    //      #region ErrorHandling
-    //      //Throw exception if user has specified a date out of range
-    //      if (minReadingDate > clndrGwMonStart.Value || maxReadingDate < clndrGwMonEnd.Value)
-    //      {
-    //        throw new Exception("Selected begin date cannot be before and end date cannot be after date range for this monitor");
-    //      }
-
-    //      //Throw an exception if the user has chosen an end date preceding a start date
-    //      if (clndrGwMonEnd.Value < clndrGwMonStart.Value)
-    //      {
-    //        throw new Exception("Calendar begin date must occur BEFORE the calendar end date. Please choose a begin date that precedes an end date.");
-    //      }
-    //      #endregion
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries gwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow gwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        gwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(gwElevDr.ItemArray[2].ToString()), System.Double.Parse(gwElevDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElevDr.ItemArray[2]), false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries groundElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow groundElevDr in qrySelectGwMonRecords)
-    //      {
-    //        groundElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(groundElevDr.ItemArray[2].ToString()), System.Double.Parse(groundElevDr.ItemArray[11].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries minGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow minGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        minGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(minGwElevDr.ItemArray[2].ToString()), System.Double.Parse(minGwElevDr.ItemArray[9].ToString()), "", false));
-    //      }
-
-    //      Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries maxGwElevSeries = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
-    //      foreach (DataRow maxGwElevDr in qrySelectGwMonRecords)
-    //      {
-    //        maxGwElevSeries.Points.Add(new Infragistics.UltraChart.Resources.Appearance.NumericTimeDataPoint(System.DateTime.Parse(maxGwElevDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElevDr.ItemArray[10].ToString()), "", false));
-    //      }
-    //      //set chart properties
-    //      chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + startDateStr.ToString() + " - " + endDateStr.ToString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
-    //      chartGwData.TitleLeft.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleLeft.Orientation = TextOrientation.VerticalLeftFacing;
-    //      chartGwData.TitleLeft.Text = "Elevation (ft)";
-    //      chartGwData.TitleLeft.Visible = true;
-    //      chartGwData.TitleBottom.HorizontalAlign = StringAlignment.Center;
-    //      chartGwData.TitleBottom.Text = "Monitor Reading Date";
-    //      chartGwData.TitleBottom.Visible = true;
-    //      chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
-    //      chartGwData.Visible = true;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-    //      chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
-
-    //      //set legend properties
-    //      chartGwData.Legend.Visible = true;
-    //      chartGwData.Legend.Location = LegendLocation.Right;
-    //      chartGwData.Legend.Margins.Left = 3;
-    //      chartGwData.Legend.Margins.Right = 3;
-    //      chartGwData.Legend.Margins.Top = 3;
-    //      chartGwData.Legend.Margins.Bottom = 3;
-    //      chartGwData.Legend.SpanPercentage = 7;
-    //      chartGwData.Legend.ChartComponent.Series.Add(gwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(maxGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(minGwElevSeries);
-    //      chartGwData.Legend.ChartComponent.Series.Add(groundElevSeries);
-    //      chartGwData.Refresh();
-    //    }
-
-    /// <summary>
-    /// Method testing GetP1401GwDataCollection method to pass acquired Dictionary of NumericTimeSeries to
-    /// the test graphing method, GraphP1401GwMonData
-    /// TO-DO: implementation of GetP1401NumericTimeSeriesCollection method complete, waiting to completion of implementation of GroundwaterMonitorDataSet
-    /// to fully implement the main GetGwDataCollection method
-    /// </summary>
-    private Dictionary<string, NumericTimeSeries> GetP1401NumericTimeSeriesCollection()
-    {
-      Dictionary<string, NumericTimeSeries> numTimeSeriesDict = new Dictionary<string, NumericTimeSeries>();
-
-      try
-      {
-        Dictionary<string, System.Data.DataTable> gwDataTableDict = GetP1401GwDataCollection();
-        NumericTimeSeries grndElSeries = new NumericTimeSeries();
-        NumericTimeSeries maxGwElSeries = new NumericTimeSeries();
-        NumericTimeSeries gwElSeries = new NumericTimeSeries();
-        NumericTimeSeries minGwElSeries = new NumericTimeSeries();
-
-        System.Data.DataTable gwDt = gwDataTableDict["gwDataDt"];
-        EnumerableRowCollection gwDataEnumRowColl = gwDt.AsEnumerable();
-
-        foreach (DataRow grndElDr in gwDataEnumRowColl)
-        {
-          grndElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(grndElDr.ItemArray[2].ToString()), System.Double.Parse(grndElDr.ItemArray[9].ToString()), "", false));
-        }
-
-        foreach (DataRow maxGwElDr in gwDataEnumRowColl)
-        {
-          maxGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(maxGwElDr.ItemArray[2].ToString()), System.Double.Parse(maxGwElDr.ItemArray[10].ToString()), "", false));
-        }
-
-        foreach (DataRow gwElDr in gwDataEnumRowColl)
-        {
-          gwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(gwElDr.ItemArray[2].ToString()), System.Double.Parse(gwElDr.ItemArray[8].ToString()), String.Format("{0:M/d/yyyy}", gwElDr.ItemArray[2]), false));
-        }
-
-        foreach (DataRow minGwElDr in gwDataEnumRowColl)
-        {
-          minGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(minGwElDr.ItemArray[2].ToString()), System.Double.Parse(minGwElDr.ItemArray[11].ToString()), "", false));
-        }
-
-        numTimeSeriesDict.Add("grndElSeries", grndElSeries);
-        numTimeSeriesDict.Add("maxGwElSeries", maxGwElSeries);
-        numTimeSeriesDict.Add("gwElSeries", gwElSeries);
-        numTimeSeriesDict.Add("minGwElSeries", minGwElSeries);
-      }
-
-      catch (Exception ex)
-      {
-        MessageBox.Show("Error running GetNumericTimeSeriesCollection: " + ex.Message, "Error Loading Numeric Time Series", MessageBoxButtons.OK, MessageBoxIcon.Error);
-      }
-      return numTimeSeriesDict;
-    }
-    #endregion
-
     #endregion
 
     #region Events
 
     /// <summary>
-    /// 
+    /// Form load event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3131,7 +1327,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Explorer main click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3148,7 +1344,7 @@ namespace GMonGr
     }
     
     /// <summary>
-    /// 
+    /// Load Button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3162,7 +1358,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Clear graph button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3174,7 +1370,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Load update button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3211,7 +1407,7 @@ namespace GMonGr
     }
     
     /// <summary>
-    /// 
+    /// Submit updates button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3245,7 +1441,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Cancel updates button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3255,7 +1451,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Main toolbar manager tool click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3333,7 +1529,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Monitor list (graph data tab) combo-box value changed event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3348,7 +1544,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Monitor list (data updates tab) combo-box value changed event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3366,7 +1562,7 @@ namespace GMonGr
     }    
     
     /// <summary>
-    /// 
+    /// Cancel update button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3376,7 +1572,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Export update errors button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3386,7 +1582,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Export graph data button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -3396,7 +1592,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// 
+    /// Flag groundwater monitor data button click event
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

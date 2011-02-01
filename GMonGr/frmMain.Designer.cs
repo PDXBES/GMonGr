@@ -30,33 +30,29 @@
     {
       this.components = new System.ComponentModel.Container();
       Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
-      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn244 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
       Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
       Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
       Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
-      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("GwMonUpdater", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn235 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingId");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn236 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingDate");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn237 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingHertz");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn238 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("headPsi");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn239 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("tempCelsius");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn240 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("f2Scale");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn241 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("headFt");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn242 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("gwDepthFt");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn243 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("gwElevFt");
-      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand3 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn245 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
+      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("GwMonUpdater", -1);
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn46 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingId");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn47 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingDate");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn48 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingHertz");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn49 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("headPsi");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn50 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("tempCelsius");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn51 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("f2Scale");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn52 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("headFt");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn53 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("gwDepthFt");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn54 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("gwElevFt");
+      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn55 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
       Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand4 = new Infragistics.Win.UltraWinGrid.UltraGridBand("GwMonQc", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn246 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingDate");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn247 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("GwMonError");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn248 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ErrorDescription");
-      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand5 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn249 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
+      Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand3 = new Infragistics.Win.UltraWinGrid.UltraGridBand("GwMonQc", -1);
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn56 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingDate");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn57 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("GwMonError");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn58 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ErrorDescription");
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -119,7 +115,6 @@
       this.lblGwMonEndDate = new Infragistics.Win.Misc.UltraLabel();
       this.lblGwMonStartDate = new Infragistics.Win.Misc.UltraLabel();
       this.chartGwData = new Infragistics.Win.UltraWinChart.UltraChart();
-      this.dGV = new System.Windows.Forms.DataGridView();
       this.tabLoadUpdates = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
       this.dgvDataUpdates = new Infragistics.Win.UltraWinGrid.UltraGrid();
       this.gwMonUpdaterBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -136,10 +131,10 @@
       this.gwMonQcBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
       this.btnCloseUpdateHistory = new Infragistics.Win.Misc.UltraButton();
-      this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.dgvUpdateHistory = new System.Windows.Forms.DataGridView();
       this.sESSIONBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-      this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
+      this.pnlFlagData = new Infragistics.Win.Misc.UltraPanel();
       this.cbxFlagMonitorDataList = new Infragistics.Win.UltraWinGrid.UltraCombo();
       this.lblFlagDataEnd = new Infragistics.Win.Misc.UltraLabel();
       this.clndrFlagDataRangeEnd = new System.Windows.Forms.DateTimePicker();
@@ -156,6 +151,8 @@
       this._frmMain_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this._frmMain_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
       this._frmMain_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+      this.toolBarManagerMain = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
+      this.lblUpdaterHistory = new Infragistics.Win.Misc.UltraLabel();
       this.monitorListBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.groundwaterMonitorDataSet = new GMonGr.GroundwaterMonitorDataSet();
       this.groundwaterMonitorDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -165,7 +162,6 @@
       this.gwMonUpdaterTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter();
       this.monitorListTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.MonitorListTableAdapter();
       this.sESSIONTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter();
-      this.toolBarManagerMain = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
       this.tabPlotData.SuspendLayout();
       this.pnlLoadClearChart.ClientArea.SuspendLayout();
       this.pnlLoadClearChart.SuspendLayout();
@@ -176,7 +172,6 @@
       this.pnlCalendars.ClientArea.SuspendLayout();
       this.pnlCalendars.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartGwData)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
       this.tabLoadUpdates.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dgvDataUpdates)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gwMonUpdaterBindingSource)).BeginInit();
@@ -186,21 +181,21 @@
       ((System.ComponentModel.ISupportInitialize)(this.dgvUpdateErrors)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gwMonQcBindingSource)).BeginInit();
       this.ultraTabPageControl1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.dgvUpdateHistory)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.sESSIONBindingSource)).BeginInit();
       this.ultraTabPageControl2.SuspendLayout();
-      this.ultraPanel1.ClientArea.SuspendLayout();
-      this.ultraPanel1.SuspendLayout();
+      this.pnlFlagData.ClientArea.SuspendLayout();
+      this.pnlFlagData.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.cbxFlagMonitorDataList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).BeginInit();
       this.tabControlMain.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).BeginInit();
       this.frmMain_Fill_Panel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.statusBarMain)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.monitorListBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSet)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSetBindingSource)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).BeginInit();
       this.SuspendLayout();
       // 
       // tabMonitorMap
@@ -215,7 +210,6 @@
       this.tabPlotData.Controls.Add(this.pnlChooseMonitor);
       this.tabPlotData.Controls.Add(this.pnlCalendars);
       this.tabPlotData.Controls.Add(this.chartGwData);
-      this.tabPlotData.Controls.Add(this.dGV);
       this.tabPlotData.Location = new System.Drawing.Point(-10000, -10000);
       this.tabPlotData.Name = "tabPlotData";
       this.tabPlotData.Size = new System.Drawing.Size(784, 452);
@@ -283,12 +277,6 @@
       this.cbxMonitorList.DataSource = this.monitorListBindingSource;
       appearance9.BackColor = System.Drawing.Color.Silver;
       this.cbxMonitorList.DisplayLayout.Appearance = appearance9;
-      ultraGridColumn244.Header.Caption = "Sensor Name";
-      ultraGridColumn244.Header.Fixed = true;
-      ultraGridColumn244.Header.VisiblePosition = 0;
-      ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn244});
-      this.cbxMonitorList.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
       this.cbxMonitorList.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No;
       this.cbxMonitorList.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.False;
       this.cbxMonitorList.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.False;
@@ -573,14 +561,6 @@
       this.chartGwData.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
       this.chartGwData.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
       // 
-      // dGV
-      // 
-      this.dGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dGV.Location = new System.Drawing.Point(263, 60);
-      this.dGV.Name = "dGV";
-      this.dGV.Size = new System.Drawing.Size(240, 150);
-      this.dGV.TabIndex = 6;
-      // 
       // tabLoadUpdates
       // 
       this.tabLoadUpdates.Controls.Add(this.dgvDataUpdates);
@@ -596,35 +576,35 @@
       // dgvDataUpdates
       // 
       this.dgvDataUpdates.DataSource = this.gwMonUpdaterBindingSource;
-      ultraGridColumn235.Header.Caption = "Reading Id";
-      ultraGridColumn235.Header.VisiblePosition = 0;
-      ultraGridColumn236.Header.Caption = "Reading Date";
-      ultraGridColumn236.Header.VisiblePosition = 1;
-      ultraGridColumn237.Header.Caption = "Reading Hertz";
-      ultraGridColumn237.Header.VisiblePosition = 2;
-      ultraGridColumn238.Header.Caption = "Head Psi";
-      ultraGridColumn238.Header.VisiblePosition = 3;
-      ultraGridColumn239.Header.Caption = "Temp Celsius";
-      ultraGridColumn239.Header.VisiblePosition = 4;
-      ultraGridColumn240.Header.VisiblePosition = 5;
-      ultraGridColumn240.Hidden = true;
-      ultraGridColumn241.Header.VisiblePosition = 6;
-      ultraGridColumn241.Hidden = true;
-      ultraGridColumn242.Header.VisiblePosition = 7;
-      ultraGridColumn242.Hidden = true;
-      ultraGridColumn243.Header.VisiblePosition = 8;
-      ultraGridColumn243.Hidden = true;
-      ultraGridBand2.Columns.AddRange(new object[] {
-            ultraGridColumn235,
-            ultraGridColumn236,
-            ultraGridColumn237,
-            ultraGridColumn238,
-            ultraGridColumn239,
-            ultraGridColumn240,
-            ultraGridColumn241,
-            ultraGridColumn242,
-            ultraGridColumn243});
-      this.dgvDataUpdates.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
+      ultraGridColumn46.Header.Caption = "Reading Id";
+      ultraGridColumn46.Header.VisiblePosition = 0;
+      ultraGridColumn47.Header.Caption = "Reading Date";
+      ultraGridColumn47.Header.VisiblePosition = 1;
+      ultraGridColumn48.Header.Caption = "Reading Hertz";
+      ultraGridColumn48.Header.VisiblePosition = 2;
+      ultraGridColumn49.Header.Caption = "Head Psi";
+      ultraGridColumn49.Header.VisiblePosition = 3;
+      ultraGridColumn50.Header.Caption = "Temp Celsius";
+      ultraGridColumn50.Header.VisiblePosition = 4;
+      ultraGridColumn51.Header.VisiblePosition = 5;
+      ultraGridColumn51.Hidden = true;
+      ultraGridColumn52.Header.VisiblePosition = 6;
+      ultraGridColumn52.Hidden = true;
+      ultraGridColumn53.Header.VisiblePosition = 7;
+      ultraGridColumn53.Hidden = true;
+      ultraGridColumn54.Header.VisiblePosition = 8;
+      ultraGridColumn54.Hidden = true;
+      ultraGridBand1.Columns.AddRange(new object[] {
+            ultraGridColumn46,
+            ultraGridColumn47,
+            ultraGridColumn48,
+            ultraGridColumn49,
+            ultraGridColumn50,
+            ultraGridColumn51,
+            ultraGridColumn52,
+            ultraGridColumn53,
+            ultraGridColumn54});
+      this.dgvDataUpdates.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
       this.dgvDataUpdates.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
       this.dgvDataUpdates.Location = new System.Drawing.Point(3, 77);
       this.dgvDataUpdates.Name = "dgvDataUpdates";
@@ -641,11 +621,11 @@
       // 
       this.cbxUpdateMonitorList.CheckedListSettings.CheckStateMember = "";
       this.cbxUpdateMonitorList.DataSource = this.monitorListBindingSource;
-      ultraGridColumn245.Header.Caption = "Sensor Name";
-      ultraGridColumn245.Header.VisiblePosition = 0;
-      ultraGridBand3.Columns.AddRange(new object[] {
-            ultraGridColumn245});
-      this.cbxUpdateMonitorList.DisplayLayout.BandsSerializer.Add(ultraGridBand3);
+      ultraGridColumn55.Header.Caption = "Sensor Name";
+      ultraGridColumn55.Header.VisiblePosition = 0;
+      ultraGridBand2.Columns.AddRange(new object[] {
+            ultraGridColumn55});
+      this.cbxUpdateMonitorList.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
       this.cbxUpdateMonitorList.DisplayMember = "sensor_name";
       this.cbxUpdateMonitorList.DisplayStyle = Infragistics.Win.EmbeddableElementDisplayStyle.WindowsVista;
       this.cbxUpdateMonitorList.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
@@ -745,20 +725,20 @@
       // dgvUpdateErrors
       // 
       this.dgvUpdateErrors.DataSource = this.gwMonQcBindingSource;
-      ultraGridColumn246.AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
-      ultraGridColumn246.Header.Caption = "Reading Date";
-      ultraGridColumn246.Header.VisiblePosition = 0;
-      ultraGridColumn247.AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
-      ultraGridColumn247.Header.Caption = "Error";
-      ultraGridColumn247.Header.VisiblePosition = 1;
-      ultraGridColumn248.AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
-      ultraGridColumn248.Header.Caption = "Error Detail";
-      ultraGridColumn248.Header.VisiblePosition = 2;
-      ultraGridBand4.Columns.AddRange(new object[] {
-            ultraGridColumn246,
-            ultraGridColumn247,
-            ultraGridColumn248});
-      this.dgvUpdateErrors.DisplayLayout.BandsSerializer.Add(ultraGridBand4);
+      ultraGridColumn56.AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
+      ultraGridColumn56.Header.Caption = "Reading Date";
+      ultraGridColumn56.Header.VisiblePosition = 0;
+      ultraGridColumn57.AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
+      ultraGridColumn57.Header.Caption = "Error";
+      ultraGridColumn57.Header.VisiblePosition = 1;
+      ultraGridColumn58.AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
+      ultraGridColumn58.Header.Caption = "Error Detail";
+      ultraGridColumn58.Header.VisiblePosition = 2;
+      ultraGridBand3.Columns.AddRange(new object[] {
+            ultraGridColumn56,
+            ultraGridColumn57,
+            ultraGridColumn58});
+      this.dgvUpdateErrors.DisplayLayout.BandsSerializer.Add(ultraGridBand3);
       this.dgvUpdateErrors.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
       this.dgvUpdateErrors.Location = new System.Drawing.Point(3, 69);
       this.dgvUpdateErrors.Name = "dgvUpdateErrors";
@@ -773,8 +753,9 @@
       // 
       // ultraTabPageControl1
       // 
+      this.ultraTabPageControl1.Controls.Add(this.lblUpdaterHistory);
       this.ultraTabPageControl1.Controls.Add(this.btnCloseUpdateHistory);
-      this.ultraTabPageControl1.Controls.Add(this.dataGridView1);
+      this.ultraTabPageControl1.Controls.Add(this.dgvUpdateHistory);
       this.ultraTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
       this.ultraTabPageControl1.Name = "ultraTabPageControl1";
       this.ultraTabPageControl1.Size = new System.Drawing.Size(784, 452);
@@ -788,19 +769,19 @@
       this.btnCloseUpdateHistory.TabIndex = 1;
       this.btnCloseUpdateHistory.Text = "Close Update History";
       // 
-      // dataGridView1
+      // dgvUpdateHistory
       // 
-      this.dataGridView1.AutoGenerateColumns = false;
-      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+      this.dgvUpdateHistory.AutoGenerateColumns = false;
+      this.dgvUpdateHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dgvUpdateHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.editidDataGridViewTextBoxColumn,
             this.editdateDataGridViewTextBoxColumn,
             this.editedbyDataGridViewTextBoxColumn});
-      this.dataGridView1.DataSource = this.sESSIONBindingSource;
-      this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-      this.dataGridView1.Name = "dataGridView1";
-      this.dataGridView1.Size = new System.Drawing.Size(432, 446);
-      this.dataGridView1.TabIndex = 0;
+      this.dgvUpdateHistory.DataSource = this.sESSIONBindingSource;
+      this.dgvUpdateHistory.Location = new System.Drawing.Point(3, 40);
+      this.dgvUpdateHistory.Name = "dgvUpdateHistory";
+      this.dgvUpdateHistory.Size = new System.Drawing.Size(432, 409);
+      this.dgvUpdateHistory.TabIndex = 0;
       // 
       // sESSIONBindingSource
       // 
@@ -809,36 +790,31 @@
       // 
       // ultraTabPageControl2
       // 
-      this.ultraTabPageControl2.Controls.Add(this.ultraPanel1);
+      this.ultraTabPageControl2.Controls.Add(this.pnlFlagData);
       this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
       this.ultraTabPageControl2.Name = "ultraTabPageControl2";
       this.ultraTabPageControl2.Size = new System.Drawing.Size(784, 452);
       // 
-      // ultraPanel1
+      // pnlFlagData
       // 
       // 
-      // ultraPanel1.ClientArea
+      // pnlFlagData.ClientArea
       // 
-      this.ultraPanel1.ClientArea.Controls.Add(this.cbxFlagMonitorDataList);
-      this.ultraPanel1.ClientArea.Controls.Add(this.lblFlagDataEnd);
-      this.ultraPanel1.ClientArea.Controls.Add(this.clndrFlagDataRangeEnd);
-      this.ultraPanel1.ClientArea.Controls.Add(this.lblFlagDataStart);
-      this.ultraPanel1.ClientArea.Controls.Add(this.clndrFlagDataRangeStart);
-      this.ultraPanel1.ClientArea.Controls.Add(this.btnFlagGwMonData);
-      this.ultraPanel1.Location = new System.Drawing.Point(3, 3);
-      this.ultraPanel1.Name = "ultraPanel1";
-      this.ultraPanel1.Size = new System.Drawing.Size(218, 322);
-      this.ultraPanel1.TabIndex = 12;
+      this.pnlFlagData.ClientArea.Controls.Add(this.cbxFlagMonitorDataList);
+      this.pnlFlagData.ClientArea.Controls.Add(this.lblFlagDataEnd);
+      this.pnlFlagData.ClientArea.Controls.Add(this.clndrFlagDataRangeEnd);
+      this.pnlFlagData.ClientArea.Controls.Add(this.lblFlagDataStart);
+      this.pnlFlagData.ClientArea.Controls.Add(this.clndrFlagDataRangeStart);
+      this.pnlFlagData.ClientArea.Controls.Add(this.btnFlagGwMonData);
+      this.pnlFlagData.Location = new System.Drawing.Point(3, 3);
+      this.pnlFlagData.Name = "pnlFlagData";
+      this.pnlFlagData.Size = new System.Drawing.Size(209, 322);
+      this.pnlFlagData.TabIndex = 12;
       // 
       // cbxFlagMonitorDataList
       // 
       this.cbxFlagMonitorDataList.CheckedListSettings.CheckStateMember = "";
       this.cbxFlagMonitorDataList.DataSource = this.monitorListBindingSource;
-      ultraGridColumn249.Header.Caption = "Sensor Name";
-      ultraGridColumn249.Header.VisiblePosition = 0;
-      ultraGridBand5.Columns.AddRange(new object[] {
-            ultraGridColumn249});
-      this.cbxFlagMonitorDataList.DisplayLayout.BandsSerializer.Add(ultraGridBand5);
       this.cbxFlagMonitorDataList.DisplayMember = "sensor_name";
       this.cbxFlagMonitorDataList.DisplayStyle = Infragistics.Win.EmbeddableElementDisplayStyle.WindowsVista;
       this.cbxFlagMonitorDataList.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
@@ -1073,60 +1049,6 @@
       this._frmMain_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(949, 0);
       this._frmMain_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManagerMain;
       // 
-      // monitorListBindingSource
-      // 
-      this.monitorListBindingSource.DataMember = "MonitorList";
-      this.monitorListBindingSource.DataSource = this.groundwaterMonitorDataSet;
-      // 
-      // groundwaterMonitorDataSet
-      // 
-      this.groundwaterMonitorDataSet.DataSetName = "GroundwaterMonitorDataSet";
-      this.groundwaterMonitorDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-      // 
-      // groundwaterMonitorDataSetBindingSource
-      // 
-      this.groundwaterMonitorDataSetBindingSource.DataSource = this.groundwaterMonitorDataSet;
-      this.groundwaterMonitorDataSetBindingSource.Position = 0;
-      // 
-      // editidDataGridViewTextBoxColumn
-      // 
-      this.editidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-      this.editidDataGridViewTextBoxColumn.DataPropertyName = "edit_id";
-      this.editidDataGridViewTextBoxColumn.HeaderText = "Edit Id";
-      this.editidDataGridViewTextBoxColumn.Name = "editidDataGridViewTextBoxColumn";
-      this.editidDataGridViewTextBoxColumn.ReadOnly = true;
-      this.editidDataGridViewTextBoxColumn.Width = 62;
-      // 
-      // editdateDataGridViewTextBoxColumn
-      // 
-      this.editdateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-      this.editdateDataGridViewTextBoxColumn.DataPropertyName = "edit_date";
-      this.editdateDataGridViewTextBoxColumn.HeaderText = "Edit Date";
-      this.editdateDataGridViewTextBoxColumn.Name = "editdateDataGridViewTextBoxColumn";
-      this.editdateDataGridViewTextBoxColumn.ReadOnly = true;
-      this.editdateDataGridViewTextBoxColumn.Width = 76;
-      // 
-      // editedbyDataGridViewTextBoxColumn
-      // 
-      this.editedbyDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-      this.editedbyDataGridViewTextBoxColumn.DataPropertyName = "edited_by";
-      this.editedbyDataGridViewTextBoxColumn.HeaderText = "Edited By";
-      this.editedbyDataGridViewTextBoxColumn.Name = "editedbyDataGridViewTextBoxColumn";
-      this.editedbyDataGridViewTextBoxColumn.ReadOnly = true;
-      this.editedbyDataGridViewTextBoxColumn.Width = 77;
-      // 
-      // gwMonUpdaterTableAdapter
-      // 
-      this.gwMonUpdaterTableAdapter.ClearBeforeFill = true;
-      // 
-      // monitorListTableAdapter
-      // 
-      this.monitorListTableAdapter.ClearBeforeFill = true;
-      // 
-      // sESSIONTableAdapter
-      // 
-      this.sESSIONTableAdapter.ClearBeforeFill = true;
-      // 
       // toolBarManagerMain
       // 
       this.toolBarManagerMain.DesignerFlags = 1;
@@ -1182,6 +1104,69 @@
             buttonTool16});
       this.toolBarManagerMain.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.toolBarManagerMain_ToolClick);
       // 
+      // lblUpdaterHistory
+      // 
+      this.lblUpdaterHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+      this.lblUpdaterHistory.Location = new System.Drawing.Point(3, 20);
+      this.lblUpdaterHistory.Name = "lblUpdaterHistory";
+      this.lblUpdaterHistory.Size = new System.Drawing.Size(131, 14);
+      this.lblUpdaterHistory.TabIndex = 2;
+      this.lblUpdaterHistory.Text = "History of Data Updates";
+      // 
+      // monitorListBindingSource
+      // 
+      this.monitorListBindingSource.DataMember = "MonitorList";
+      this.monitorListBindingSource.DataSource = this.groundwaterMonitorDataSet;
+      // 
+      // groundwaterMonitorDataSet
+      // 
+      this.groundwaterMonitorDataSet.DataSetName = "GroundwaterMonitorDataSet";
+      this.groundwaterMonitorDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+      // 
+      // groundwaterMonitorDataSetBindingSource
+      // 
+      this.groundwaterMonitorDataSetBindingSource.DataSource = this.groundwaterMonitorDataSet;
+      this.groundwaterMonitorDataSetBindingSource.Position = 0;
+      // 
+      // editidDataGridViewTextBoxColumn
+      // 
+      this.editidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.editidDataGridViewTextBoxColumn.DataPropertyName = "edit_id";
+      this.editidDataGridViewTextBoxColumn.HeaderText = "Edit Id";
+      this.editidDataGridViewTextBoxColumn.Name = "editidDataGridViewTextBoxColumn";
+      this.editidDataGridViewTextBoxColumn.ReadOnly = true;
+      this.editidDataGridViewTextBoxColumn.Width = 62;
+      // 
+      // editdateDataGridViewTextBoxColumn
+      // 
+      this.editdateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.editdateDataGridViewTextBoxColumn.DataPropertyName = "edit_date";
+      this.editdateDataGridViewTextBoxColumn.HeaderText = "Edit Date";
+      this.editdateDataGridViewTextBoxColumn.Name = "editdateDataGridViewTextBoxColumn";
+      this.editdateDataGridViewTextBoxColumn.ReadOnly = true;
+      this.editdateDataGridViewTextBoxColumn.Width = 76;
+      // 
+      // editedbyDataGridViewTextBoxColumn
+      // 
+      this.editedbyDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.editedbyDataGridViewTextBoxColumn.DataPropertyName = "edited_by";
+      this.editedbyDataGridViewTextBoxColumn.HeaderText = "Edited By";
+      this.editedbyDataGridViewTextBoxColumn.Name = "editedbyDataGridViewTextBoxColumn";
+      this.editedbyDataGridViewTextBoxColumn.ReadOnly = true;
+      this.editedbyDataGridViewTextBoxColumn.Width = 77;
+      // 
+      // gwMonUpdaterTableAdapter
+      // 
+      this.gwMonUpdaterTableAdapter.ClearBeforeFill = true;
+      // 
+      // monitorListTableAdapter
+      // 
+      this.monitorListTableAdapter.ClearBeforeFill = true;
+      // 
+      // sESSIONTableAdapter
+      // 
+      this.sESSIONTableAdapter.ClearBeforeFill = true;
+      // 
       // frmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1210,7 +1195,6 @@
       this.pnlCalendars.ClientArea.ResumeLayout(false);
       this.pnlCalendars.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.chartGwData)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.dGV)).EndInit();
       this.tabLoadUpdates.ResumeLayout(false);
       this.tabLoadUpdates.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dgvDataUpdates)).EndInit();
@@ -1221,22 +1205,22 @@
       ((System.ComponentModel.ISupportInitialize)(this.dgvUpdateErrors)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gwMonQcBindingSource)).EndInit();
       this.ultraTabPageControl1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.dgvUpdateHistory)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.sESSIONBindingSource)).EndInit();
       this.ultraTabPageControl2.ResumeLayout(false);
-      this.ultraPanel1.ClientArea.ResumeLayout(false);
-      this.ultraPanel1.ClientArea.PerformLayout();
-      this.ultraPanel1.ResumeLayout(false);
+      this.pnlFlagData.ClientArea.ResumeLayout(false);
+      this.pnlFlagData.ClientArea.PerformLayout();
+      this.pnlFlagData.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.cbxFlagMonitorDataList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).EndInit();
       this.tabControlMain.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).EndInit();
       this.frmMain_Fill_Panel.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.statusBarMain)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.monitorListBindingSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSet)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.groundwaterMonitorDataSetBindingSource)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.toolBarManagerMain)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -1297,16 +1281,16 @@
     private System.Windows.Forms.DateTimePicker clndrFlagDataRangeStart;
     private Infragistics.Win.Misc.UltraLabel lblFlagDataEnd;
     private Infragistics.Win.Misc.UltraLabel lblFlagDataStart;
-    private Infragistics.Win.Misc.UltraPanel ultraPanel1;
-    private System.Windows.Forms.DataGridView dataGridView1;
+    private Infragistics.Win.Misc.UltraPanel pnlFlagData;
+    private System.Windows.Forms.DataGridView dgvUpdateHistory;
     private System.Windows.Forms.BindingSource sESSIONBindingSource;
     private GMonGr.GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter sESSIONTableAdapter;
     private Infragistics.Win.Misc.UltraButton btnCloseUpdateHistory;
     private System.Windows.Forms.DataGridViewTextBoxColumn editidDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn editdateDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn editedbyDataGridViewTextBoxColumn;
-    private System.Windows.Forms.DataGridView dGV;
     internal Infragistics.Win.UltraWinGrid.UltraGrid dgvDataUpdates;
+    private Infragistics.Win.Misc.UltraLabel lblUpdaterHistory;
   }
 }
 
