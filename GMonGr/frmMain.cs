@@ -469,12 +469,12 @@ namespace GMonGr
 
         foreach (DataRow grndElDr in gwDataEnumRowColl)
         {
-          grndElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(grndElDr.ItemArray[5].ToString()), System.Double.Parse(grndElDr.ItemArray[13].ToString()), "", false));
+          grndElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(grndElDr.ItemArray[5].ToString()), System.Double.Parse(grndElDr.ItemArray[14].ToString()), "", false));
         }
 
         foreach (DataRow maxGwElDr in gwDataEnumRowColl)
         {
-          maxGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(maxGwElDr.ItemArray[5].ToString()), System.Double.Parse(maxGwElDr.ItemArray[14].ToString()), "", false));
+          maxGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(maxGwElDr.ItemArray[5].ToString()), System.Double.Parse(maxGwElDr.ItemArray[15].ToString()), "", false));
         }
 
         foreach (DataRow gwElDr in gwDataEnumRowColl)
@@ -484,7 +484,7 @@ namespace GMonGr
 
         foreach (DataRow minGwElDr in gwDataEnumRowColl)
         {
-          minGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(minGwElDr.ItemArray[5].ToString()), System.Double.Parse(minGwElDr.ItemArray[15].ToString()), "", false));
+          minGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(minGwElDr.ItemArray[5].ToString()), System.Double.Parse(minGwElDr.ItemArray[16].ToString()), "", false));
         }
 
         numTimeSeriesDict.Add("grndElSeries", grndElSeries);
