@@ -60,6 +60,13 @@ namespace GMonGr.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap flagData {
+            get {
+                object obj = ResourceManager.GetObject("flagData", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap GMonGrSplash {
             get {
                 object obj = ResourceManager.GetObject("GMonGrSplash", resourceCulture);
@@ -91,6 +98,13 @@ namespace GMonGr.Properties {
         internal static System.Drawing.Bitmap NetworkConnection {
             get {
                 object obj = ResourceManager.GetObject("NetworkConnection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap updateHistory {
+            get {
+                object obj = ResourceManager.GetObject("updateHistory", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

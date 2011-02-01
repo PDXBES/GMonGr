@@ -37,8 +37,8 @@ namespace GMonGr.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"C:\\Documents and Settings\\rgonzalez" +
-            "\\My Documents\\besasm-gwmon\\GMonGr\\\";Persist Security Info=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Template;Persist Sec" +
+            "urity Info=False;Extended Properties=\"text;FMT=Delimited(,);HDR=Yes\"")]
         public string UserUpdateConnectionString {
             get {
                 return ((string)(this["UserUpdateConnectionString"]));

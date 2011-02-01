@@ -1,1 +1,2 @@
-reading_record_id,reading_date,reading_hertz,head_psi,temp_celsius
+readingId,readingDate,readingHertz,headPsi,tempCelsius,f2Scale
+1,1/1/1900,1000,10,20,1000
