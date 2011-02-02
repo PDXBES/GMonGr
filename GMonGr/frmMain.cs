@@ -243,6 +243,10 @@ namespace GMonGr
         txtUploadFilePath.Clear();
         cbxMonitorList.Value = null;
         cbxUpdateMonitorList.Value = null;
+        clndrGwMonStart.Value = DateTime.Now;
+        clndrGwMonEnd.Value = DateTime.Now;
+        clndrFlagDataRangeStart.Value = DateTime.Now;
+        clndrFlagDataRangeEnd.Value = DateTime.Now;
       }
 
       catch (Exception ex)
@@ -348,8 +352,11 @@ namespace GMonGr
         DateTime minReadingDate = qrySelectGwMonReadingDate.Min();
         DateTime maxReadingDate = qrySelectGwMonReadingDate.Max();
         txtGwMonDateRange.Text = "Begin: " + minReadingDate.ToString() + "\r\n" + "End: " + maxReadingDate.ToString();
+        txtGwMonFlagDataDateRange.Text = "Begin: " + minReadingDate.ToString() + "\r\n" + "End: " + maxReadingDate.ToString();
         clndrGwMonStart.Value = minReadingDate;
         clndrGwMonEnd.Value = maxReadingDate;
+        clndrFlagDataRangeStart.Value = minReadingDate;
+        clndrFlagDataRangeEnd.Value = maxReadingDate;
       }
       catch (Exception ex)
       {
@@ -771,15 +778,27 @@ namespace GMonGr
     private void LoadGwMonGraphingData()
     {
       string sensorName;
-      List<string> sensorNameList = new List<string>();
       string[] sensNameArr;
+      string selectedTab;
       IEnumerable<string> sensorNameEnum;
-
+      List<string> sensorNameList = new List<string>();
+      
       try
       {
         SetStatus("Loading groundwater monitor graphing data...");
-        sensorName = cbxMonitorList.Value.ToString();
-        sensorNameList.Add(sensorName);
+        selectedTab = tabControlMain.ActiveTab.Key.ToString();
+
+        if (selectedTab == "graphData")
+        {
+          sensorName = cbxMonitorList.Value.ToString();
+          sensorNameList.Add(sensorName);
+        }
+        if (selectedTab == "flagData")
+        {
+          sensorName = cbxFlagMonitorDataList.Value.ToString();
+          sensorNameList.Add(sensorName);
+        }
+      
         sensNameArr = sensorNameList.ToArray();
         sensorNameEnum = sensNameArr;
 
@@ -990,7 +1009,7 @@ namespace GMonGr
     /// </summary>
     private void UpdateGwMonTables()
     {
-      int editSessionId = GetSessionEditId();
+      int editSessionId;
       string sensorName = "";
       string f2ScaleStr = "";
       Double readingHertz;
@@ -1012,10 +1031,9 @@ namespace GMonGr
       try
       {
         SetStatus("Updating groundwater monitor tables...");
-
-        LoadGwMonLocationsData();
-        
+        editSessionId = GetSessionEditId();
         sensorName = cbxUpdateMonitorList.Value.ToString();
+        LoadGwMonLocationsData();
        
         var qryMonLocations =
           (from l in groundwaterMonitorDataSet.MONITOR_LOCATIONS
@@ -1157,7 +1175,43 @@ namespace GMonGr
     /// </summary>
     private void FlagGwMonData()
     {
-      throw new NotImplementedException();
+      SetStatus("Flagging groundwater monitor data");
+      string sensorName;
+      int editSessionId;
+
+      try
+      {
+        editSessionId = GetSessionEditId();  
+        LoadGwMonGraphingData();
+        sensorName = cbxFlagMonitorDataList.Value.ToString();
+        
+        var query = from g in groundwaterMonitorDataSet.GW_MONITORING
+                        where g.reading_date >= clndrFlagDataRangeStart.Value && g.reading_date <= clndrFlagDataRangeEnd.Value && g.sensor_name == sensorName
+                        select g;
+
+        foreach (GroundwaterMonitorDataSet.GW_MONITORINGRow g in query)
+        {
+          g.data_qual_flag = "-";
+        }
+                
+        groundwaterMonitorDataSet.SESSION.AddSESSIONRow
+          (DateTime.Now,
+           (Environment.UserDomainName + "\\" + Environment.UserName),
+           sensorName);
+
+        SaveGwMonData();
+      }
+
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered");
+        MessageBox.Show("Error running FlagGwMonData: " + ex.Message, "Data Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
     }
 
     #region Export To Excel
@@ -1559,7 +1613,22 @@ namespace GMonGr
         txtUploadFilePath.Enabled = true;
         btnLoadUpdateFile.Enabled = true;
       }
-    }    
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void cbxFlagMonitorDataList_ValueChanged(object sender, EventArgs e)
+    {
+      if (cbxFlagMonitorDataList.Value == null)
+      {
+        return;
+      }
+      txtGwMonFlagDataDateRange.Text = "";
+      CheckRange();
+    }
     
     /// <summary>
     /// Cancel update button click event
@@ -1598,12 +1667,18 @@ namespace GMonGr
     /// <param name="e"></param>
     private void btnFlagGwMonData_Click(object sender, EventArgs e)
     {
+      Cursor.Current = Cursors.WaitCursor;
       string selectedMonitor;
       selectedMonitor = cbxFlagMonitorDataList.Value.ToString();
       string flagDataRangeStart;
       flagDataRangeStart = clndrFlagDataRangeStart.Value.ToShortDateString();
       string flagDataRangeEnd;
       flagDataRangeEnd = clndrFlagDataRangeEnd.Value.ToShortDateString();
+      
+      int flagDataRecordCount = (from g in groundwaterMonitorDataSet.GW_MONITORING
+                        where g.reading_date >= clndrFlagDataRangeStart.Value && g.reading_date <= clndrFlagDataRangeEnd.Value && g.sensor_name == selectedMonitor
+                        select g).Count();
+
       DialogResult dialResult = MessageBox.Show("Flag data for " + selectedMonitor + " monitor" + " from " + flagDataRangeStart + " to " + flagDataRangeEnd + "?", "Confirm Data Flagging Operation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
       if (dialResult != DialogResult.OK)
@@ -1612,8 +1687,10 @@ namespace GMonGr
       }
 
       FlagGwMonData();
+      MessageBox.Show(flagDataRecordCount + " records for " + selectedMonitor + " applied.", "Flagged Data Changes Applied", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-      //throw new NotImplementedException();
+      Cursor.Current = Cursors.Default;
+
     }
 
     #endregion
