@@ -8,6 +8,7 @@ using ESRI.ArcGIS.esriSystem;
 using Infragistics.UltraChart.Shared.Styles;
 using Infragistics.UltraChart.Resources.Appearance;
 using Infragistics.UltraChart.Core.Layers;
+using Infragistics.Win.UltraWinGrid;
 
 using Microsoft.SqlServer.Server;
 using Microsoft.SqlServer;
@@ -31,6 +32,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -1214,146 +1216,56 @@ namespace GMonGr
       }
     }
 
-    #region Export To Excel
-    //public virtual event EventHandler WorkStart;
-    //public virtual event EventHandler WorkFinished;
+    #region Export to Excel
+    private void ExportGraphingDataToExcel()
+    {
+      string sensorName = cbxMonitorList.Value.ToString();
+      string startDate = clndrGwMonStart.Value.ToString();
+      string endDate = clndrGwMonEnd.Value.ToString();
+      string graphingDataExportFilePath = "C:\\temp\\" + sensorName + "_" + startDate + "-" + endDate + ".xls";
 
-    //public void OnWorkStart(object sender, EventArgs e)
-    //{
-    //  if (WorkStart != null) { WorkStart(sender, e); }
-    //}
+      try
+      {
+        SetStatus("Exporting monitor graphing data to Excel file...");
+        this.ultraGridExcelExporter.Export(this.dgvGwMonGraphData, graphingDataExportFilePath);
+        MessageBox.Show("Groundwater monitor graphing data exported to " + graphingDataExportFilePath, "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
 
-    //public void OnWorkFinished(object sender, EventArgs e)
-    //{
-    //  if (WorkFinished != null) { WorkFinished(sender, e); }
-    //}  
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered...");
+        MessageBox.Show("Error running ExportUpdateErrorsToExcel: " + ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+    }
+    private void ExportUpdateErrorsToExcel()
+    {
+      string updateErrorsExportFilePath = "C:\\temp\\UpdateErrors.xls";
+      try
+      {
+        SetStatus("Exporting update errors to Excel file...");
+        this.ultraGridExcelExporter.Export(this.dgvUpdateErrors, updateErrorsExportFilePath);
+        MessageBox.Show("Update Errors exported to " + updateErrorsExportFilePath, "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered...");
+        MessageBox.Show("Error running ExportUpdateErrorsToExcel: " + ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+
+    }
     
-    ///// <summary>  
-    ///// Manages a new thread used to Export from DataGridView to an Excel worksheet.  
-    ///// This method must be used in combination with the methods:  
-    ///// GetExcelReady()  
-    ///// ToExcel()  
-    ///// </summary>  
-    ///// <param name="dGV">ExtendedDataGridView name.</param>  
-    ///// <param name="initialRow">Number of Excel row where to start copying DataGridView titles.</param>  
-    ///// <param name="initialCol">Number of Excel column where to start copying DataGridView titles.</param>  
-    ///// <param name="exportTitles">True if you want to export DGV titles.</param>  
-    ///// <param name="wksName">How do you want to name the new worksheet.</param>  
-    //public void ExcelThread(DataGridView dGV, int initialRow, int initialCol, bool exportTitles, string wksName)
-    //{
-    //  Thread t1 = new Thread
-    //      (
-    //      delegate()
-    //      {
-    //        OnWorkStart(dGV, new EventArgs());
-
-    //        // If exportTitles is set to false, change initial row value.  
-    //        if (!exportTitles) { initialRow = initialRow - 1; }
-
-    //        // Export Data.  
-    //        GetExcelReady(dGV, initialRow, initialCol, exportTitles, wksName);
-
-    //        OnWorkFinished(dGV, new EventArgs());
-    //      }
-    //      );
-    //  t1.Start();
-    //}
-
-    ///// <summary>  
-    ///// Sets a new Excel object where to export DataGridView.  
-    ///// This method should be used with the methods:  
-    ///// ExcelThread().  
-    ///// ToExcel().  
-    ///// </summary>  
-    ///// <param name="dGV">ExtendedDataGridView name.</param>  
-    ///// <param name="initialRow">Number of Excel row where to start copying DataGridView titles.</param>  
-    ///// <param name="initialCol">Number of Excel column where to start copying DataGridView titles.</param>  
-    ///// <param name="exportTitles">True if you want to export DGV titles.</param>  
-    ///// <param name="wksName">How do you want to name the new worksheet.</param>  
-    //void GetExcelReady(DataGridView dGV, int initialRow, int initialCol, bool exportTitles, string wksName)
-    //{
-    //  // Declare missing object.  
-    //  Object oMissing = System.Reflection.Missing.Value;
-
-    //  // Change current thread culture to ("en-US").  
-    //  // System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");  
-
-    //  // Create a new Excel instance.  
-    //  Excel.Application oExcel = new Excel.Application();
-
-    //  // Set Excel workbook to open with only 1 worsheet.  
-    //  oExcel.SheetsInNewWorkbook = 1;
-
-    //  // Set the UserControl property so Excel won't shut down.  
-    //  oExcel.UserControl = true;
-
-    //  // Add a workbook.  
-    //  Excel.Workbook oBook = oExcel.Workbooks.Add(oMissing);
-
-    //  // Get worksheets collection   
-    //  Excel.Sheets oSheetsColl = oExcel.Worksheets;
-
-    //  // Get Worksheet number 1  
-    //  Excel.Worksheet oSheet = (Excel.Worksheet)oSheetsColl.get_Item(1);
-    //  oSheet.Name = wksName;
-
-    //  // Export dGV columns To Excel worksheet.  
-    //  ToExcel(dGV, initialRow, initialCol, exportTitles, oSheet);
-
-    //  // Make Excel visible to the user.  
-    //  oExcel.Visible = true;
-
-    //  // Release the variables.  
-    //  //oBook.Close(false, oMissing, oMissing);  
-    //  oBook = null;
-
-    //  //oExcel.Quit();  
-    //  oExcel = null;
-
-    //  // Collect garbage.  
-    //  GC.Collect();
-    //}
-
-    ///// <summary>  
-    ///// Export from DataGridView to Excel worksheet.  
-    ///// This method should be used in combination with the methods:  
-    ///// ExcelThread().  
-    ///// GetExcelReady().  
-    ///// </summary>  
-    ///// <param name="dGV">ExtendedDataGridView name.</param>  
-    ///// <param name="initialRow">Number of Excel row where to start copying DataGridView titles.</param>  
-    ///// <param name="initialCol">Number of Excel column where to start copying DataGridView titles.</param>  
-    ///// <param name="exportTitles">True if you want to export DGV titles.</param>  
-    ///// <param name="wksName">How do you want to name the new worksheet.</param>  
-    ///// <param name="oSheet"></param>  
-    //void ToExcel(DataGridView dGV, int initialRow, int initialCol, bool exportTitles, Microsoft.Office.Interop.Excel.Worksheet oSheet)
-    //{
-    //  int colIndex = 0;
-    //  foreach (DataGridViewColumn column in dGV.Columns)
-    //  {
-    //    // Export only visible columns.  
-    //    if (dGV.ExportVisibleColumnsOnly)
-    //    {
-    //      if (column.Visible)
-    //      {
-    //        // Export.  
-    //        if (exportTitles) { oSheet.Cells[initialRow, colIndex + initialCol] = column.HeaderText; }
-    //        for (int row = initialRow; row < initialRow + dGV.Rows.Count - 1; row++)
-    //        { oSheet.Cells[row + 1, colIndex + initialCol] = dGV[colIndex, row - initialRow].Value; }
-    //        colIndex++;
-    //      }
-    //    }
-    //    else
-    //    {
-    //      // Export all columns.  
-    //      if (exportTitles) { oSheet.Cells[initialRow, colIndex + initialCol] = column.HeaderText; }
-    //      for (int row = initialRow; row < initialRow + dGV.Rows.Count - 1; row++)
-    //      { oSheet.Cells[row + 1, colIndex + initialCol] = dGV[colIndex, row - initialRow].Value; }
-    //      colIndex++;
-    //    }
-    //  }
-    //}
-    #endregion  
+    #endregion 
 
     #endregion
 
@@ -1647,7 +1559,9 @@ namespace GMonGr
     /// <param name="e"></param>
     private void btnExportUpdateErrors_Click(object sender, EventArgs e)
     {
-      throw new NotImplementedException();
+      Cursor.Current = Cursors.WaitCursor;
+      ExportUpdateErrorsToExcel();
+      Cursor.Current = Cursors.Default;
     }
 
     /// <summary>
