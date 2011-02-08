@@ -387,17 +387,21 @@ namespace GMonGr
         NumericTimeSeries maxGwElSeries = new NumericTimeSeries();
         NumericTimeSeries gwElSeries = new NumericTimeSeries();
         NumericTimeSeries minGwElSeries = new NumericTimeSeries();
+        NumericTimeSeries flaggedDataSeries = new NumericTimeSeries();
 
         grndElSeries = numTimeSeriesDict["grndElSeries"];
         maxGwElSeries = numTimeSeriesDict["maxGwElSeries"];
         gwElSeries = numTimeSeriesDict["gwElSeries"];
         minGwElSeries = numTimeSeriesDict["minGwElSeries"];
+        flaggedDataSeries = numTimeSeriesDict["flaggedDataSeries"];
   
         //set legend properties
         grndElSeries.Label = "Ground Elev. (ft)";
         maxGwElSeries.Label = "Max GW Elev. (ft)";
         gwElSeries.Label = "GW Elev. (ft)";
         minGwElSeries.Label = "Min GW Elev. (ft)";
+        flaggedDataSeries.Label = "Flagged GW Elev. Data";
+        
         chartGwData.Legend.Location = LegendLocation.Bottom;
         chartGwData.Legend.Margins.Left = 3;
         chartGwData.Legend.Margins.Right = 3;
@@ -408,6 +412,7 @@ namespace GMonGr
         chartGwData.Legend.ChartComponent.Series.Add(maxGwElSeries);
         chartGwData.Legend.ChartComponent.Series.Add(gwElSeries);
         chartGwData.Legend.ChartComponent.Series.Add(minGwElSeries);
+        chartGwData.Legend.ChartComponent.Series.Add(flaggedDataSeries);
         chartGwData.Legend.BorderColor = Color.Black;
         chartGwData.Legend.Visible = true;
         
@@ -468,10 +473,13 @@ namespace GMonGr
         NumericTimeSeries maxGwElSeries = new NumericTimeSeries();
         NumericTimeSeries gwElSeries = new NumericTimeSeries();
         NumericTimeSeries minGwElSeries = new NumericTimeSeries();
+        NumericTimeSeries flaggedDataSeries = new NumericTimeSeries();
 
         System.Data.DataTable gwDt = gwDataTableDict["gwDataDt"];
+        System.Data.DataTable flaggedDataDt = gwDataTableDict["flaggedDataDt"];
         EnumerableRowCollection gwDataEnumRowColl = gwDt.AsEnumerable();
-
+        EnumerableRowCollection flaggedDataEnumRowColl = flaggedDataDt.AsEnumerable();
+        
         foreach (DataRow grndElDr in gwDataEnumRowColl)
         {
           grndElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(grndElDr.ItemArray[5].ToString()), System.Double.Parse(grndElDr.ItemArray[14].ToString()), "", false));
@@ -492,10 +500,16 @@ namespace GMonGr
           minGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(minGwElDr.ItemArray[5].ToString()), System.Double.Parse(minGwElDr.ItemArray[16].ToString()), "", false));
         }
 
+        foreach (DataRow flaggedDataDr in flaggedDataEnumRowColl)
+        {
+          flaggedDataSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(flaggedDataDr.ItemArray[5].ToString()), System.Double.Parse(flaggedDataDr.ItemArray[11].ToString()), "", false));
+        }
+
         numTimeSeriesDict.Add("grndElSeries", grndElSeries);
         numTimeSeriesDict.Add("maxGwElSeries", maxGwElSeries);
         numTimeSeriesDict.Add("gwElSeries", gwElSeries);
         numTimeSeriesDict.Add("minGwElSeries", minGwElSeries);
+        numTimeSeriesDict.Add("flaggedDataSeries", flaggedDataSeries);
       }
 
       catch (Exception ex)
@@ -528,8 +542,9 @@ namespace GMonGr
         
         System.Data.DataTable grndElDt = new System.Data.DataTable();
         System.Data.DataTable gwDataDt = new System.Data.DataTable();
+        System.Data.DataTable flaggedDataDt = new System.Data.DataTable();
         DataView gwDataDv = new DataView();
-        
+        DataView flaggedDataDv = new DataView();
         DateTime startDate = new DateTime();
         startDate = SetCalendarStartSafe();
         DateTime endDate = new DateTime();
@@ -540,12 +555,20 @@ namespace GMonGr
 
         EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
           (from g in gwDataDt.AsEnumerable()
-           where g.Field<DateTime>("reading_date") >= startDate && g.Field<DateTime>("reading_date") <= endDate
+           where g.Field<DateTime>("reading_date") >= startDate 
+           && g.Field<DateTime>("reading_date") <= endDate
            select g);
-        
+
+        EnumerableRowCollection<DataRow> qrySelectFlaggedData =
+          (from g in gwDataDt.AsEnumerable()
+           where g.Field<DateTime>("reading_date") >= startDate
+           && g.Field<DateTime>("reading_date") <= endDate
+           && g.Field<string>("data_qual_flag") == "-"
+           select g);
+      
         EnumerableRowCollection<DataRow> qrySelectGrndEl =
           (from m in grndElDt.AsEnumerable()
-           where m.Field<double>("toc_elev_ft") != null
+           where m.Field<double>("toc_elev_ft") >= 0
            select m);
 
         grndElFt = qrySelectGrndEl.Max(q => q.Field<double>("toc_elev_ft"));
@@ -553,7 +576,9 @@ namespace GMonGr
         minElFt = qrySelectGwMonRecords.Min(q => q.Field<double>("gw_elev_ft"));
 
         gwDataDv = qrySelectGwMonRecords.AsDataView();
+        flaggedDataDv = qrySelectFlaggedData.AsDataView();
         gwDataDt = gwDataDv.ToTable();
+        flaggedDataDt = flaggedDataDv.ToTable();
 
         DataColumn grndElevCol = new DataColumn();
         grndElevCol.DataType = System.Type.GetType("System.Double");
@@ -568,7 +593,9 @@ namespace GMonGr
         minGwElevCol.DefaultValue = minElFt;
         gwDataDt.Columns.Add(minGwElevCol);
 
+        dgvGwMonGraphData.DataSource = gwDataDt;
         dataTableDict.Add("gwDataDt", gwDataDt);
+        dataTableDict.Add("flaggedDataDt", flaggedDataDt);
       }
 
       catch (Exception ex)
@@ -1220,10 +1247,10 @@ namespace GMonGr
     private void ExportGraphingDataToExcel()
     {
       string sensorName = cbxMonitorList.Value.ToString();
-      string startDate = clndrGwMonStart.Value.ToString();
-      string endDate = clndrGwMonEnd.Value.ToString();
-      string graphingDataExportFilePath = "C:\\temp\\" + sensorName + "_" + startDate + "-" + endDate + ".xls";
-
+      string startDate = clndrGwMonStart.Value.ToString("yyyyMMdd");
+      string endDate = clndrGwMonEnd.Value.ToString("yyyyMMdd");
+      string graphingDataExportFilePath = "C:\\temp\\GraphingData" + "_" + sensorName + "_" + startDate + "-" + endDate + ".xls";
+    
       try
       {
         SetStatus("Exporting monitor graphing data to Excel file...");
@@ -1571,7 +1598,9 @@ namespace GMonGr
     /// <param name="e"></param>
     private void btnExportGraphData_Click(object sender, EventArgs e)
     {
-      throw new NotImplementedException();
+      Cursor.Current = Cursors.WaitCursor;
+      ExportGraphingDataToExcel();
+      Cursor.Current = Cursors.Default;
     }
 
     /// <summary>
