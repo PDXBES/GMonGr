@@ -31,7 +31,7 @@
     <PublisherName>City of Portland, BES - ASM</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>22</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -180,9 +180,6 @@
   <ItemGroup>
     <EmbeddedResource Include="GMonGrSplash.png" />
     <Content Include="drop.ico" />
-    <Content Include="GWMonitoring.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\updateHistory.png" />
     <None Include="Resources\flagData.png" />
     <None Include="Resources\NetworkConnection.jpg" />
@@ -213,6 +210,9 @@
     <None Include="GMonGr_TemporaryKey.pfx" />
     <None Include="Resources\UploadFile.png" />
     <None Include="Resources\linechart.png" />
+    <EmbeddedResource Include="Template\UserUpdate.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

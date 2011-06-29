@@ -9,6 +9,7 @@ using Infragistics.UltraChart.Shared.Styles;
 using Infragistics.UltraChart.Resources.Appearance;
 using Infragistics.UltraChart.Core.Layers;
 using Infragistics.Win.UltraWinGrid;
+using Infragistics.UltraChart.Shared.Events;
 
 using Microsoft.SqlServer.Server;
 using Microsoft.SqlServer;
@@ -102,6 +103,73 @@ namespace GMonGr
       //axMonitorMapControl.AddLayerFromFile("\\\\Oberon\\GRP117\\RGONZALEZ\\CoP\\BES\\ASM\\monitoring\\TaggartD\\lyr\\TaggartGWMonitors.lyr");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    private void UpdateSessionList()
+    {
+      SqlConnection sqlCon = new SqlConnection();
+      SqlCommand sqlCmd = new SqlCommand();
+      string sqlStr;
+
+      try
+      {
+        SetStatus("Updating session list");
+        sqlCon.ConnectionString = Properties.Settings.Default.GwMonitoringConnectionString.ToString();
+        sqlStr = "DELETE FROM [SessionList]";
+        sqlCmd.CommandText = sqlStr.ToString();
+        sqlCmd.Connection = sqlCon;
+        sqlCon.Open();
+        sqlCmd.ExecuteNonQuery();
+        sqlCon.Close();
+      }
+
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered");
+        MessageBox.Show("Error running UpdateSessionList: " + ex.Message, "Data Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void ResetSessionList()
+    {
+      SqlConnection sqlCon = new SqlConnection();
+      SqlCommand sqlCmd = new SqlCommand();
+      string sqlStr;
+
+      try
+      {
+        SetStatus("Resetting session list...");
+        sqlCon.ConnectionString = Properties.Settings.Default.GwMonitoringConnectionString.ToString();
+        sqlStr = "INSERT INTO [SessionList] " +
+        "SELECT session_edit_id, edit_date, edited_by, sensor_name, update_comment, reading_start_date, reading_end_date FROM [SESSION]";
+        sqlCmd.CommandText = sqlStr.ToString();
+        sqlCmd.Connection = sqlCon;
+        sqlCon.Open();
+        sqlCmd.ExecuteNonQuery();
+        sqlCon.Close();
+      }
+
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered");
+        MessageBox.Show("Error running ResetSessionList: " + ex.Message, "Data Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+    }
+    
     /// <summary>
     /// Deletes all records from the MonitorList table in the GWMONITORING DB
     /// prepares for update of monitor list for populating cbxMonitorList, which
@@ -214,10 +282,15 @@ namespace GMonGr
           tabControlMain.Tabs["updateHistory"].Visible = true;
           tabControlMain.SelectedTab = tabControlMain.Tabs[tabKey];
         }
+        if (tabControlMain.Tabs[tabKey].Equals("loadUpdates"))
+        {
+          tabControlMain.Tabs["loadUpdates"].Visible = true;
+          dgvDataUpdates.Visible = false;
+          tabControlMain.SelectedTab = tabControlMain.Tabs[tabKey];
+        }
+
         else
         {
-          //tabControlMain.Tabs["flagData"].Visible = false;
-          //tabControlMain.Tabs["updateHistory"].Visible = false;
           tabControlMain.SelectedTab = tabControlMain.Tabs[tabKey];
         }
       }
@@ -340,13 +413,14 @@ namespace GMonGr
     /// </summary>
     private void CheckRange()
     {
+      System.Data.DataTable gwMonDt = new System.Data.DataTable();
+
       try
       {
         SetStatus("Checking date range...");
         LoadGwMonGraphingData();
 
-        System.Data.DataTable gwMonDt = new System.Data.DataTable();
-        gwMonDt = groundwaterMonitorDataSet.GW_MONITORING;
+        gwMonDt = groundwaterMonitorDataSet.GW_MONITOR_READING;
 
         var qrySelectGwMonReadingDate =
           from g in gwMonDt.AsEnumerable()
@@ -382,45 +456,108 @@ namespace GMonGr
         SetStatus("Graphing groundwater monitor data...");
         //Add data series to series collection
         Dictionary<string, NumericTimeSeries> numTimeSeriesDict = GetNumericTimeSeriesCollection();
-
+        Dictionary<string, Object> rangeValuesDict = GetRangeValuesCollection();
         NumericTimeSeries grndElSeries = new NumericTimeSeries();
         NumericTimeSeries maxGwElSeries = new NumericTimeSeries();
         NumericTimeSeries gwElSeries = new NumericTimeSeries();
         NumericTimeSeries minGwElSeries = new NumericTimeSeries();
         NumericTimeSeries flaggedDataSeries = new NumericTimeSeries();
+        DateTime minXRange;
+        DateTime maxXRange;
+        Double minYRange;
+        Double maxYRange;
 
+        minXRange = Convert.ToDateTime(rangeValuesDict["minXRange"]);
+        maxXRange = Convert.ToDateTime(rangeValuesDict["maxXRange"]);
+
+        minYRange = Convert.ToDouble(rangeValuesDict["minYRange"]);
+        maxYRange = Convert.ToDouble(rangeValuesDict["maxYRange"]);
+        minYRange = minYRange - (minYRange * 0.01);
+        maxYRange = maxYRange + (maxYRange * 0.01);
+
+        //set time series line draw styles        
         grndElSeries = numTimeSeriesDict["grndElSeries"];
-        maxGwElSeries = numTimeSeriesDict["maxGwElSeries"];
-        gwElSeries = numTimeSeriesDict["gwElSeries"];
-        minGwElSeries = numTimeSeriesDict["minGwElSeries"];
-        flaggedDataSeries = numTimeSeriesDict["flaggedDataSeries"];
-  
-        //set legend properties
         grndElSeries.Label = "Ground Elev. (ft)";
-        maxGwElSeries.Label = "Max GW Elev. (ft)";
-        gwElSeries.Label = "GW Elev. (ft)";
-        minGwElSeries.Label = "Min GW Elev. (ft)";
-        flaggedDataSeries.Label = "Flagged GW Elev. Data";
+        grndElSeries.PEs.Add(new PaintElement(Color.DarkKhaki));
+
+        LineAppearance grndElLineApp = new LineAppearance();
+        grndElLineApp.Thickness = 3;
+        grndElLineApp.LineStyle.DrawStyle = LineDrawStyle.Solid;
         
+        ChartLayerAppearance grndElevLayer = new ChartLayerAppearance();
+        grndElevLayer.ChartType = ChartType.LineChart;
+        
+        maxGwElSeries = numTimeSeriesDict["maxGwElSeries"];
+        maxGwElSeries.Label = "Max GW Elev. (ft)";
+        maxGwElSeries.PEs.Add(new PaintElement(Color.DimGray));
+
+        LineAppearance maxGwElLineApp = new LineAppearance();
+        maxGwElLineApp.Thickness = 1;
+        maxGwElLineApp.LineStyle.DrawStyle = LineDrawStyle.DashDot;
+
+        ChartLayerAppearance maxGwElLayer = new ChartLayerAppearance();
+        maxGwElLayer.ChartType = ChartType.LineChart;
+
+        gwElSeries = numTimeSeriesDict["gwElSeries"];
+        gwElSeries.Label = "GW Elev. (ft)";
+        gwElSeries.PEs.Add(new PaintElement(Color.DarkBlue));
+        
+        LineAppearance gwElLineApp = new LineAppearance();
+        gwElLineApp.Thickness = 2;
+        gwElLineApp.LineStyle.DrawStyle = LineDrawStyle.Solid;
+        
+        ChartLayerAppearance gwElLayer = new ChartLayerAppearance();
+        gwElLayer.ChartType = ChartType.LineChart;
+        
+        minGwElSeries = numTimeSeriesDict["minGwElSeries"];
+        minGwElSeries.Label = "Min GW Elev. (ft)";
+        minGwElSeries.PEs.Add(new PaintElement(Color.DarkGray));
+        
+        LineAppearance minGwElLineApp = new LineAppearance();
+        minGwElLineApp.Thickness = 1;
+        minGwElLineApp.LineStyle.DrawStyle = LineDrawStyle.DashDotDot;
+        
+        ChartLayerAppearance minGwElLayer = new ChartLayerAppearance();
+        minGwElLayer.ChartType = ChartType.LineChart;
+
+        //set legend properties
         chartGwData.Legend.Location = LegendLocation.Bottom;
+        chartGwData.Legend.BackgroundColor = Color.White;
         chartGwData.Legend.Margins.Left = 3;
         chartGwData.Legend.Margins.Right = 3;
         chartGwData.Legend.Margins.Top = 3;
         chartGwData.Legend.Margins.Bottom = 3;
         chartGwData.Legend.SpanPercentage = 7;
-        chartGwData.Legend.ChartComponent.Series.Add(grndElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(maxGwElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(gwElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(minGwElSeries);
-        chartGwData.Legend.ChartComponent.Series.Add(flaggedDataSeries);
         chartGwData.Legend.BorderColor = Color.Black;
         chartGwData.Legend.Visible = true;
-        
+
         //set chart properties
-        chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
-        chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-        chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
-        chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
+        AxisItem axisX = new AxisItem();
+        axisX.OrientationType = AxisNumber.X_Axis;
+        axisX.DataType = AxisDataType.Time;
+        axisX.Labels.SeriesLabels.Visible = true;
+        axisX.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
+        axisX.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
+        axisX.TickmarkStyle = AxisTickStyle.Smart;
+        axisX.RangeType = AxisRangeType.Custom;
+        //axisX.RangeMax = 100000;
+        //axisX.RangeMin = 0;
+
+        //chartGwData.Axis.X.Labels.SeriesLabels.Orientation = TextOrientation.Horizontal;
+        //chartGwData.Axis.X.Labels.SeriesLabels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
+        //chartGwData.Axis.X.Labels.Layout.Behavior = AxisLabelLayoutBehaviors.None;
+        //chartGwData.Axis.X.Labels.SeriesLabels.Visible = true;
+        //chartGwData.Axis.X.TickmarkStyle = AxisTickStyle.Smart;
+        //chartGwData.Axis.X.RangeMax = maxXRange;
+        //chartGwData.Axis.X.RangeMin = minXRange;
+
+        chartGwData.Axis.Y.RangeType = AxisRangeType.Custom;
+        chartGwData.Axis.Y.TickmarkStyle = AxisTickStyle.Smart;
+        chartGwData.Axis.Y.TickmarkIntervalType = AxisIntervalType.Days;
+        chartGwData.Axis.Y.TickmarkInterval = 1;
+        chartGwData.Axis.Y.RangeType = AxisRangeType.Custom;
+        chartGwData.Axis.Y.RangeMax = Math.Round(maxYRange);
+        chartGwData.Axis.Y.RangeMin = Math.Round(minYRange);
 
         chartGwData.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
         chartGwData.TitleTop.Text = "Groundwater Monitor Time Series " + clndrGwMonStart.Value.ToShortDateString() + " - " + clndrGwMonEnd.Value.ToShortDateString() + " " + cbxMonitorList.Value.ToString() + " Piezometer";
@@ -436,13 +573,68 @@ namespace GMonGr
         chartGwData.TitleBottom.Visible = true;
         chartGwData.TitleBottom.Visible = true;
 
-        chartGwData.Axis.X.TickmarkStyle = AxisTickStyle.Smart;
-        chartGwData.Axis.Y.TickmarkStyle = AxisTickStyle.Smart;
-        chartGwData.Axis.Y.TickmarkIntervalType = AxisIntervalType.Days;
-        chartGwData.Axis.Y.TickmarkInterval = 1;
-
         chartGwData.Visible = true;
-        chartGwData.Refresh();        
+        
+        if (numTimeSeriesDict.ContainsKey("flaggedDataSeries"))
+        {
+          chartGwData.LineChart.ChartComponent.Series.Add(grndElSeries);
+          chartGwData.LineChart.LineAppearances.Add(grndElLineApp);
+          grndElevLayer.Series.Add(grndElSeries);
+          chartGwData.Refresh();
+
+          chartGwData.LineChart.ChartComponent.Series.Add(maxGwElSeries);
+          chartGwData.LineChart.LineAppearances.Add(maxGwElLineApp);
+          maxGwElLayer.Series.Add(maxGwElSeries);
+          chartGwData.Refresh();
+
+          chartGwData.LineChart.ChartComponent.Series.Add(gwElSeries);
+          chartGwData.LineChart.LineAppearances.Add(gwElLineApp);
+          gwElLayer.Series.Add(gwElSeries);
+          chartGwData.Refresh();
+
+          flaggedDataSeries = numTimeSeriesDict["flaggedDataSeries"];
+          flaggedDataSeries.Label = "Flagged GW Elev. Data";
+          flaggedDataSeries.PEs.Add(new PaintElement(Color.Red));
+
+          LineAppearance flaggedDataLineApp = new LineAppearance();
+          flaggedDataLineApp.Thickness = 1;
+          flaggedDataLineApp.LineStyle.DrawStyle = LineDrawStyle.DashDotDot;
+
+          ChartLayerAppearance flaggedDataLayer = new ChartLayerAppearance();
+          flaggedDataLayer.ChartType = ChartType.LineChart;
+          
+          chartGwData.LineChart.ChartComponent.Series.Add(flaggedDataSeries);
+          chartGwData.LineChart.LineAppearances.Add(flaggedDataLineApp);
+          flaggedDataLayer.Series.Add(flaggedDataSeries);
+          chartGwData.Refresh();
+
+          chartGwData.LineChart.ChartComponent.Series.Add(minGwElSeries);
+          chartGwData.LineChart.LineAppearances.Add(minGwElLineApp);
+          minGwElLayer.Series.Add(minGwElSeries);
+          chartGwData.Refresh();
+        }
+        else
+        {
+          chartGwData.LineChart.ChartComponent.Series.Add(grndElSeries);
+          chartGwData.LineChart.LineAppearances.Add(grndElLineApp);
+          grndElevLayer.Series.Add(grndElSeries);
+          chartGwData.Refresh();
+
+          chartGwData.LineChart.ChartComponent.Series.Add(maxGwElSeries);
+          chartGwData.LineChart.LineAppearances.Add(maxGwElLineApp);
+          maxGwElLayer.Series.Add(maxGwElSeries);
+          chartGwData.Refresh();
+
+          chartGwData.LineChart.ChartComponent.Series.Add(gwElSeries);
+          chartGwData.LineChart.LineAppearances.Add(gwElLineApp);
+          gwElLayer.Series.Add(gwElSeries);
+          chartGwData.Refresh();
+
+          chartGwData.LineChart.ChartComponent.Series.Add(minGwElSeries);
+          chartGwData.LineChart.LineAppearances.Add(minGwElLineApp);
+          minGwElLayer.Series.Add(minGwElSeries);
+          chartGwData.Refresh();
+        }   
       }
 
       catch (Exception ex)
@@ -476,10 +668,8 @@ namespace GMonGr
         NumericTimeSeries flaggedDataSeries = new NumericTimeSeries();
 
         System.Data.DataTable gwDt = gwDataTableDict["gwDataDt"];
-        System.Data.DataTable flaggedDataDt = gwDataTableDict["flaggedDataDt"];
         EnumerableRowCollection gwDataEnumRowColl = gwDt.AsEnumerable();
-        EnumerableRowCollection flaggedDataEnumRowColl = flaggedDataDt.AsEnumerable();
-        
+
         foreach (DataRow grndElDr in gwDataEnumRowColl)
         {
           grndElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(grndElDr.ItemArray[5].ToString()), System.Double.Parse(grndElDr.ItemArray[14].ToString()), "", false));
@@ -492,7 +682,7 @@ namespace GMonGr
 
         foreach (DataRow gwElDr in gwDataEnumRowColl)
         {
-          gwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(gwElDr.ItemArray[5].ToString()), System.Double.Parse(gwElDr.ItemArray[11].ToString()), String.Format("{0:M/d/yyyy}", gwElDr.ItemArray[5]), false));
+          gwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(gwElDr.ItemArray[5].ToString()), System.Double.Parse(gwElDr.ItemArray[12].ToString()), String.Format("{0:M/d/yyyy}", gwElDr.ItemArray[5]), false));
         }
 
         foreach (DataRow minGwElDr in gwDataEnumRowColl)
@@ -500,16 +690,23 @@ namespace GMonGr
           minGwElSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(minGwElDr.ItemArray[5].ToString()), System.Double.Parse(minGwElDr.ItemArray[16].ToString()), "", false));
         }
 
-        foreach (DataRow flaggedDataDr in flaggedDataEnumRowColl)
-        {
-          flaggedDataSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(flaggedDataDr.ItemArray[5].ToString()), System.Double.Parse(flaggedDataDr.ItemArray[11].ToString()), "", false));
-        }
-
         numTimeSeriesDict.Add("grndElSeries", grndElSeries);
         numTimeSeriesDict.Add("maxGwElSeries", maxGwElSeries);
         numTimeSeriesDict.Add("gwElSeries", gwElSeries);
         numTimeSeriesDict.Add("minGwElSeries", minGwElSeries);
-        numTimeSeriesDict.Add("flaggedDataSeries", flaggedDataSeries);
+
+        if (gwDataTableDict["flaggedDataDt"].Rows.Count > 0)
+        {
+          System.Data.DataTable flaggedDataDt = gwDataTableDict["flaggedDataDt"];
+          EnumerableRowCollection flaggedDataEnumRowColl = flaggedDataDt.AsEnumerable();
+
+          foreach (DataRow flaggedDataDr in flaggedDataEnumRowColl)
+          {
+            flaggedDataSeries.Points.Add(new NumericTimeDataPoint(System.DateTime.Parse(flaggedDataDr.ItemArray[5].ToString()), System.Double.Parse(flaggedDataDr.ItemArray[12].ToString()), "", false));
+          }
+
+          numTimeSeriesDict.Add("flaggedDataSeries", flaggedDataSeries);
+        }
       }
 
       catch (Exception ex)
@@ -522,6 +719,53 @@ namespace GMonGr
         SetStatus("Ready");
       }
       return numTimeSeriesDict;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private Dictionary<string, Object> GetRangeValuesCollection()
+    {
+      Dictionary<string, Object> rangeValuesDict = new Dictionary<string,Object>();
+
+      try
+      {
+        SetStatus("Loading range values collection");
+        Dictionary<string, System.Data.DataTable> gwDataTableDict = GetGwDataCollection();
+        DateTime minXRange = new DateTime();
+        DateTime maxXRange = new DateTime();
+        double minYRange = new Double();
+        double maxYRange = new Double();
+        
+        System.Data.DataTable gwDt = gwDataTableDict["gwDataDt"];
+        EnumerableRowCollection gwDataEnumRowColl = gwDt.AsEnumerable();
+
+        EnumerableRowCollection<DataRow> qrySelectGwData =
+           (from g in gwDt.AsEnumerable()
+            select g);
+
+        minXRange = qrySelectGwData.Min(q => q.Field<DateTime>("reading_date"));
+        maxXRange = qrySelectGwData.Max(q => q.Field<DateTime>("reading_date"));
+        minYRange = qrySelectGwData.Min(q => q.Field<double>("gw_elev_ft"));
+        maxYRange = qrySelectGwData.Max(q => q.Field<double>("ground_elev_ft"));
+
+        rangeValuesDict.Add("minXRange", minXRange);
+        rangeValuesDict.Add("maxXRange", maxXRange);
+        rangeValuesDict.Add("minYRange", minYRange);
+        rangeValuesDict.Add("maxYRange", maxYRange);  
+      }
+
+      catch (Exception ex)
+      {
+        MessageBox.Show("Error running GetRangeValuesCollection: " + ex.Message, "Error Loading Range Values", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+      return rangeValuesDict;
     }
 
     /// <summary>
@@ -550,7 +794,7 @@ namespace GMonGr
         DateTime endDate = new DateTime();
         endDate = SetCalendarEndSafe();
 
-        gwDataDt = groundwaterMonitorDataSet.GW_MONITORING;
+        gwDataDt = groundwaterMonitorDataSet.GW_MONITOR_READING;
         grndElDt = groundwaterMonitorDataSet.MONITOR_LOCATIONS;
 
         EnumerableRowCollection<DataRow> qrySelectGwMonRecords =
@@ -576,21 +820,24 @@ namespace GMonGr
         minElFt = qrySelectGwMonRecords.Min(q => q.Field<double>("gw_elev_ft"));
 
         gwDataDv = qrySelectGwMonRecords.AsDataView();
-        flaggedDataDv = qrySelectFlaggedData.AsDataView();
         gwDataDt = gwDataDv.ToTable();
+        flaggedDataDv = qrySelectFlaggedData.AsDataView();
         flaggedDataDt = flaggedDataDv.ToTable();
 
         DataColumn grndElevCol = new DataColumn();
         grndElevCol.DataType = System.Type.GetType("System.Double");
         grndElevCol.DefaultValue = grndElFt;
+        grndElevCol.ColumnName = "ground_elev_ft";
         gwDataDt.Columns.Add(grndElevCol);
         DataColumn maxGwElevCol = new DataColumn();
         maxGwElevCol.DataType = System.Type.GetType("System.Double");
         maxGwElevCol.DefaultValue = maxElFt;
+        maxGwElevCol.ColumnName = "max_gw_elev_ft";
         gwDataDt.Columns.Add(maxGwElevCol);
         DataColumn minGwElevCol = new DataColumn();
         minGwElevCol.DataType = System.Type.GetType("System.Double");
         minGwElevCol.DefaultValue = minElFt;
+        minGwElevCol.ColumnName = "min_gw_elev_ft";
         gwDataDt.Columns.Add(minGwElevCol);
 
         dgvGwMonGraphData.DataSource = gwDataDt;
@@ -692,7 +939,7 @@ namespace GMonGr
       {
         var qryTimeRangeGwMon =
           from u in groundwaterMonitorDataSet.GwMonUpdater
-          join g in groundwaterMonitorDataSet.GW_MONITORING
+          join g in groundwaterMonitorDataSet.GW_MONITOR_READING
           on u.readingDate equals g.reading_date
           select new
           {
@@ -831,9 +1078,9 @@ namespace GMonGr
         sensNameArr = sensorNameList.ToArray();
         sensorNameEnum = sensNameArr;
 
-        GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter gwMonDataTA;
-        gwMonDataTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter();
-        gwMonDataTA.FillGwMonDataBySensorName(groundwaterMonitorDataSet.GW_MONITORING, sensorNameEnum);
+        GroundwaterMonitorDataSetTableAdapters.GW_MONITOR_READINGTableAdapter gwMonDataTA;
+        gwMonDataTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GW_MONITOR_READINGTableAdapter();
+        gwMonDataTA.FillGwMonDataBySensorName(groundwaterMonitorDataSet.GW_MONITOR_READING, sensorNameEnum);
 
         GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter monLocationsTA;
         monLocationsTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.MONITOR_LOCATIONSTableAdapter();
@@ -864,8 +1111,8 @@ namespace GMonGr
         gwMonUpdaterTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter();
         gwMonUpdaterTA.Fill(groundwaterMonitorDataSet.GwMonUpdater);
 
-        GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter gwMonTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter();
-        gwMonTA.Fill(groundwaterMonitorDataSet.GW_MONITORING);
+        GroundwaterMonitorDataSetTableAdapters.GW_MONITOR_READINGTableAdapter gwMonTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.GW_MONITOR_READINGTableAdapter();
+        gwMonTA.Fill(groundwaterMonitorDataSet.GW_MONITOR_READING);
 
         GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter sessionTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter();
         sessionTA.Fill(groundwaterMonitorDataSet.SESSION);
@@ -933,7 +1180,7 @@ namespace GMonGr
     }
 
     /// <summary>
-    /// Obtains the current edit_id value and increments to next edit_id value for use in data update of SESSION table
+    /// Obtains the current session_edit_id value and increments to next session_edit_id value for use in data update of SESSION table
     /// </summary>
     /// <returns></returns>
     private int GetSessionEditId()
@@ -953,7 +1200,7 @@ namespace GMonGr
 
         if (qrySelectCurrentSessionEditId.Count() > 0)
         {
-          maxEditId = qrySelectCurrentSessionEditId.Max(q => q.Field<int>("edit_id"));
+          maxEditId = qrySelectCurrentSessionEditId.Max(q => q.Field<int>("session_edit_id"));
           sessionEditId = maxEditId + 1;
         }
 
@@ -988,6 +1235,7 @@ namespace GMonGr
         SetStatus("Running groundwater monitor update...");
 
         DateTime readingDate;
+        Double f2Scale;
         Double readingHertz;
         Double headPsi;
         Double headFt;
@@ -998,12 +1246,13 @@ namespace GMonGr
         readingDate = (DateTime)gwMonUpdaterRow.readingDate;
         readingHertz = (Double)gwMonUpdaterRow.readingHertz;
         headPsi = (Double)gwMonUpdaterRow.headPsi;
-        headFt = (Double)gwMonUpdaterRow.headFt;
         tempCelsius = (Double)gwMonUpdaterRow.tempCelsius;
-        gwDepthFt = (Double)gwMonUpdaterRow.gwDepthFt;
-        gwElevFt = (Double)gwMonUpdaterRow.gwElevFt;
+        f2Scale = Convert.ToDouble(gwMonUpdaterRow[5].ToString());
+        headFt = Convert.ToDouble(gwMonUpdaterRow[6].ToString());
+        gwDepthFt = Convert.ToDouble(gwMonUpdaterRow[7].ToString());
+        gwElevFt = Convert.ToDouble(gwMonUpdaterRow[8].ToString());
 
-        groundwaterMonitorDataSet.GW_MONITORING.AddGW_MONITORINGRow(
+        groundwaterMonitorDataSet.GW_MONITOR_READING.AddGW_MONITOR_READINGRow(
         editSessionId,
         DateTime.Now,
         (Environment.UserDomainName + "\\" + Environment.UserName),
@@ -1013,6 +1262,7 @@ namespace GMonGr
         headPsi,
         headFt,
         tempCelsius,
+        f2Scale,
         gwDepthFt,
         gwElevFt,
         "+"
@@ -1056,6 +1306,8 @@ namespace GMonGr
       Double tocElevFt;
       Double gwDepthFt;
       Double gwElevFt;
+      DateTime readingStartDate;
+      DateTime readingEndDate;
         
       try
       {
@@ -1092,6 +1344,25 @@ namespace GMonGr
         calFactHeadC = qryMonLocations.CalFactHeadC;
         f2ScaleStr = qryMonLocations.F2Scale;
 
+        if (!groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("f2Scale"))
+        {
+          groundwaterMonitorDataSet.GwMonUpdater.Columns.Add("f2Scale");
+        }
+
+        if (!groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("headFt"))
+        {         
+          groundwaterMonitorDataSet.GwMonUpdater.Columns.Add("headFt");
+        }
+
+        if (!groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("gwDepthFt"))
+        {       
+          groundwaterMonitorDataSet.GwMonUpdater.Columns.Add("gwDepthFt");
+        }
+        if (!groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("gwElevFt"))
+        {         
+          groundwaterMonitorDataSet.GwMonUpdater.Columns.Add("gwElevFt");
+        }
+        
         if (f2ScaleStr == "T")
         {
           foreach (GroundwaterMonitorDataSet.GwMonUpdaterRow gwMonUpdaterRow in groundwaterMonitorDataSet.GwMonUpdater)
@@ -1117,6 +1388,7 @@ namespace GMonGr
           foreach (GroundwaterMonitorDataSet.GwMonUpdaterRow gwMonUpdaterRow in groundwaterMonitorDataSet.GwMonUpdater)
           {
             readingHertz = gwMonUpdaterRow.Field<Double>("readingHertz");
+            f2Scale = 0.0;
             headPsi = ((Math.Pow(readingHertz, 2)) * (calFactPsiA)) + (readingHertz * calFactPsiB) + calFactPsiC;
             headFt = ((Math.Pow(readingHertz, 2)) * (calFactHeadA)) + (readingHertz * calFactHeadB) + calFactHeadC;
             gwDepthFt = -(headFt + sensorDepthFt + measureDownFt);
@@ -1126,15 +1398,26 @@ namespace GMonGr
             gwMonUpdaterRow.SetField<Double>("headFt", headFt);
             gwMonUpdaterRow.SetField<Double>("gwDepthFt", gwDepthFt);
             gwMonUpdaterRow.SetField<Double>("gwElevFt", gwElevFt);
+            gwMonUpdaterRow.SetField<Double>("f2Scale", f2Scale);
             
             UpdateGwMon(editSessionId, sensorName, gwMonUpdaterRow);
           }
         }
-        
-        groundwaterMonitorDataSet.SESSION.AddSESSIONRow
-          (DateTime.Now,
+
+        var qrySelectUpdaterReadingDates =
+          from g in groundwaterMonitorDataSet.GwMonUpdater
+          select g;
+
+        readingStartDate = qrySelectUpdaterReadingDates.Min(q => q.readingDate);
+        readingEndDate = qrySelectUpdaterReadingDates.Max(q => q.readingDate);
+
+        groundwaterMonitorDataSet.SESSION.AddSESSIONRow(
+           DateTime.Now,
            (Environment.UserDomainName + "\\" + Environment.UserName),
-           sensorName);
+           sensorName,
+           "Updated data",
+           readingStartDate,
+           readingEndDate);
 
         return;
       }
@@ -1157,14 +1440,20 @@ namespace GMonGr
     /// <returns>
     /// editId
     /// </returns>
+    //Not sure if this is really needed
     private int UpdateEditSession()
     {
-      int editId = GetSessionEditId();
+      int editSessionId = GetSessionEditId();
       GroundwaterMonitorDataSet.SESSIONRow sessionRow =
-        groundwaterMonitorDataSet.SESSION.AddSESSIONRow
-        (DateTime.Now, Environment.UserDomainName+ "\\" +Environment.UserName,"");
+        groundwaterMonitorDataSet.SESSION.AddSESSIONRow(
+        DateTime.Now, 
+        Environment.UserDomainName+ "\\" +Environment.UserName,
+        "",
+        "",
+        DateTime.Now,
+        DateTime.Now);
       
-      return sessionRow.edit_id;
+      return sessionRow.session_edit_id;
     }
 
     /// <summary>
@@ -1180,8 +1469,8 @@ namespace GMonGr
         GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter gwMonUpdaterTA;
         gwMonUpdaterTA = new GroundwaterMonitorDataSetTableAdapters.GwMonUpdaterTableAdapter();
    
-        GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter gwMonTA = new GroundwaterMonitorDataSetTableAdapters.GW_MONITORINGTableAdapter();
-        gwMonTA.Update(changedGroundwaterMonitorDataSet.GW_MONITORING);
+        GroundwaterMonitorDataSetTableAdapters.GW_MONITOR_READINGTableAdapter gwMonTA = new GroundwaterMonitorDataSetTableAdapters.GW_MONITOR_READINGTableAdapter();
+        gwMonTA.Update(changedGroundwaterMonitorDataSet.GW_MONITOR_READING);
 
         GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter sessionTA = new GMonGr.GroundwaterMonitorDataSetTableAdapters.SESSIONTableAdapter();
         sessionTA.Update(changedGroundwaterMonitorDataSet.SESSION);
@@ -1200,6 +1489,59 @@ namespace GMonGr
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void FillFlaggedData()
+    {
+      System.Data.DataTable sessionDt = new System.Data.DataTable();
+      //System.Data.DataTable flagDataDt = new System.Data.DataTable();
+      DataView flagDataDv = new DataView();
+
+      int flaggedSessionCount;
+
+      try
+      {
+        SetStatus("Checking for flagged data...");
+        LoadGwMonSessionData();
+
+        sessionDt = groundwaterMonitorDataSet.SESSION;
+
+        EnumerableRowCollection<DataRow> qrySelectFlaggedData =
+          from f in sessionDt.AsEnumerable()
+          where f.Field<string>("update_comment") == "Added data flag"
+          select f;
+
+        flaggedSessionCount = qrySelectFlaggedData.Count();
+
+        if (flaggedSessionCount > 0)
+        {
+          flagDataDv = qrySelectFlaggedData.AsDataView();
+          flagDataDv.Table.Columns[0].ColumnName = "Edit Id";
+
+          flagDataDv.Table.Columns[1].ColumnName = "Edit Date";
+          flagDataDv.Table.Columns[2].ColumnName = "Edited By";
+          flagDataDv.Table.Columns[3].ColumnName = "Sensor";
+          flagDataDv.Table.Columns[4].ColumnName = "Comment";
+          flagDataDv.Table.Columns[5].ColumnName = "Start Date";
+          flagDataDv.Table.Columns[6].ColumnName = "End Date";
+          dgvFlaggedData.DataSource = flagDataDv.ToTable();
+          dgvFlaggedData.DataBind();
+        }
+      }
+
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered");
+        MessageBox.Show("Error running FillFlaggedData: " + ex.Message, "Error Checking Flagged Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+    }
+
+    /// <summary>
     /// Primary method for flagging data specified by the user as not being valid for graphing and/or analysis
     /// </summary>
     private void FlagGwMonData()
@@ -1207,28 +1549,46 @@ namespace GMonGr
       SetStatus("Flagging groundwater monitor data");
       string sensorName;
       int editSessionId;
-
+      DateTime minFlaggedDataDate;
+      DateTime maxFlaggedDataDate;
+      DateTime readingStartDate;
+      DateTime readingEndDate;
+      TimeSpan duration = new System.TimeSpan(1, 0, 0, 0);
+      
       try
       {
         editSessionId = GetSessionEditId();  
         LoadGwMonGraphingData();
         sensorName = cbxFlagMonitorDataList.Value.ToString();
-        
-        var query = from g in groundwaterMonitorDataSet.GW_MONITORING
-                        where g.reading_date >= clndrFlagDataRangeStart.Value && g.reading_date <= clndrFlagDataRangeEnd.Value && g.sensor_name == sensorName
+        minFlaggedDataDate = clndrFlagDataRangeStart.Value;
+        maxFlaggedDataDate = clndrFlagDataRangeEnd.Value + duration;
+
+        var qrySelectFlaggedData = from g in groundwaterMonitorDataSet.GW_MONITOR_READING
+                        where g.reading_date >= minFlaggedDataDate 
+                        && g.reading_date <= maxFlaggedDataDate 
+                        && g.sensor_name == sensorName
                         select g;
 
-        foreach (GroundwaterMonitorDataSet.GW_MONITORINGRow g in query)
+        readingStartDate = qrySelectFlaggedData.Min(q => q.reading_date);       
+        readingEndDate = qrySelectFlaggedData.Max(q => q.reading_date);
+
+        foreach (GroundwaterMonitorDataSet.GW_MONITOR_READINGRow g in qrySelectFlaggedData)
         {
+          g.session_edit_id = editSessionId;
           g.data_qual_flag = "-";
         }
                 
-        groundwaterMonitorDataSet.SESSION.AddSESSIONRow
-          (DateTime.Now,
-           (Environment.UserDomainName + "\\" + Environment.UserName),
-           sensorName);
+        groundwaterMonitorDataSet.SESSION.AddSESSIONRow(
+          DateTime.Now,
+          (Environment.UserDomainName + "\\" + Environment.UserName),
+          sensorName,
+          "Added data flag",
+          readingStartDate,
+          readingEndDate);
 
         SaveGwMonData();
+        UpdateSessionList();
+        ResetSessionList();
       }
 
       catch (Exception ex)
@@ -1241,6 +1601,70 @@ namespace GMonGr
       {
         SetStatus("Ready");
       }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void RemoveDataFlag()
+    {
+      SetStatus("Removing groundwater monitor data flag");
+      string sensorName;
+      int editSessionId;
+      DateTime minFlaggedDataDate;
+      DateTime maxFlaggedDataDate;
+      DateTime readingStartDate;
+      DateTime readingEndDate;
+      TimeSpan duration = new System.TimeSpan(1, 0, 0, 0);
+
+      try
+      {
+        editSessionId = GetSessionEditId();
+        LoadGwMonGraphingData();
+        sensorName = cbxFlagMonitorDataList.Value.ToString();
+        minFlaggedDataDate = clndrFlagDataRangeStart.Value;
+        maxFlaggedDataDate = clndrFlagDataRangeEnd.Value + duration;
+        
+
+        var qrySelectFlaggedData = from g in groundwaterMonitorDataSet.GW_MONITOR_READING
+                    where g.reading_date >= minFlaggedDataDate
+                    && g.reading_date <= maxFlaggedDataDate 
+                    && g.sensor_name == sensorName
+                    select g;
+
+        readingStartDate = qrySelectFlaggedData.Min(q => q.reading_date);
+        readingEndDate = qrySelectFlaggedData.Max(q => q.reading_date);
+
+        foreach (GroundwaterMonitorDataSet.GW_MONITOR_READINGRow g in qrySelectFlaggedData)
+        {
+          g.session_edit_id = editSessionId;
+          g.data_qual_flag = "+";
+        }
+
+        groundwaterMonitorDataSet.SESSION.AddSESSIONRow(
+           DateTime.Now,
+           (Environment.UserDomainName + "\\" + Environment.UserName),
+           sensorName,
+           "Removed data flag",
+           readingStartDate,
+           readingEndDate);
+
+        SaveGwMonData();
+        UpdateSessionList();
+        ResetSessionList();
+      }
+
+      catch (Exception ex)
+      {
+        SetStatus("Error encountered...");
+        MessageBox.Show("Error running RemoveDataFlag: " + ex.Message, "Data Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      finally
+      {
+        SetStatus("Ready");
+      }
+      
     }
 
     #region Export to Excel
@@ -1305,12 +1729,13 @@ namespace GMonGr
     /// <param name="e"></param>
     private void frmMain_Load(object sender, EventArgs e)
     {
-      // TODO: This line of code loads data into the 'groundwaterMonitorDataSet.SESSION' table. You can move, or remove it, as needed.
-      this.sESSIONTableAdapter.Fill(this.groundwaterMonitorDataSet.SESSION);
-      // TODO: This line of code loads data into the 'groundwaterMonitorDataSet.GwMonUpdater' table. You can move, or remove it, as needed.
-      //this.gwMonUpdaterTableAdapter.Fill(this.groundwaterMonitorDataSet.GwMonUpdater);
-      // TODO: This line of code loads data into the 'groundwaterMonitorDataSet.MonitorList' table. You can move, or remove it, as needed.
+      // TODO: This line of code loads data into the 'groundwaterMonitorDataSet.SessionList' table. You can move, or remove it, as needed.
+      this.sessionListTableAdapter.Fill(this.groundwaterMonitorDataSet.SessionList);
+      this.gwMonUpdaterTableAdapter.Fill(this.groundwaterMonitorDataSet.GwMonUpdater);
       this.monitorListTableAdapter.Fill(this.groundwaterMonitorDataSet.MonitorList);
+      dgvDataUpdates.Refresh();
+      UpdateSessionList();
+      ResetSessionList();
       UpdateMonitorList();
       ResetMonitorList();
       // TODO: This line of code loads data into the 'ProjectDataSet.GwMonUpdater' table. You can move, or remove it, as needed.
@@ -1388,14 +1813,49 @@ namespace GMonGr
 
       if (!PrepareUpdateFile(txtUploadFilePath.Text))
       {
+        int errorRecordCount = 0;
+        int goodRecordCount = 0;
         tabControlMain.Tabs[2].Visible = true;
         LoadTab("updateFileErrors");
+        if (goodRecordCount > 0)
+        {
+          MessageBox.Show("There are " + errorRecordCount + " records with an error code." +
+          goodRecordCount + " records can still be submitted (no errors recorded with these " +
+          goodRecordCount + " records. Proceed to submit good records?", "Proceed with Update?",
+          MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+        }
+        else
+        {
+          MessageBox.Show("All " + errorRecordCount + 
+          " update records returned an error code. Review the error details" + 
+          " and/or export error records to Excel to correct and re-submit.",
+          "Correct Errors before Submitting", MessageBoxButtons.OK, 
+          MessageBoxIcon.Error);
+        }
+        
         return;
       }
 
       Cursor = Cursors.Default;
       btnSubmitUpdates.Enabled = true;
-      dgvDataUpdates.Visible = true;      
+      
+      if (groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("f2Scale"))
+      {
+        groundwaterMonitorDataSet.GwMonUpdater.Columns.Remove("f2Scale");
+      }
+      if (groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("headFt"))
+      {
+        groundwaterMonitorDataSet.GwMonUpdater.Columns.Remove("headFt");
+      }
+      if (groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("gwDepthFt"))
+      {
+        groundwaterMonitorDataSet.GwMonUpdater.Columns.Remove("gwDepthFt");
+      }
+      if (groundwaterMonitorDataSet.GwMonUpdater.Columns.Contains("gwElevFt"))
+      {
+        groundwaterMonitorDataSet.GwMonUpdater.Columns.Remove("gwElevFt");
+      }
+      dgvDataUpdates.Visible = true;
       SetStatus("Ready");
     }
     
@@ -1425,9 +1885,10 @@ namespace GMonGr
       }
 
       SaveGwMonData();
+      
       MessageBox.Show("All updates to the groundwater monitoring system have completed successfully." + "\n"
-      + "To review changes from this edit session, return to the main page, and click on the 'Load Update History' button to load the desired edit session.",
-      "GMonGr: Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        + "To review changes from this edit session, return to the main page, and click on the 'Load Update History' button to load the desired edit session.",
+        "GMonGr: Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
       Cursor.Current = Cursors.Default;
       RestartUpdate();
@@ -1567,6 +2028,7 @@ namespace GMonGr
       }
       txtGwMonFlagDataDateRange.Text = "";
       CheckRange();
+      FillFlaggedData();
     }
     
     /// <summary>
@@ -1618,7 +2080,7 @@ namespace GMonGr
       string flagDataRangeEnd;
       flagDataRangeEnd = clndrFlagDataRangeEnd.Value.ToShortDateString();
       
-      int flagDataRecordCount = (from g in groundwaterMonitorDataSet.GW_MONITORING
+      int flagDataRecordCount = (from g in groundwaterMonitorDataSet.GW_MONITOR_READING
                         where g.reading_date >= clndrFlagDataRangeStart.Value && g.reading_date <= clndrFlagDataRangeEnd.Value && g.sensor_name == selectedMonitor
                         select g).Count();
 
@@ -1631,8 +2093,96 @@ namespace GMonGr
 
       FlagGwMonData();
       MessageBox.Show(flagDataRecordCount + " records for " + selectedMonitor + " applied.", "Flagged Data Changes Applied", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+      FillFlaggedData();
       Cursor.Current = Cursors.Default;
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void btnRemoveDataFlag_Click(object sender, EventArgs e)
+    {
+      Cursor.Current = Cursors.WaitCursor;
+      string selectedMonitor;
+      selectedMonitor = cbxFlagMonitorDataList.Value.ToString();
+      string flagDataRangeStart;
+      flagDataRangeStart = clndrFlagDataRangeStart.Value.ToShortDateString();
+      string flagDataRangeEnd;
+      flagDataRangeEnd = clndrFlagDataRangeEnd.Value.ToShortDateString();
+      
+      DialogResult dialResult = MessageBox.Show("Remove data quality flag for selected data range of " + selectedMonitor + "?", "Confirm Data Quality Flag Removal", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+      if (dialResult != DialogResult.OK)
+      {
+        return;
+      }
+      RemoveDataFlag();
+      MessageBox.Show("Data flag removed for selected range", "Flagged Data Changes Applied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      FillFlaggedData();
+      Cursor.Current = Cursors.Default;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void dgvFlaggedData_AfterSelectChange(object sender, AfterSelectChangeEventArgs e)
+    {
+      string startDateStr;
+      string endDateStr;
+      if(dgvFlaggedData.Selected.Rows[0].Cells[5].Value.ToString()=="" || dgvFlaggedData.Selected.Rows[0].Cells[6].Value.ToString() == "" )
+      {
+        return;
+      }
+      
+      else
+      {
+        startDateStr = DateTime.Parse(dgvFlaggedData.Selected.Rows[0].Cells[5].Value.ToString()).ToShortDateString();
+        endDateStr = DateTime.Parse(dgvFlaggedData.Selected.Rows[0].Cells[6].Value.ToString()).ToShortDateString();
+        clndrFlagDataRangeStart.Value = Convert.ToDateTime(startDateStr);
+        clndrFlagDataRangeEnd.Value = Convert.ToDateTime(endDateStr);
+      }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void btnCloseUpdateHistory_Click(object sender, EventArgs e)
+    {
+      RestartUpdate();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void fillByToolStripButton_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        //this.sessionListTableAdapter1.FillBy(this.groundwaterMonitorDataSet.SessionList);
+      }
+      catch (System.Exception ex)
+      {
+        System.Windows.Forms.MessageBox.Show(ex.Message);
+      }
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void pnlFlagData_PaintClient(object sender, PaintEventArgs e)
+    {
 
     }
 

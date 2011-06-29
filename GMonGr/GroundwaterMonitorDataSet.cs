@@ -9,19 +9,19 @@ namespace GMonGr
 {
   public partial class GroundwaterMonitorDataSet
   {
+    partial class SESSIONDataTable
+    {
+    }
+  
+    partial class GW_MONITOR_READINGDataTable
+    {
+    }
+  
     partial class MonitorListDataTable
     {
     }
 
     partial class GwMonQcDataTable
-    {
-    }
-
-    partial class SESSIONDataTable
-    {
-    }
-
-    partial class GW_MONITORINGDataTable
     {
     }
 
@@ -39,9 +39,9 @@ namespace GMonGr
 
 namespace GMonGr.GroundwaterMonitorDataSetTableAdapters
 {
-  public partial class GW_MONITORINGTableAdapter
+  public partial class GW_MONITOR_READINGTableAdapter
   {
-    public int FillGwMonDataBySensorName(GroundwaterMonitorDataSet.GW_MONITORINGDataTable gwMonDataTable, IEnumerable<string> sensorName)
+    public int FillGwMonDataBySensorName(GroundwaterMonitorDataSet.GW_MONITOR_READINGDataTable gwMonDataTable, IEnumerable<string> sensorName)
     {
       string originalCommandText =  CommandCollection[0].CommandText;
       int returnValue = 0;

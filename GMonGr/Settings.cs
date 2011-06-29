@@ -40,7 +40,7 @@
             System.Data.Common.DbConnectionStringBuilder csb;
             csb = new System.Data.Common.DbConnectionStringBuilder();
 
-            csb.ConnectionString = UserUpdateConnectionString;
+            csb.ConnectionString = GwMonUpdateConnectionString;
             string dataDirectory;
             if (System.AppDomain.CurrentDomain.GetData("DataDirectory") == null)
             {
