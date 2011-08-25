@@ -31,7 +31,7 @@
       this.components = new System.ComponentModel.Container();
       Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
       Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
@@ -39,11 +39,11 @@
       Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
       Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
       Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("GwMonUpdater", -1);
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingId");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingDate");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingHertz");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("headPsi");
-      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("tempCelsius");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingId");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingDate");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("readingHertz");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("headPsi");
+      Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("tempCelsius");
       Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand3 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
       Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
       Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -54,12 +54,27 @@
       Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand5 = new Infragistics.Win.UltraWinGrid.UltraGridBand("MonitorList", -1);
       Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("sensor_name");
       Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
+      Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab3 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+      Infragistics.Win.UltraWinTabControl.UltraTab ultraTab7 = new Infragistics.Win.UltraWinTabControl.UltraTab();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup1 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
       Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
@@ -74,6 +89,9 @@
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup2 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
       Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem4 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
       Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
+      Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
+      Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem7 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+      Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
       Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
       Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
       Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
@@ -104,6 +122,7 @@
       this.tabPlotData = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
       this.dgvGwMonGraphData = new Infragistics.Win.UltraWinGrid.UltraGrid();
       this.pnlLoadClearChart = new Infragistics.Win.Misc.UltraPanel();
+      this.btnExportGraphPic = new Infragistics.Win.Misc.UltraButton();
       this.btnExportGraphData = new Infragistics.Win.Misc.UltraButton();
       this.btnLoadGraph = new Infragistics.Win.Misc.UltraButton();
       this.btnClearChart = new Infragistics.Win.Misc.UltraButton();
@@ -161,6 +180,38 @@
       this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
       this.btnFlagGwMonData = new Infragistics.Win.Misc.UltraButton();
       this.btnRemoveDataFlag = new Infragistics.Win.Misc.UltraButton();
+      this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+      this.btnNewMonitorSubmit = new Infragistics.Win.Misc.UltraButton();
+      this.btnNewMonitorXYCoordMap = new Infragistics.Win.Misc.UltraButton();
+      this.btnNewMonitorXYCoordManual = new Infragistics.Win.Misc.UltraButton();
+      this.txtNewMonitorCalFactFtC = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorCalFactFtB = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorNotes = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorNotes = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorF2Scale = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorF2Scale = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorSerialNumber = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorSerialNumber = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorCalFactFtA = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorCalFactFtC = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorSensorName = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorSensorName = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorCalFactFtB = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorCalFactFtA = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorCalFactPsiC = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorCalFactPsiC = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorGroundElevation = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorGroundElevation = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorSensorDepth = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorSensorDepth = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorMeasureDown = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorMeasureDown = new Infragistics.Win.Misc.UltraLabel();
+      this.ultraTextEditor2 = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorCalFactPsiB = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorCalFactPsiB = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorCalFactPsiA = new Infragistics.Win.Misc.UltraLabel();
+      this.txtNewMonitorSensorId = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+      this.lblNewMonitorSensorId = new Infragistics.Win.Misc.UltraLabel();
       this.tabControlMain = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
       this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
       this.expBarMain = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
@@ -177,6 +228,7 @@
       this.monitorListTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.MonitorListTableAdapter();
       this.tableAdapterManager = new GMonGr.GroundwaterMonitorDataSetTableAdapters.TableAdapterManager();
       this.sessionListTableAdapter = new GMonGr.GroundwaterMonitorDataSetTableAdapters.SessionListTableAdapter();
+      this.sfdMain = new System.Windows.Forms.SaveFileDialog();
       this.tabPlotData.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dgvGwMonGraphData)).BeginInit();
       this.pnlLoadClearChart.ClientArea.SuspendLayout();
@@ -214,6 +266,21 @@
       this.ultraPanel2.SuspendLayout();
       this.ultraPanel1.ClientArea.SuspendLayout();
       this.ultraPanel1.SuspendLayout();
+      this.ultraTabPageControl1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactFtC)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorNotes)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorF2Scale)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSerialNumber)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactFtA)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSensorName)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactFtB)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactPsiC)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorGroundElevation)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSensorDepth)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorMeasureDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.ultraTextEditor2)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactPsiB)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSensorId)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).BeginInit();
       this.tabControlMain.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).BeginInit();
@@ -224,7 +291,7 @@
       // 
       // tabMonitorMap
       // 
-      this.tabMonitorMap.Location = new System.Drawing.Point(-10000, -10000);
+      this.tabMonitorMap.Location = new System.Drawing.Point(1, 20);
       this.tabMonitorMap.Name = "tabMonitorMap";
       this.tabMonitorMap.Size = new System.Drawing.Size(784, 452);
       // 
@@ -253,20 +320,31 @@
       // 
       // pnlLoadClearChart.ClientArea
       // 
+      this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnExportGraphPic);
       this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnExportGraphData);
       this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnLoadGraph);
       this.pnlLoadClearChart.ClientArea.Controls.Add(this.btnClearChart);
-      this.pnlLoadClearChart.Location = new System.Drawing.Point(3, 281);
+      this.pnlLoadClearChart.Location = new System.Drawing.Point(3, 239);
       this.pnlLoadClearChart.Name = "pnlLoadClearChart";
-      this.pnlLoadClearChart.Size = new System.Drawing.Size(192, 168);
+      this.pnlLoadClearChart.Size = new System.Drawing.Size(192, 210);
       this.pnlLoadClearChart.TabIndex = 5;
+      // 
+      // btnExportGraphPic
+      // 
+      this.btnExportGraphPic.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
+      this.btnExportGraphPic.Location = new System.Drawing.Point(5, 60);
+      this.btnExportGraphPic.Name = "btnExportGraphPic";
+      this.btnExportGraphPic.Size = new System.Drawing.Size(182, 45);
+      this.btnExportGraphPic.TabIndex = 6;
+      this.btnExportGraphPic.Text = "Save to Image";
+      this.btnExportGraphPic.Click += new System.EventHandler(this.btnExportGraphPic_Click);
       // 
       // btnExportGraphData
       // 
       this.btnExportGraphData.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnExportGraphData.Location = new System.Drawing.Point(5, 115);
+      this.btnExportGraphData.Location = new System.Drawing.Point(5, 162);
       this.btnExportGraphData.Name = "btnExportGraphData";
-      this.btnExportGraphData.Size = new System.Drawing.Size(182, 50);
+      this.btnExportGraphData.Size = new System.Drawing.Size(182, 45);
       this.btnExportGraphData.TabIndex = 5;
       this.btnExportGraphData.Text = "Export Graph Data";
       this.btnExportGraphData.Visible = false;
@@ -275,9 +353,9 @@
       // btnLoadGraph
       // 
       this.btnLoadGraph.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnLoadGraph.Location = new System.Drawing.Point(5, 3);
+      this.btnLoadGraph.Location = new System.Drawing.Point(3, 9);
       this.btnLoadGraph.Name = "btnLoadGraph";
-      this.btnLoadGraph.Size = new System.Drawing.Size(182, 50);
+      this.btnLoadGraph.Size = new System.Drawing.Size(182, 45);
       this.btnLoadGraph.TabIndex = 3;
       this.btnLoadGraph.Text = "Load Graph";
       this.btnLoadGraph.Click += new System.EventHandler(this.btnLoadGraph_Click);
@@ -285,9 +363,9 @@
       // btnClearChart
       // 
       this.btnClearChart.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
-      this.btnClearChart.Location = new System.Drawing.Point(5, 59);
+      this.btnClearChart.Location = new System.Drawing.Point(5, 111);
       this.btnClearChart.Name = "btnClearChart";
-      this.btnClearChart.Size = new System.Drawing.Size(182, 50);
+      this.btnClearChart.Size = new System.Drawing.Size(182, 45);
       this.btnClearChart.TabIndex = 4;
       this.btnClearChart.Text = "Clear Chart";
       this.btnClearChart.Click += new System.EventHandler(this.btnClearChart_Click);
@@ -311,9 +389,10 @@
       this.cbxMonitorList.DataSource = this.monitorListBindingSource;
       appearance9.BackColor = System.Drawing.Color.Silver;
       this.cbxMonitorList.DisplayLayout.Appearance = appearance9;
-      ultraGridColumn6.Header.VisiblePosition = 0;
+      ultraGridColumn1.Header.Caption = "Sensor Name";
+      ultraGridColumn1.Header.VisiblePosition = 0;
       ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn6});
+            ultraGridColumn1});
       this.cbxMonitorList.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
       this.cbxMonitorList.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No;
       this.cbxMonitorList.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.False;
@@ -393,12 +472,12 @@
       this.pnlCalendars.ClientArea.Controls.Add(this.lblGwMonStartDate);
       this.pnlCalendars.Location = new System.Drawing.Point(3, 133);
       this.pnlCalendars.Name = "pnlCalendars";
-      this.pnlCalendars.Size = new System.Drawing.Size(192, 142);
+      this.pnlCalendars.Size = new System.Drawing.Size(192, 100);
       this.pnlCalendars.TabIndex = 3;
       // 
       // clndrGwMonEnd
       // 
-      this.clndrGwMonEnd.Location = new System.Drawing.Point(3, 108);
+      this.clndrGwMonEnd.Location = new System.Drawing.Point(3, 67);
       this.clndrGwMonEnd.Name = "clndrGwMonEnd";
       this.clndrGwMonEnd.Size = new System.Drawing.Size(184, 20);
       this.clndrGwMonEnd.TabIndex = 8;
@@ -412,7 +491,7 @@
       // 
       // lblGwMonEndDate
       // 
-      this.lblGwMonEndDate.Location = new System.Drawing.Point(3, 85);
+      this.lblGwMonEndDate.Location = new System.Drawing.Point(3, 44);
       this.lblGwMonEndDate.Name = "lblGwMonEndDate";
       this.lblGwMonEndDate.Size = new System.Drawing.Size(100, 17);
       this.lblGwMonEndDate.TabIndex = 6;
@@ -514,7 +593,7 @@
       this.chartGwData.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y.TickmarkInterval = 40;
+      this.chartGwData.Axis.Y.TickmarkInterval = 50;
       this.chartGwData.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y.Visible = true;
       this.chartGwData.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -541,13 +620,13 @@
       this.chartGwData.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
       this.chartGwData.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
       this.chartGwData.Axis.Y2.MinorGridLines.Visible = false;
-      this.chartGwData.Axis.Y2.TickmarkInterval = 40;
+      this.chartGwData.Axis.Y2.TickmarkInterval = 50;
       this.chartGwData.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Y2.Visible = false;
       this.chartGwData.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
       this.chartGwData.Axis.Z.Labels.FontColor = System.Drawing.Color.DimGray;
       this.chartGwData.Axis.Z.Labels.HorizontalAlign = System.Drawing.StringAlignment.Near;
-      this.chartGwData.Axis.Z.Labels.ItemFormatString = "";
+      this.chartGwData.Axis.Z.Labels.ItemFormatString = "<ITEM_LABEL>";
       this.chartGwData.Axis.Z.Labels.Layout.Behavior = Infragistics.UltraChart.Shared.Styles.AxisLabelLayoutBehaviors.Auto;
       this.chartGwData.Axis.Z.Labels.Orientation = Infragistics.UltraChart.Shared.Styles.TextOrientation.Horizontal;
       this.chartGwData.Axis.Z.Labels.SeriesLabels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -572,7 +651,7 @@
       this.chartGwData.Axis.Z2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
       this.chartGwData.Axis.Z2.Labels.FontColor = System.Drawing.Color.Gray;
       this.chartGwData.Axis.Z2.Labels.HorizontalAlign = System.Drawing.StringAlignment.Near;
-      this.chartGwData.Axis.Z2.Labels.ItemFormatString = "";
+      this.chartGwData.Axis.Z2.Labels.ItemFormatString = "<ITEM_LABEL>";
       this.chartGwData.Axis.Z2.Labels.Layout.Behavior = Infragistics.UltraChart.Shared.Styles.AxisLabelLayoutBehaviors.Auto;
       this.chartGwData.Axis.Z2.Labels.Orientation = Infragistics.UltraChart.Shared.Styles.TextOrientation.Horizontal;
       this.chartGwData.Axis.Z2.Labels.SeriesLabels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -595,6 +674,7 @@
       this.chartGwData.Axis.Z2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
       this.chartGwData.Axis.Z2.Visible = false;
       this.chartGwData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.chartGwData.BackgroundImageStyle = Infragistics.UltraChart.Shared.Styles.ImageFitStyle.Centered;
       this.chartGwData.ColorModel.AlphaLevel = ((byte)(150));
       this.chartGwData.ColorModel.ColorBegin = System.Drawing.Color.Pink;
       this.chartGwData.ColorModel.ColorEnd = System.Drawing.Color.DarkRed;
@@ -608,6 +688,7 @@
       this.chartGwData.TabIndex = 0;
       this.chartGwData.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
       this.chartGwData.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
+      this.chartGwData.Visible = false;
       // 
       // tabLoadUpdates
       // 
@@ -617,24 +698,24 @@
       this.tabLoadUpdates.Controls.Add(this.btnSubmitUpdates);
       this.tabLoadUpdates.Controls.Add(this.btnLoadUpdateFile);
       this.tabLoadUpdates.Controls.Add(this.txtUploadFilePath);
-      this.tabLoadUpdates.Location = new System.Drawing.Point(1, 20);
+      this.tabLoadUpdates.Location = new System.Drawing.Point(-10000, -10000);
       this.tabLoadUpdates.Name = "tabLoadUpdates";
       this.tabLoadUpdates.Size = new System.Drawing.Size(784, 452);
       // 
       // dgvDataUpdates
       // 
       this.dgvDataUpdates.DataSource = this.gwMonUpdaterBindingSource;
-      ultraGridColumn1.Header.VisiblePosition = 0;
-      ultraGridColumn2.Header.VisiblePosition = 1;
-      ultraGridColumn3.Header.VisiblePosition = 2;
-      ultraGridColumn4.Header.VisiblePosition = 3;
-      ultraGridColumn5.Header.VisiblePosition = 4;
+      ultraGridColumn2.Header.VisiblePosition = 0;
+      ultraGridColumn3.Header.VisiblePosition = 1;
+      ultraGridColumn4.Header.VisiblePosition = 2;
+      ultraGridColumn5.Header.VisiblePosition = 3;
+      ultraGridColumn6.Header.VisiblePosition = 4;
       ultraGridBand2.Columns.AddRange(new object[] {
-            ultraGridColumn1,
             ultraGridColumn2,
             ultraGridColumn3,
             ultraGridColumn4,
-            ultraGridColumn5});
+            ultraGridColumn5,
+            ultraGridColumn6});
       this.dgvDataUpdates.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
       this.dgvDataUpdates.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
       this.dgvDataUpdates.Location = new System.Drawing.Point(3, 77);
@@ -658,6 +739,7 @@
       // 
       this.cbxUpdateMonitorList.CheckedListSettings.CheckStateMember = "";
       this.cbxUpdateMonitorList.DataSource = this.monitorListBindingSource;
+      ultraGridColumn7.Header.Caption = "Sensor Name";
       ultraGridColumn7.Header.VisiblePosition = 0;
       ultraGridBand3.Columns.AddRange(new object[] {
             ultraGridColumn7});
@@ -929,7 +1011,6 @@
       this.pnlFlagData.Name = "pnlFlagData";
       this.pnlFlagData.Size = new System.Drawing.Size(202, 443);
       this.pnlFlagData.TabIndex = 12;
-      this.pnlFlagData.PaintClient += new System.Windows.Forms.PaintEventHandler(this.pnlFlagData_PaintClient);
       // 
       // ultraPanel3
       // 
@@ -948,6 +1029,7 @@
       // 
       this.cbxFlagMonitorDataList.CheckedListSettings.CheckStateMember = "";
       this.cbxFlagMonitorDataList.DataSource = this.monitorListBindingSource;
+      ultraGridColumn11.Header.Caption = "Sensor Name";
       ultraGridColumn11.Header.VisiblePosition = 0;
       ultraGridBand5.Columns.AddRange(new object[] {
             ultraGridColumn11});
@@ -1062,6 +1144,356 @@
       this.btnRemoveDataFlag.Text = "Remove Data Flag from Selected Time Range";
       this.btnRemoveDataFlag.Click += new System.EventHandler(this.btnRemoveDataFlag_Click);
       // 
+      // ultraTabPageControl1
+      // 
+      this.ultraTabPageControl1.Controls.Add(this.btnNewMonitorSubmit);
+      this.ultraTabPageControl1.Controls.Add(this.btnNewMonitorXYCoordMap);
+      this.ultraTabPageControl1.Controls.Add(this.btnNewMonitorXYCoordManual);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorCalFactFtC);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorCalFactFtB);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorNotes);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorNotes);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorF2Scale);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorF2Scale);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorSerialNumber);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorSerialNumber);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorCalFactFtA);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorCalFactFtC);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorSensorName);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorSensorName);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorCalFactFtB);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorCalFactFtA);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorCalFactPsiC);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorCalFactPsiC);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorGroundElevation);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorGroundElevation);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorSensorDepth);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorSensorDepth);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorMeasureDown);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorMeasureDown);
+      this.ultraTabPageControl1.Controls.Add(this.ultraTextEditor2);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorCalFactPsiB);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorCalFactPsiB);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorCalFactPsiA);
+      this.ultraTabPageControl1.Controls.Add(this.txtNewMonitorSensorId);
+      this.ultraTabPageControl1.Controls.Add(this.lblNewMonitorSensorId);
+      this.ultraTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
+      this.ultraTabPageControl1.Name = "ultraTabPageControl1";
+      this.ultraTabPageControl1.Size = new System.Drawing.Size(784, 452);
+      // 
+      // btnNewMonitorSubmit
+      // 
+      this.btnNewMonitorSubmit.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
+      this.btnNewMonitorSubmit.Location = new System.Drawing.Point(654, 380);
+      this.btnNewMonitorSubmit.Name = "btnNewMonitorSubmit";
+      this.btnNewMonitorSubmit.Size = new System.Drawing.Size(122, 69);
+      this.btnNewMonitorSubmit.TabIndex = 30;
+      this.btnNewMonitorSubmit.Text = "Submit New Monitor";
+      this.btnNewMonitorSubmit.Click += new System.EventHandler(this.btnNewMonitorSubmit_Click);
+      // 
+      // btnNewMonitorXYCoordMap
+      // 
+      this.btnNewMonitorXYCoordMap.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
+      this.btnNewMonitorXYCoordMap.Location = new System.Drawing.Point(654, 162);
+      this.btnNewMonitorXYCoordMap.Name = "btnNewMonitorXYCoordMap";
+      this.btnNewMonitorXYCoordMap.Size = new System.Drawing.Size(122, 69);
+      this.btnNewMonitorXYCoordMap.TabIndex = 29;
+      this.btnNewMonitorXYCoordMap.Text = "Enter X-Y Coordinates Using Map";
+      this.btnNewMonitorXYCoordMap.Click += new System.EventHandler(this.btnNewMonitorXYCoordMap_Click);
+      // 
+      // btnNewMonitorXYCoordManual
+      // 
+      this.btnNewMonitorXYCoordManual.ButtonStyle = Infragistics.Win.UIElementButtonStyle.WindowsVistaButton;
+      this.btnNewMonitorXYCoordManual.Location = new System.Drawing.Point(654, 87);
+      this.btnNewMonitorXYCoordManual.Name = "btnNewMonitorXYCoordManual";
+      this.btnNewMonitorXYCoordManual.Size = new System.Drawing.Size(122, 69);
+      this.btnNewMonitorXYCoordManual.TabIndex = 28;
+      this.btnNewMonitorXYCoordManual.Text = "Enter X-Y Coordinates Manually";
+      this.btnNewMonitorXYCoordManual.Click += new System.EventHandler(this.btnNewMonitorXYCoordManual_Click);
+      // 
+      // txtNewMonitorCalFactFtC
+      // 
+      this.txtNewMonitorCalFactFtC.Location = new System.Drawing.Point(222, 383);
+      this.txtNewMonitorCalFactFtC.Name = "txtNewMonitorCalFactFtC";
+      this.txtNewMonitorCalFactFtC.NullText = "Type to enter Feet Cal. Factor C";
+      appearance26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance26.FontData.ItalicAsString = "True";
+      this.txtNewMonitorCalFactFtC.NullTextAppearance = appearance26;
+      this.txtNewMonitorCalFactFtC.Size = new System.Drawing.Size(177, 21);
+      this.txtNewMonitorCalFactFtC.TabIndex = 27;
+      // 
+      // lblNewMonitorCalFactFtB
+      // 
+      this.lblNewMonitorCalFactFtB.AutoSize = true;
+      this.lblNewMonitorCalFactFtB.Location = new System.Drawing.Point(222, 287);
+      this.lblNewMonitorCalFactFtB.Name = "lblNewMonitorCalFactFtB";
+      this.lblNewMonitorCalFactFtB.Size = new System.Drawing.Size(130, 14);
+      this.lblNewMonitorCalFactFtB.TabIndex = 26;
+      this.lblNewMonitorCalFactFtB.Text = "Feet Calibration Factor B";
+      // 
+      // txtNewMonitorNotes
+      // 
+      this.txtNewMonitorNotes.Location = new System.Drawing.Point(428, 96);
+      this.txtNewMonitorNotes.Multiline = true;
+      this.txtNewMonitorNotes.Name = "txtNewMonitorNotes";
+      this.txtNewMonitorNotes.NullText = "Type to enter Notes";
+      appearance27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance27.FontData.ItalicAsString = "True";
+      this.txtNewMonitorNotes.NullTextAppearance = appearance27;
+      this.txtNewMonitorNotes.Size = new System.Drawing.Size(136, 155);
+      this.txtNewMonitorNotes.TabIndex = 25;
+      // 
+      // lblNewMonitorNotes
+      // 
+      this.lblNewMonitorNotes.AutoSize = true;
+      this.lblNewMonitorNotes.Location = new System.Drawing.Point(428, 76);
+      this.lblNewMonitorNotes.Name = "lblNewMonitorNotes";
+      this.lblNewMonitorNotes.Size = new System.Drawing.Size(34, 14);
+      this.lblNewMonitorNotes.TabIndex = 24;
+      this.lblNewMonitorNotes.Text = "Notes";
+      // 
+      // txtNewMonitorF2Scale
+      // 
+      this.txtNewMonitorF2Scale.Location = new System.Drawing.Point(428, 34);
+      this.txtNewMonitorF2Scale.Name = "txtNewMonitorF2Scale";
+      this.txtNewMonitorF2Scale.NullText = "Type to specify F2 Scale";
+      appearance28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance28.FontData.ItalicAsString = "True";
+      this.txtNewMonitorF2Scale.NullTextAppearance = appearance28;
+      this.txtNewMonitorF2Scale.Size = new System.Drawing.Size(136, 21);
+      this.txtNewMonitorF2Scale.TabIndex = 23;
+      // 
+      // lblNewMonitorF2Scale
+      // 
+      this.lblNewMonitorF2Scale.AutoSize = true;
+      this.lblNewMonitorF2Scale.Location = new System.Drawing.Point(428, 14);
+      this.lblNewMonitorF2Scale.Name = "lblNewMonitorF2Scale";
+      this.lblNewMonitorF2Scale.Size = new System.Drawing.Size(76, 14);
+      this.lblNewMonitorF2Scale.TabIndex = 22;
+      this.lblNewMonitorF2Scale.Text = "F2 Scale (T/F)";
+      // 
+      // txtNewMonitorSerialNumber
+      // 
+      this.txtNewMonitorSerialNumber.Location = new System.Drawing.Point(3, 159);
+      this.txtNewMonitorSerialNumber.Name = "txtNewMonitorSerialNumber";
+      this.txtNewMonitorSerialNumber.NullText = "Type to Enter Serial Number";
+      appearance13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance13.FontData.ItalicAsString = "True";
+      this.txtNewMonitorSerialNumber.NullTextAppearance = appearance13;
+      this.txtNewMonitorSerialNumber.Size = new System.Drawing.Size(191, 21);
+      this.txtNewMonitorSerialNumber.TabIndex = 21;
+      // 
+      // lblNewMonitorSerialNumber
+      // 
+      this.lblNewMonitorSerialNumber.AutoSize = true;
+      this.lblNewMonitorSerialNumber.Location = new System.Drawing.Point(3, 139);
+      this.lblNewMonitorSerialNumber.Name = "lblNewMonitorSerialNumber";
+      this.lblNewMonitorSerialNumber.Size = new System.Drawing.Size(77, 14);
+      this.lblNewMonitorSerialNumber.TabIndex = 20;
+      this.lblNewMonitorSerialNumber.Text = "Serial Number";
+      // 
+      // txtNewMonitorCalFactFtA
+      // 
+      this.txtNewMonitorCalFactFtA.Location = new System.Drawing.Point(222, 230);
+      this.txtNewMonitorCalFactFtA.Name = "txtNewMonitorCalFactFtA";
+      this.txtNewMonitorCalFactFtA.NullText = "Type to enter Feet Cal. Factor A";
+      appearance23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance23.FontData.ItalicAsString = "True";
+      this.txtNewMonitorCalFactFtA.NullTextAppearance = appearance23;
+      this.txtNewMonitorCalFactFtA.Size = new System.Drawing.Size(177, 21);
+      this.txtNewMonitorCalFactFtA.TabIndex = 19;
+      // 
+      // lblNewMonitorCalFactFtC
+      // 
+      this.lblNewMonitorCalFactFtC.AutoSize = true;
+      this.lblNewMonitorCalFactFtC.Location = new System.Drawing.Point(222, 363);
+      this.lblNewMonitorCalFactFtC.Name = "lblNewMonitorCalFactFtC";
+      this.lblNewMonitorCalFactFtC.Size = new System.Drawing.Size(131, 14);
+      this.lblNewMonitorCalFactFtC.TabIndex = 18;
+      this.lblNewMonitorCalFactFtC.Text = "Feet Calibration Factor C";
+      // 
+      // txtNewMonitorSensorName
+      // 
+      this.txtNewMonitorSensorName.Location = new System.Drawing.Point(3, 96);
+      this.txtNewMonitorSensorName.Name = "txtNewMonitorSensorName";
+      this.txtNewMonitorSensorName.NullText = "Type to enter Sensor Name";
+      appearance12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance12.FontData.ItalicAsString = "True";
+      this.txtNewMonitorSensorName.NullTextAppearance = appearance12;
+      this.txtNewMonitorSensorName.Size = new System.Drawing.Size(191, 21);
+      this.txtNewMonitorSensorName.TabIndex = 17;
+      // 
+      // lblNewMonitorSensorName
+      // 
+      this.lblNewMonitorSensorName.AutoSize = true;
+      this.lblNewMonitorSensorName.Location = new System.Drawing.Point(3, 76);
+      this.lblNewMonitorSensorName.Name = "lblNewMonitorSensorName";
+      this.lblNewMonitorSensorName.Size = new System.Drawing.Size(73, 14);
+      this.lblNewMonitorSensorName.TabIndex = 16;
+      this.lblNewMonitorSensorName.Text = "Sensor Name";
+      // 
+      // txtNewMonitorCalFactFtB
+      // 
+      this.txtNewMonitorCalFactFtB.Location = new System.Drawing.Point(222, 310);
+      this.txtNewMonitorCalFactFtB.Name = "txtNewMonitorCalFactFtB";
+      this.txtNewMonitorCalFactFtB.NullText = "Type to enter Feet Cal. Factor B";
+      appearance25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance25.FontData.ItalicAsString = "True";
+      this.txtNewMonitorCalFactFtB.NullTextAppearance = appearance25;
+      this.txtNewMonitorCalFactFtB.Size = new System.Drawing.Size(177, 21);
+      this.txtNewMonitorCalFactFtB.TabIndex = 15;
+      // 
+      // lblNewMonitorCalFactFtA
+      // 
+      this.lblNewMonitorCalFactFtA.AutoSize = true;
+      this.lblNewMonitorCalFactFtA.Location = new System.Drawing.Point(222, 210);
+      this.lblNewMonitorCalFactFtA.Name = "lblNewMonitorCalFactFtA";
+      this.lblNewMonitorCalFactFtA.Size = new System.Drawing.Size(130, 14);
+      this.lblNewMonitorCalFactFtA.TabIndex = 14;
+      this.lblNewMonitorCalFactFtA.Text = "Feet Calibration Factor A";
+      // 
+      // txtNewMonitorCalFactPsiC
+      // 
+      this.txtNewMonitorCalFactPsiC.Location = new System.Drawing.Point(222, 159);
+      this.txtNewMonitorCalFactPsiC.Name = "txtNewMonitorCalFactPsiC";
+      this.txtNewMonitorCalFactPsiC.NullText = "Type to enter PSI Cal. Factor C";
+      appearance19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance19.FontData.ItalicAsString = "True";
+      this.txtNewMonitorCalFactPsiC.NullTextAppearance = appearance19;
+      this.txtNewMonitorCalFactPsiC.Size = new System.Drawing.Size(177, 21);
+      this.txtNewMonitorCalFactPsiC.TabIndex = 13;
+      // 
+      // lblNewMonitorCalFactPsiC
+      // 
+      this.lblNewMonitorCalFactPsiC.AutoSize = true;
+      this.lblNewMonitorCalFactPsiC.Location = new System.Drawing.Point(222, 139);
+      this.lblNewMonitorCalFactPsiC.Name = "lblNewMonitorCalFactPsiC";
+      this.lblNewMonitorCalFactPsiC.Size = new System.Drawing.Size(126, 14);
+      this.lblNewMonitorCalFactPsiC.TabIndex = 12;
+      this.lblNewMonitorCalFactPsiC.Text = "PSI Calibration Factor C";
+      // 
+      // txtNewMonitorGroundElevation
+      // 
+      this.txtNewMonitorGroundElevation.Location = new System.Drawing.Point(3, 383);
+      this.txtNewMonitorGroundElevation.Name = "txtNewMonitorGroundElevation";
+      this.txtNewMonitorGroundElevation.NullText = "Type to Enter Ground Elevation";
+      appearance16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance16.FontData.ItalicAsString = "True";
+      this.txtNewMonitorGroundElevation.NullTextAppearance = appearance16;
+      this.txtNewMonitorGroundElevation.Size = new System.Drawing.Size(188, 21);
+      this.txtNewMonitorGroundElevation.TabIndex = 11;
+      // 
+      // lblNewMonitorGroundElevation
+      // 
+      this.lblNewMonitorGroundElevation.AutoSize = true;
+      this.lblNewMonitorGroundElevation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+      this.lblNewMonitorGroundElevation.Location = new System.Drawing.Point(3, 363);
+      this.lblNewMonitorGroundElevation.Name = "lblNewMonitorGroundElevation";
+      this.lblNewMonitorGroundElevation.Size = new System.Drawing.Size(109, 14);
+      this.lblNewMonitorGroundElevation.TabIndex = 10;
+      this.lblNewMonitorGroundElevation.Text = "Ground Elevation (ft)";
+      // 
+      // txtNewMonitorSensorDepth
+      // 
+      this.txtNewMonitorSensorDepth.Location = new System.Drawing.Point(3, 230);
+      this.txtNewMonitorSensorDepth.Name = "txtNewMonitorSensorDepth";
+      this.txtNewMonitorSensorDepth.NullText = "Type to enter Sensor Depth";
+      appearance14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance14.FontData.ItalicAsString = "True";
+      this.txtNewMonitorSensorDepth.NullTextAppearance = appearance14;
+      this.txtNewMonitorSensorDepth.Size = new System.Drawing.Size(191, 21);
+      this.txtNewMonitorSensorDepth.TabIndex = 9;
+      // 
+      // lblNewMonitorSensorDepth
+      // 
+      this.lblNewMonitorSensorDepth.AutoSize = true;
+      this.lblNewMonitorSensorDepth.Location = new System.Drawing.Point(3, 210);
+      this.lblNewMonitorSensorDepth.Name = "lblNewMonitorSensorDepth";
+      this.lblNewMonitorSensorDepth.Size = new System.Drawing.Size(90, 14);
+      this.lblNewMonitorSensorDepth.TabIndex = 8;
+      this.lblNewMonitorSensorDepth.Text = "Sensor Depth (ft)";
+      // 
+      // txtNewMonitorMeasureDown
+      // 
+      this.txtNewMonitorMeasureDown.Location = new System.Drawing.Point(2, 310);
+      this.txtNewMonitorMeasureDown.Name = "txtNewMonitorMeasureDown";
+      this.txtNewMonitorMeasureDown.NullText = "Type to enter Measure Down depth";
+      appearance15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance15.FontData.ItalicAsString = "True";
+      this.txtNewMonitorMeasureDown.NullTextAppearance = appearance15;
+      this.txtNewMonitorMeasureDown.Size = new System.Drawing.Size(188, 21);
+      this.txtNewMonitorMeasureDown.TabIndex = 7;
+      // 
+      // lblNewMonitorMeasureDown
+      // 
+      this.lblNewMonitorMeasureDown.AutoSize = true;
+      this.lblNewMonitorMeasureDown.Location = new System.Drawing.Point(2, 287);
+      this.lblNewMonitorMeasureDown.Name = "lblNewMonitorMeasureDown";
+      this.lblNewMonitorMeasureDown.Size = new System.Drawing.Size(97, 14);
+      this.lblNewMonitorMeasureDown.TabIndex = 6;
+      this.lblNewMonitorMeasureDown.Text = "Measure Down (ft)";
+      // 
+      // ultraTextEditor2
+      // 
+      this.ultraTextEditor2.Location = new System.Drawing.Point(222, 96);
+      this.ultraTextEditor2.Name = "ultraTextEditor2";
+      this.ultraTextEditor2.NullText = "Type to enter PSI Cal. Factor B";
+      appearance18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance18.FontData.ItalicAsString = "True";
+      this.ultraTextEditor2.NullTextAppearance = appearance18;
+      this.ultraTextEditor2.Size = new System.Drawing.Size(177, 21);
+      this.ultraTextEditor2.TabIndex = 5;
+      // 
+      // lblNewMonitorCalFactPsiB
+      // 
+      this.lblNewMonitorCalFactPsiB.AutoSize = true;
+      this.lblNewMonitorCalFactPsiB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+      this.lblNewMonitorCalFactPsiB.Location = new System.Drawing.Point(221, 76);
+      this.lblNewMonitorCalFactPsiB.Name = "lblNewMonitorCalFactPsiB";
+      this.lblNewMonitorCalFactPsiB.Size = new System.Drawing.Size(125, 14);
+      this.lblNewMonitorCalFactPsiB.TabIndex = 4;
+      this.lblNewMonitorCalFactPsiB.Text = "PSI Calibration Factor B";
+      // 
+      // txtNewMonitorCalFactPsiB
+      // 
+      this.txtNewMonitorCalFactPsiB.Location = new System.Drawing.Point(221, 34);
+      this.txtNewMonitorCalFactPsiB.Name = "txtNewMonitorCalFactPsiB";
+      this.txtNewMonitorCalFactPsiB.NullText = "Type to enter PSI Cal. Factor A";
+      appearance17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance17.FontData.ItalicAsString = "True";
+      this.txtNewMonitorCalFactPsiB.NullTextAppearance = appearance17;
+      this.txtNewMonitorCalFactPsiB.Size = new System.Drawing.Size(178, 21);
+      this.txtNewMonitorCalFactPsiB.TabIndex = 3;
+      // 
+      // lblNewMonitorCalFactPsiA
+      // 
+      this.lblNewMonitorCalFactPsiA.AutoSize = true;
+      this.lblNewMonitorCalFactPsiA.Location = new System.Drawing.Point(222, 14);
+      this.lblNewMonitorCalFactPsiA.Name = "lblNewMonitorCalFactPsiA";
+      this.lblNewMonitorCalFactPsiA.Size = new System.Drawing.Size(125, 14);
+      this.lblNewMonitorCalFactPsiA.TabIndex = 2;
+      this.lblNewMonitorCalFactPsiA.Text = "PSI Calibration Factor A";
+      // 
+      // txtNewMonitorSensorId
+      // 
+      this.txtNewMonitorSensorId.Location = new System.Drawing.Point(3, 34);
+      this.txtNewMonitorSensorId.Name = "txtNewMonitorSensorId";
+      this.txtNewMonitorSensorId.NullText = "Type to enter Sensor Id";
+      appearance11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+      appearance11.FontData.ItalicAsString = "True";
+      this.txtNewMonitorSensorId.NullTextAppearance = appearance11;
+      this.txtNewMonitorSensorId.Size = new System.Drawing.Size(191, 21);
+      this.txtNewMonitorSensorId.TabIndex = 1;
+      // 
+      // lblNewMonitorSensorId
+      // 
+      this.lblNewMonitorSensorId.AutoSize = true;
+      this.lblNewMonitorSensorId.Location = new System.Drawing.Point(3, 14);
+      this.lblNewMonitorSensorId.Name = "lblNewMonitorSensorId";
+      this.lblNewMonitorSensorId.Size = new System.Drawing.Size(53, 14);
+      this.lblNewMonitorSensorId.TabIndex = 0;
+      this.lblNewMonitorSensorId.Text = "Sensor Id";
+      // 
       // tabControlMain
       // 
       this.tabControlMain.Controls.Add(this.ultraTabSharedControlsPage1);
@@ -1071,6 +1503,7 @@
       this.tabControlMain.Controls.Add(this.tabMonitorMap);
       this.tabControlMain.Controls.Add(this.tabUpdateHistory);
       this.tabControlMain.Controls.Add(this.tabFlagData);
+      this.tabControlMain.Controls.Add(this.ultraTabPageControl1);
       this.tabControlMain.Location = new System.Drawing.Point(160, 6);
       this.tabControlMain.Name = "tabControlMain";
       this.tabControlMain.SharedControlsPage = this.ultraTabSharedControlsPage1;
@@ -1095,13 +1528,18 @@
       ultraTab6.Key = "flagData";
       ultraTab6.TabPage = this.tabFlagData;
       ultraTab6.Text = "Flag Data";
+      ultraTab7.Key = "newMonitor";
+      ultraTab7.TabPage = this.ultraTabPageControl1;
+      ultraTab7.Text = "New Monitor";
+      ultraTab7.Visible = false;
       this.tabControlMain.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
             ultraTab4,
             ultraTab1,
             ultraTab2,
             ultraTab3,
             ultraTab5,
-            ultraTab6});
+            ultraTab6,
+            ultraTab7});
       // 
       // ultraTabSharedControlsPage1
       // 
@@ -1112,7 +1550,7 @@
       // expBarMain
       // 
       ultraExplorerBarItem3.Key = "monitorMap";
-      appearance5.Image = global::GMonGr.Properties.Resources.map1;
+      appearance5.Image = global::GMonGr.Properties.Resources.map;
       ultraExplorerBarItem3.Settings.AppearancesSmall.Appearance = appearance5;
       ultraExplorerBarItem3.Text = "Monitor Map";
       ultraExplorerBarItem3.ToolTipText = "View active/inactive groundwater monitors";
@@ -1151,9 +1589,18 @@
       ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
             ultraExplorerBarItem4});
       ultraExplorerBarGroup2.Text = "Settings";
+      ultraExplorerBarItem7.Key = "newMonitor";
+      appearance24.Image = global::GMonGr.Properties.Resources.AddMonitor;
+      ultraExplorerBarItem7.Settings.AppearancesSmall.Appearance = appearance24;
+      ultraExplorerBarItem7.Text = "New Monitor";
+      ultraExplorerBarItem7.ToolTipText = "Add New Groundwater Monitor";
+      ultraExplorerBarGroup3.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
+            ultraExplorerBarItem7});
+      ultraExplorerBarGroup3.Text = "Admin";
       this.expBarMain.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {
             ultraExplorerBarGroup1,
-            ultraExplorerBarGroup2});
+            ultraExplorerBarGroup2,
+            ultraExplorerBarGroup3});
       this.expBarMain.GroupSettings.Style = Infragistics.Win.UltraWinExplorerBar.GroupStyle.LargeImagesWithText;
       this.expBarMain.Location = new System.Drawing.Point(10, 6);
       this.expBarMain.Margin = new System.Windows.Forms.Padding(1);
@@ -1327,6 +1774,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoSize = true;
       this.ClientSize = new System.Drawing.Size(949, 525);
       this.Controls.Add(this.frmMain_Fill_Panel);
       this.Controls.Add(this._frmMain_Toolbars_Dock_Area_Left);
@@ -1380,6 +1828,22 @@
       this.ultraPanel2.ResumeLayout(false);
       this.ultraPanel1.ClientArea.ResumeLayout(false);
       this.ultraPanel1.ResumeLayout(false);
+      this.ultraTabPageControl1.ResumeLayout(false);
+      this.ultraTabPageControl1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactFtC)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorNotes)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorF2Scale)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSerialNumber)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactFtA)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSensorName)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactFtB)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactPsiC)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorGroundElevation)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSensorDepth)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorMeasureDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.ultraTextEditor2)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorCalFactPsiB)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNewMonitorSensorId)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).EndInit();
       this.tabControlMain.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.expBarMain)).EndInit();
@@ -1470,6 +1934,40 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn update_comment;
     private System.Windows.Forms.DataGridViewTextBoxColumn reading_start_date;
     private System.Windows.Forms.DataGridViewTextBoxColumn reading_end_date;
+    private Infragistics.Win.Misc.UltraButton btnExportGraphPic;
+    private System.Windows.Forms.SaveFileDialog sfdMain;
+    private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl1;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorCalFactFtC;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorCalFactFtB;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorNotes;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorNotes;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorF2Scale;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorF2Scale;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorSerialNumber;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorSerialNumber;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorCalFactFtA;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorCalFactFtC;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorSensorName;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorSensorName;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorCalFactFtB;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorCalFactFtA;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorCalFactPsiC;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorCalFactPsiC;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorGroundElevation;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorGroundElevation;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorSensorDepth;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorSensorDepth;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorMeasureDown;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorMeasureDown;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor ultraTextEditor2;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorCalFactPsiB;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorCalFactPsiB;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorCalFactPsiA;
+    private Infragistics.Win.UltraWinEditors.UltraTextEditor txtNewMonitorSensorId;
+    private Infragistics.Win.Misc.UltraLabel lblNewMonitorSensorId;
+    private Infragistics.Win.Misc.UltraButton btnNewMonitorSubmit;
+    private Infragistics.Win.Misc.UltraButton btnNewMonitorXYCoordMap;
+    private Infragistics.Win.Misc.UltraButton btnNewMonitorXYCoordManual;
   }
 }
 

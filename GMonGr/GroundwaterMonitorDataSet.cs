@@ -33,8 +33,7 @@ namespace GMonGr
     {
 
     }
-  }
-    
+  }    
 }
 
 namespace GMonGr.GroundwaterMonitorDataSetTableAdapters

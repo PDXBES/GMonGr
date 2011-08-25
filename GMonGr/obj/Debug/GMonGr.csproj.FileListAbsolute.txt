@@ -17,7 +17,6 @@ C:\Documents and Settings\rgonzalez\My Documents\Visual Studio 2008\Projects\GMo
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.exe.config
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.pdb
-C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GWMonitoring.mdb
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.exe.manifest
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.application
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GMonGr.exe
@@ -30,7 +29,12 @@ C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\G
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe.licenses
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.exe.manifest
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.application
-C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\Template\UserUpdate.csv
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\Microsoft.Data.ConnectionUI.dll
 C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\Microsoft.Data.ConnectionUI.xml
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GroundwaterMonitorDataSet.xsd
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GroundwaterMonitorDataSet.cs
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GroundwaterMonitorDataSet.Designer.cs
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GroundwaterMonitorDataSet.xsc
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\bin\Debug\GroundwaterMonitorDataSet.xss
+C:\Documents and Settings\rgonzalez\My Documents\besasm-gwmon\GMonGr\obj\Debug\GMonGr.g.resources
